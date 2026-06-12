@@ -6,6 +6,38 @@ Skills are installable prompt bundles for [Claude](https://claude.ai) (Cowork / 
 
 ---
 
+## Installation
+
+### Method 1: Install from `.skill` file
+
+Download the `.skill` file and drag it into Claude Code's chat window — it auto-installs to `~/.claude/skills/`.
+
+### Method 2: Manual copy
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r cc-dispatch ~/.claude/skills/cc-dispatch
+cp -r tutor ~/.claude/skills/exam-tutor
+```
+
+### Verification
+
+```bash
+ls ~/.claude/skills/
+# cc-dispatch/  exam-tutor/
+```
+
+Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
+
+### Trigger examples
+
+| Skill | Try saying... |
+|-------|---------------|
+| `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
+| `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
+
+---
+
 ## Skills
 
 ### `cc-dispatch` — Codex × Claude Code Collaboration Protocol
@@ -31,7 +63,7 @@ Codex acts as product manager: it decomposes requirements into a structured **Ta
 - **Acceptance framework** — 4-step review checklist, ACCEPT declaration format, Change Request format (incremental, references original Task ID)
 - **Quality checklist** — Pre-flight self-check before handing off a task package
 
-**Install**: Download `cc-dispatch.skill` and open it in Claude (Cowork or Claude Code with skills plugin).
+**Install**: Download `cc-dispatch.skill` and drag it into Claude Code.
 
 ---
 
@@ -84,7 +116,7 @@ output/
 - Image quality enforced: local crops only, full-page screenshots rejected
 - Strict gating: 12-item quality checklist must pass before chapter is declared complete
 
-**Install**: Download `exam-review-generator.skill` and open it in Claude Code.
+**Install**: Download `exam-tutor.skill` and drag it into Claude Code.
 
 ---
 
