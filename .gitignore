@@ -1,0 +1,12 @@
+# Eval workspace
+tutor-workspace/
+
+# Source materials (large PDFs)
+tutor/source/
+
+# Generated output
+tutor/output/
+
+# Python cache
+__pycache__/
+*.pyc
