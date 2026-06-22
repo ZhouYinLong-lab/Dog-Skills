@@ -28,6 +28,7 @@ cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r dbskill ~/.claude/skills/dbskill
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r dog-frontier ~/.claude/skills/dog-frontier
+cp -r dog-tutor ~/.claude/skills/dog-tutor
 ```
 
 ### Verification
@@ -35,8 +36,8 @@ cp -r dog-frontier ~/.claude/skills/dog-frontier
 ```bash
 ls ~/.claude/skills/
 # baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
-# exam-tutor/  find-skills/  html-video/  humanizer-zh/  last30days/
-# nuwa/  ui-ux-pro-max/
+# dog-tutor/  exam-tutor/  find-skills/  html-video/  humanizer-zh/
+# last30days/  nuwa/  ui-ux-pro-max/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -57,6 +58,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 | `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
 | `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "写一个 Vue 组件" |
+| `dog-tutor` | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" / "写入门指南" |
 
 ---
 
@@ -341,6 +343,38 @@ Discovery → Design System → Implementation → Handoff → Quality Review
 - "帮我把这段文案去 AI 味" → Phase 5 copy review
 
 **Install**: `npx skills add dog-frontier -g -y` (from local). Or download `dist/dog-frontier.skill`.
+
+---
+
+### `dog-tutor` — 智能教程编制系统
+
+**Purpose**: A comprehensive tutorial generation meta-skill based on SmartTutor Generator (莫弈, 2026). Transforms any subject's learning materials into high-quality MkDocs Material format tutorials through a 6-phase guided dialogue. Topic-agnostic, audience-adaptive, with 4 analogy styles.
+
+**Integrated from**: SmartTutor Generator v1.1 by 莫弈 — original author of the 6-phase workflow, 4-level audience model, 4-style analogy system, 5-domain configurations, and MkDocs formatting standards.
+
+**6-phase workflow**:
+```
+Ingestion → Domain Analysis → Outline → Content Writing → Quality Review → Publishing
+   │            │              │            │               │              │
+   └─Gate 1─────┘─Gate 2───────┘─Gate 3─────┘─Gate 4────────┘─Gate 5───────┘
+```
+
+**Key features**:
+- **Topic-agnostic**: Supports technology, business, academic, life, and art domains
+- **4-level audience model**: absolute_beginner / beginner / intermediate / expert with auto-detection
+- **4 analogy styles**: daily_life / professional / humorous / rigorous with auto-matching
+- **5-dimension quality review**: format (15%) + completeness (25%) + pedagogy (25%) + practicality (20%) + analogy (15%)
+- **MkDocs Material compliance**: strict formatting rules (blank-line isolation, bold-space isolation, Admonition usage)
+- **3-layer classification**: domain → direction → topic with auto-categorization
+- **Archive & reuse**: incremental updates, style migration, audience adjustment, multi-language
+
+**Trigger examples**:
+- "帮我生成一个 Linux 新手入门教程,4-5小时,零基础"
+- "编制一份 R 语言学习材料,面向有 Python 基础的人"
+- "设计一个摄影入门课程大纲"
+- "写一份 LLM API 开发的入门指南"
+
+**Install**: `npx skills add dog-tutor -g -y` (from local). Or download `dist/dog-tutor.skill`.
 
 ---
 
