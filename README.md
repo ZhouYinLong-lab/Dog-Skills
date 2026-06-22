@@ -19,13 +19,21 @@ mkdir -p ~/.claude/skills
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
 cp -r tutor ~/.claude/skills/exam-tutor
 cp -r html_video ~/.claude/skills/html-video
+cp -r nuwa-skill ~/.claude/skills/nuwa
+cp -r claude-to-im-skill ~/.claude/skills/claude-to-im
+cp -r last30days-skill ~/.claude/skills/last30days
+cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
+cp -r vercel-labs-skills ~/.claude/skills/find-skills
+cp -r baoyu-skills ~/.claude/skills/baoyu-skills
+cp -r dbskill ~/.claude/skills/dbskill
 ```
 
 ### Verification
 
 ```bash
 ls ~/.claude/skills/
-# cc-dispatch/  exam-tutor/  html-video/
+# baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  exam-tutor/
+# find-skills/  html-video/  last30days/  nuwa/  ui-ux-pro-max/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -37,6 +45,13 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
 | `html-video` | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
+| `nuwa` | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
+| `claude-to-im` | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
+| `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
+| `ui-ux-pro-max` | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
+| `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
+| `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
+| `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 
 ---
 
@@ -179,6 +194,95 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 **Prerequisites**: Node.js 20+, pnpm 9+, ffmpeg, Chromium (Playwright).
 
 **Install**: Download `html-video.skill` and drag it into Claude Code.
+
+---
+
+### `nuwa` — 女娲 · Distill Anyone's Thinking into an AI Skill
+
+**Purpose**: A meta-skill that distills any person's way of thinking into a runnable AI skill. Launches 6 parallel research agents to scour public sources (writings, interviews, decisions, criticism, timeline), triple-verifies extracted mental models, and generates a complete SKILL.md that acts as a cognitive advisor in that person's voice.
+
+**What it distills**: Expression DNA, 3-7 mental models, 5-10 decision heuristics, anti-patterns, values, intellectual genealogy, and honest limits.
+
+**Workflow**: 6-agent parallel research → triple-verification framework extraction → SKILL.md construction → quality validation → dual-agent refinement.
+
+**Already distilled figures**: Paul Graham, Zhang Yiming, Karpathy, Steve Jobs, Elon Musk, Munger, Feynman, Naval, Taleb, and more (13 person skills + 1 topic skill).
+
+**Install**: Download `nuwa-skill.skill` and drag it into Claude Code. Or: `npx skills add alchaincyf/nuwa-skill`
+
+---
+
+### `claude-to-im` — Claude to IM Bridge
+
+**Purpose**: Bridges Claude Code or Codex sessions to instant messaging platforms (Telegram, Discord, Feishu/Lark, QQ, WeChat) so you can chat with your AI coding agent from your phone. Bidirectional message forwarding with streaming preview, inline permission approval buttons, and session persistence.
+
+**Supported IMs**: Telegram, Discord, Feishu/Lark, QQ, WeChat
+
+**Subcommands**: `setup`, `start`, `stop`, `status`, `logs`, `reconfigure`, `doctor`
+
+**Prerequisites**: Node.js ≥ 20, Claude Code CLI or Codex CLI.
+
+**Install**: Download `claude-to-im-skill.skill` and drag it into Claude Code. Or: `npx skills add op7418/Claude-to-IM-skill`
+
+---
+
+### `last30days` — AI-Powered Topic Research
+
+**Purpose**: AI agent-led search engine researching any topic across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, GitHub, and more — scored by real engagement signals (upvotes, likes, comment counts, real-money odds), not SEO. Produces HTML briefs with Best Takes, cross-source clusters, ELI5 mode, comparison mode, and competitor auto-discovery.
+
+**Usage**: `/last30days <topic> [--mode research|compare|hiring|agent|eli5] [--save]`
+
+**Sources (15+)**: Reddit, X, YouTube, TikTok, Instagram, HN, Polymarket, GitHub, Threads, Pinterest, Bluesky, Perplexity, general web.
+
+**Install**: Download `last30days-skill.skill` and drag it into Claude Code. Or: `npx skills add mvanhorn/last30days-skill -g`
+
+---
+
+### `ui-ux-pro-max` — Design Intelligence for AI Coding Agents
+
+**Purpose**: AI-powered design toolkit with 67 UI styles, 161 color palettes, 57 font pairings, 25 chart types, and 99 UX guidelines across 16 tech stacks. v2.0 Design System Generator: describe your project → get a complete design system with pattern, colors, typography, effects, and anti-patterns.
+
+**Tech stacks (16)**: HTML+Tailwind, React, Next.js, shadcn/ui, Vue, Nuxt, Svelte, Astro, SwiftUI, React Native, Flutter, Jetpack Compose, Angular, Laravel, JavaFX.
+
+**Install**: `npx uipro-cli init --ai <platform>`. Or download `ui-ux-pro-max-skill.skill` and drag into Claude Code.
+
+---
+
+### `find-skills` — Discover and Install Agent Skills
+
+**Purpose**: Helps users discover, evaluate, and install agent skills from the open skills ecosystem. Searches skills.sh leaderboard and `npx skills find <query>`, verifies quality (install count, reputation, stars), and offers one-click install. Part of the vercel-labs/skills project — the `npx skills` CLI ecosystem supporting 70+ agents.
+
+**Workflow**: Understand need → check leaderboard → search → verify quality → present → install.
+
+**Skill categories**: Web Development, Testing, DevOps, Documentation, Code Quality, Design, Productivity.
+
+**Install**: `npx skills add vercel-labs/agent-skills`. Or download `vercel-labs-skills.skill`.
+
+---
+
+### `baoyu-skills` — 暴鱼技能合集 · 22 Content & Productivity Skills
+
+**Purpose**: A comprehensive collection of 22 Claude Code skills for content creation, AI-powered generation, and productivity. Created by JimLiu. Version 2.0.0, MIT-0.
+
+**Key skills**:
+- **Content**: slide decks (17 styles), SVG diagrams (9 types), educational comics (6 art styles), article illustration, infographics (21 layouts), cover images, Xiaohongshu cards, social posting (X/WeChat/Weibo)
+- **AI Generation**: image gen via 11 backends, Gemini Web interaction
+- **Utilities**: translation (3 modes), image compression, YouTube transcripts, URL→markdown, markdown formatting, WeChat summary, Electron extraction
+
+**Install**: `npx skills add JimLiu/baoyu-skills -g --all`. Or download `baoyu-skills.skill`.
+
+---
+
+### `dbskill` — 别声张商业诊断工具箱 · 21 Business Diagnostic Skills
+
+**Purpose**: Business diagnostic toolbox with 21 Claude Code skills extracted from 12,307 tweets and refined into 4,176 knowledge atoms. Created by dontbesilent. Version 2.14.2, CC BY-NC 4.0.
+
+**Key skills**:
+- **Core diagnostics**: business model diagnosis (6 axioms), benchmark analysis, content quality testing, hook optimization, Xiaohongshu titles, AI writing detection
+- **Methodology**: "Slow is fast", Adlerian execution diagnosis, Wittgenstein-style concept deconstruction, goal clarification, good question generation
+- **State management**: save/restore/report diagnostic sessions across conversations
+- **Learning & chatrooms**: interactive learning, Austrian Economics chatroom (Hayek×Mises), directed multi-role chatrooms
+
+**Install**: `npx skills add dontbesilent2025/dbskill -g --all`. Or download `dbskill.skill`.
 
 ---
 

@@ -1,0 +1,23 @@
+# 不发 GitHub
+chatbot/
+plans/
+skills 版本管理/
+社媒推广/
+学习课题/
+.DS_Store
+.obsidian/
+AGENTS.md
+CLAUDE.md
+SOURCE_OF_TRUTH.md
+!skills/dbs-content-system/scaffold/root/AGENTS.md
+!skills/dbs-content-system/scaffold/root/CLAUDE.md
+!skills/dbs-content-system/scaffold/root/SOURCE_OF_TRUTH.md
+dist/
+
+# 知识库：只发 Skill 需要的部分
+知识库/legacy/
+知识库/主题索引/
+知识库/_预处理/
+
+# autoresearch 实验目录
+autoresearch/

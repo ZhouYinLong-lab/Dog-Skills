@@ -1,0 +1,222 @@
+{
+  "name": "dontbesilent-skills",
+  "owner": {
+    "name": "dontbesilent2025"
+  },
+  "metadata": {
+    "description": "dontbesilent 商业诊断工具箱 — 从 12,307 条推文中提炼方法论，做成 21 个 Claude Code skill",
+    "version": "2.14.2"
+  },
+  "plugins": [
+    {
+      "name": "dbs",
+      "description": "dontbesilent 商业工具箱主入口。根据你的问题自动路由到最合适的诊断工具。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["business", "router", "diagnosis", "toolkit", "chinese"],
+      "skills": ["./skills/dbs"]
+    },
+    {
+      "name": "dbs-diagnosis",
+      "description": "dontbesilent 商业模式诊断。两种模式：问诊（消解你的问题）和体检（拆解你的商业模式）。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["business-model", "diagnosis", "consulting", "problem-dissolution", "chinese"],
+      "skills": ["./skills/dbs-diagnosis"]
+    },
+    {
+      "name": "dbs-benchmark",
+      "description": "dontbesilent 对标分析。用五重过滤法帮你找到值得模仿的对标，排除一切关于「我」的噪音。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["benchmark", "competitive-analysis", "imitation", "strategy", "chinese"],
+      "skills": ["./skills/dbs-benchmark"]
+    },
+    {
+      "name": "dbs-action",
+      "description": "dontbesilent 执行力诊断。用阿德勒心理学框架诊断你「知道该做什么但就是不做」的真正原因。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["psychology", "execution", "procrastination", "adler", "chinese"],
+      "skills": ["./skills/dbs-action"]
+    },
+    {
+      "name": "dbs-content",
+      "description": "dontbesilent 内容创作诊断。选题通过后，诊断怎么把这个选题做成好内容。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "content-creation",
+      "keywords": ["content", "creation", "copywriting", "social-media", "chinese"],
+      "skills": ["./skills/dbs-content"]
+    },
+    {
+      "name": "dbs-content-system",
+      "description": "dontbesilent 内容结构化系统。把本地大量文稿、推文、选题、案例和课程稿搭成一个可持续生长的内容结构化工程：先审计内容规模与边界，再建立新工程、复制素材、抽取内容单元、生成主题地图与选题装配稿。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "workflow-infrastructure",
+      "keywords": ["content-system", "knowledge-project", "obsidian", "asset-structuring", "agent-workflow", "chinese"],
+      "skills": ["./skills/dbs-content-system"]
+    },
+    {
+      "name": "dbs-hook",
+      "description": "dontbesilent 短视频开头优化。诊断开头问题 + 生成优化方案。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "content-creation",
+      "keywords": ["video", "hook", "opening", "short-video", "douyin", "chinese"],
+      "skills": ["./skills/dbs-hook"]
+    },
+    {
+      "name": "dbs-xhs-title",
+      "description": "小红书标题公式工具。从 75 个验证过的爆款公式中，帮你挑对的、用对的、理解为什么用这个。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "content-creation",
+      "keywords": ["xiaohongshu", "RED", "title", "formula", "social-media", "chinese"],
+      "skills": ["./skills/dbs-xhs-title"]
+    },
+    {
+      "name": "dbs-deconstruct",
+      "description": "dontbesilent 概念拆解。用维特根斯坦 + 奥派经济学的方法，把模糊的商业概念拆到原子级别。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "thinking-tools",
+      "keywords": ["wittgenstein", "concepts", "deconstruction", "philosophy", "chinese"],
+      "skills": ["./skills/dbs-deconstruct"]
+    },
+    {
+      "name": "dbs-chatroom-austrian",
+      "description": "哈耶克 × 米塞斯 × Claude 三人对话。奥派经济学视角的多角色讨论。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "thinking-tools",
+      "keywords": ["austrian-economics", "hayek", "mises", "debate", "philosophy", "chinese"],
+      "skills": ["./skills/dbs-chatroom-austrian"]
+    },
+    {
+      "name": "dbs-chatroom",
+      "description": "定向聊天室。根据话题推荐或接受用户指定的专家，模拟多角色对话 + 判官总结。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "thinking-tools",
+      "keywords": ["chatroom", "multi-expert", "debate", "recommendation", "chinese"],
+      "skills": ["./skills/dbs-chatroom"]
+    },
+    {
+      "name": "dbs-ai-check",
+      "description": "dontbesilent AI 写作特征识别。扫描文案中的 AI 生成痕迹，输出检测报告。默认只诊断不改。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "content-creation",
+      "keywords": ["ai-detection", "writing", "fingerprint", "content-quality", "chinese"],
+      "skills": ["./skills/dbs-ai-check"]
+    },
+    {
+      "name": "dbs-slowisfast",
+      "description": "dontbesilent 慢就是快。帮创业者找到看起来更慢但长期更快的方法，用摩擦建造资产。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["slow-is-fast", "friction", "asset-building", "compounding", "chinese"],
+      "skills": ["./skills/dbs-slowisfast"]
+    },
+    {
+      "name": "dbs-agent-migration",
+      "description": "Agent 工作台迁移。把任意项目整理成 Claude Code / Codex / Grok 三端一致的 Agent 工作台：审计规则文件、识别真源、统一命名与 bridge。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "workflow-infrastructure",
+      "keywords": ["agent", "migration", "codex", "claude-code", "agents-md", "bridge", "chinese"],
+      "skills": ["./skills/dbs-agent-migration"]
+    },
+    {
+      "name": "dbs-save",
+      "description": "把当前诊断的关键状态存到本地，下次回来可以接着用。诊断从单次问诊升级为可累积的状态。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "state-management",
+      "keywords": ["save", "checkpoint", "snapshot", "state", "persistence", "chinese"],
+      "skills": ["./skills/dbs-save"]
+    },
+    {
+      "name": "dbs-restore",
+      "description": "把上次诊断的状态拉出来，接着用。配合 dbs-save，跨对话接续诊断。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "state-management",
+      "keywords": ["restore", "recall", "continue", "session", "chinese"],
+      "skills": ["./skills/dbs-restore"]
+    },
+    {
+      "name": "dbs-report",
+      "description": "把多次 dbs-save 攒下来的诊断状态合并成一份可交付的 markdown 报告，可分享、可归档。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "state-management",
+      "keywords": ["report", "deliverable", "merge", "markdown", "chinese"],
+      "skills": ["./skills/dbs-report"]
+    },
+    {
+      "name": "dbs-goal",
+      "description": "dontbesilent 目标清晰化。用维特根斯坦方法把模糊目标审计成可检查的交付物。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "business-diagnostics",
+      "keywords": ["goal", "clarity", "wittgenstein", "language-game", "chinese"],
+      "skills": ["./skills/dbs-goal"]
+    },
+    {
+      "name": "dbs-good-question",
+      "description": "dontbesilent 好问题生成器。把模糊问题改写成 Agent 可推理、可批评、可验证的问题说明书，并判断自动化解决程度。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "thinking-tools",
+      "keywords": ["problem", "question", "agent", "automation", "explanation", "hard-to-vary", "chinese"],
+      "skills": ["./skills/dbs-good-question"]
+    },
+    {
+      "name": "dbs-decision",
+      "description": "dontbesilent 个人决策系统。把任何一个需要长期跟踪的领域（业务、关系、健康、职业、学习、投资……）做成本地知识工程：四层结构（事实/规律/定格/待解）+ 来源标签 + 写完不改的快照 + 能炼出规律的概念库。支持立案、回填、状态画像、隐私模式。",
+      "source": "./",
+      "strict": false,
+      "version": "2.0.0",
+      "category": "state-management",
+      "keywords": ["decision", "tracking", "knowledge-project", "personal", "snapshot", "concept-library", "chinese"],
+      "skills": ["./skills/dbs-decision"]
+    },
+    {
+      "name": "dbs-learning",
+      "description": "dontbesilent 交互式学习。把一个课题拆成连续学习文章，根据用户在上一篇中的反馈调整下一篇的深度、角度和节奏。",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "learning",
+      "keywords": ["learning", "course", "adaptive-learning", "feedback", "chinese"],
+      "skills": ["./skills/dbs-learning"]
+    }
+  ]
+}
