@@ -259,7 +259,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
-### `baoyu-skills` — 暴鱼技能合集 · 22 Content & Productivity Skills
+### `baoyu-skills` — 宝玉技能合集 · 22 Content & Productivity Skills
 
 **Purpose**: A comprehensive collection of 22 Claude Code skills for content creation, AI-powered generation, and productivity. Created by JimLiu. Version 2.0.0, MIT-0.
 
@@ -272,7 +272,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
-### `dbskill` — 别声张商业诊断工具箱 · 21 Business Diagnostic Skills
+### `dbskill` — 商业诊断工具箱 · 21 Business Diagnostic Skills
 
 **Purpose**: Business diagnostic toolbox with 21 Claude Code skills extracted from 12,307 tweets and refined into 4,176 knowledge atoms. Created by dontbesilent. Version 2.14.2, CC BY-NC 4.0.
 
