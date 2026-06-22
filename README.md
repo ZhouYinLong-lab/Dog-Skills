@@ -10,7 +10,7 @@ Skills are installable prompt bundles for [Claude](https://claude.ai) (Cowork / 
 
 ### Method 1: Install from `.skill` file
 
-Download the `.skill` file and drag it into Claude Code's chat window — it auto-installs to `~/.claude/skills/`.
+Download the `.skill` file from `dist/` and drag it into Claude Code's chat window — it auto-installs to `~/.claude/skills/`.
 
 ### Method 2: Manual copy
 
@@ -27,14 +27,16 @@ cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r dbskill ~/.claude/skills/dbskill
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
+cp -r dog-frontier ~/.claude/skills/dog-frontier
 ```
 
 ### Verification
 
 ```bash
 ls ~/.claude/skills/
-# baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  exam-tutor/
-# find-skills/  html-video/  humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/
+# baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
+# exam-tutor/  find-skills/  html-video/  humanizer-zh/  last30days/
+# nuwa/  ui-ux-pro-max/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -54,6 +56,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 | `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
+| `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "写一个 Vue 组件" |
 
 ---
 
@@ -82,7 +85,7 @@ Codex acts as product manager: it decomposes requirements into a structured **Ta
 - **Acceptance framework** — 4-step review checklist, ACCEPT declaration format, Change Request format (incremental, references original Task ID)
 - **Quality checklist** — Pre-flight self-check before handing off a task package
 
-**Install**: Download `cc-dispatch.skill` and drag it into Claude Code.
+**Install**: Download `dist/cc-dispatch.skill` and drag it into Claude Code.
 
 ---
 
@@ -135,7 +138,7 @@ output/
 - Image quality enforced: local crops only, full-page screenshots rejected
 - Strict gating: 12-item quality checklist must pass before chapter is declared complete
 
-**Install**: Download `exam-tutor.skill` and drag it into Claude Code.
+**Install**: Download `dist/exam-tutor.skill` and drag it into Claude Code.
 
 ---
 
@@ -195,7 +198,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Prerequisites**: Node.js 20+, pnpm 9+, ffmpeg, Chromium (Playwright).
 
-**Install**: Download `html-video.skill` and drag it into Claude Code.
+**Install**: Download `dist/html-video.skill` and drag it into Claude Code.
 
 ---
 
@@ -209,7 +212,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Already distilled figures**: Paul Graham, Zhang Yiming, Karpathy, Steve Jobs, Elon Musk, Munger, Feynman, Naval, Taleb, and more (13 person skills + 1 topic skill).
 
-**Install**: Download `nuwa-skill.skill` and drag it into Claude Code. Or: `npx skills add alchaincyf/nuwa-skill`
+**Install**: Download `dist/nuwa-skill.skill` and drag it into Claude Code. Or: `npx skills add alchaincyf/nuwa-skill`
 
 ---
 
@@ -223,7 +226,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Prerequisites**: Node.js ≥ 20, Claude Code CLI or Codex CLI.
 
-**Install**: Download `claude-to-im-skill.skill` and drag it into Claude Code. Or: `npx skills add op7418/Claude-to-IM-skill`
+**Install**: Download `dist/claude-to-im-skill.skill` and drag it into Claude Code. Or: `npx skills add op7418/Claude-to-IM-skill`
 
 ---
 
@@ -235,7 +238,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Sources (15+)**: Reddit, X, YouTube, TikTok, Instagram, HN, Polymarket, GitHub, Threads, Pinterest, Bluesky, Perplexity, general web.
 
-**Install**: Download `last30days-skill.skill` and drag it into Claude Code. Or: `npx skills add mvanhorn/last30days-skill -g`
+**Install**: Download `dist/last30days-skill.skill` and drag it into Claude Code. Or: `npx skills add mvanhorn/last30days-skill -g`
 
 ---
 
@@ -245,7 +248,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Tech stacks (16)**: HTML+Tailwind, React, Next.js, shadcn/ui, Vue, Nuxt, Svelte, Astro, SwiftUI, React Native, Flutter, Jetpack Compose, Angular, Laravel, JavaFX.
 
-**Install**: `npx uipro-cli init --ai <platform>`. Or download `ui-ux-pro-max-skill.skill` and drag into Claude Code.
+**Install**: `npx uipro-cli init --ai <platform>`. Or download `dist/ui-ux-pro-max-skill.skill` and drag into Claude Code.
 
 ---
 
@@ -257,7 +260,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Skill categories**: Web Development, Testing, DevOps, Documentation, Code Quality, Design, Productivity.
 
-**Install**: `npx skills add vercel-labs/agent-skills`. Or download `vercel-labs-skills.skill`.
+**Install**: `npx skills add vercel-labs/agent-skills`. Or download `dist/vercel-labs-skills.skill`.
 
 ---
 
@@ -270,7 +273,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 - **AI Generation**: image gen via 11 backends, Gemini Web interaction
 - **Utilities**: translation (3 modes), image compression, YouTube transcripts, URL→markdown, markdown formatting, WeChat summary, Electron extraction
 
-**Install**: `npx skills add JimLiu/baoyu-skills -g --all`. Or download `baoyu-skills.skill`.
+**Install**: `npx skills add JimLiu/baoyu-skills -g --all`. Or download `dist/baoyu-skills.skill`.
 
 ---
 
@@ -284,7 +287,7 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 - **State management**: save/restore/report diagnostic sessions across conversations
 - **Learning & chatrooms**: interactive learning, Austrian Economics chatroom (Hayek×Mises), directed multi-role chatrooms
 
-**Install**: `npx skills add dontbesilent2025/dbskill -g --all`. Or download `dbskill.skill`.
+**Install**: `npx skills add dontbesilent2025/dbskill -g --all`. Or download `dist/dbskill.skill`.
 
 ---
 
@@ -305,7 +308,39 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 **Workflow**: Identify patterns → rewrite problematic passages → preserve meaning → maintain tone → inject authentic personality.
 
-**Install**: Download `humanizer-zh.skill` and drag it into Claude Code. Or: `npx skills add https://github.com/op7418/Humanizer-zh.git`
+**Install**: Download `dist/humanizer-zh.skill` and drag it into Claude Code. Or: `npx skills add https://github.com/op7418/Humanizer-zh.git`
+
+---
+
+### `dog-frontier` — 前端设计综合技能系统
+
+**Purpose**: A comprehensive frontend design meta-skill that integrates 18 specialized skills through structured multi-turn dialogue. Covers the full chain: UI/UX design systems → Tailwind/shadcn components → Vue/React framework patterns → CSS expertise → landing pages → animation/video → brand design → design tokens (3-layer architecture).
+
+**Integrated skills (18)**: ui-ux-pro-max, frontend-design, shadcn-ui (18.5K installs), tailwind-design-system (1.6K), shadcn-vue (727), vue-component-patterns, css-styling-expert, vanilla-web, brand, design-system, ui-styling, landing-page-generator (1.2K), liquid-theme-standards (1.9K), html-video, sprite-animation, humanizer-zh, shadcn-tailwind — all with full attribution.
+
+**5-phase workflow**:
+```
+Discovery → Design System → Implementation → Handoff → Quality Review
+   │            │               │            │              │
+   └─Gate 1─────┘─Gate 2────────┘─Gate 3─────┘─Gate 4──────┘─Gate 5
+```
+
+**Key features**:
+- Structured multi-turn dialogue to precisely understand requirements
+- Auto-generates complete design system (style + colors + fonts + effects + anti-patterns)
+- Routes to optimal skill combination based on tech stack and task type
+- 6-dimension quality review (30-item checklist, ≥22/30 pass threshold)
+- Structured handoff formats between phases
+- All integrated skills fully attributed in ATTRIBUTIONS.md
+
+**Trigger examples**:
+- "帮我设计一个 AI SaaS 落地页" → Full 5-phase workflow
+- "审查这个仪表盘的 UX" → Phase 5 review only
+- "生成设计系统,产品是健康养生App" → Phase 2 design system
+- "写一个 Vue 3 数据表格组件" → Phase 3 component generation
+- "帮我把这段文案去 AI 味" → Phase 5 copy review
+
+**Install**: `npx skills add dog-frontier -g -y` (from local). Or download `dist/dog-frontier.skill`.
 
 ---
 
@@ -315,7 +350,7 @@ Each skill lives in its own directory with a `SKILL.md` file. To contribute:
 
 1. Create `your-skill-name/SKILL.md` with YAML frontmatter (`name`, `description`)
 2. Package with `python scripts/package_skill.py your-skill-name/`
-3. Submit a PR with the directory and the `.skill` file
+3. Submit a PR with the directory and the `.skill` file in `dist/`
 
 ---
 

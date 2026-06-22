@@ -10,3 +10,17 @@ tutor/output/
 # Python cache
 __pycache__/
 *.pyc
+
+# Temporary clones
+.tmp-clones/
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
