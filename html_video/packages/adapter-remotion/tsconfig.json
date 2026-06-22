@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "noEmit": false
+  },
+  "comment": "Only the adapter's own .ts is compiled. The bridge/*.tsx are NOT compiled here — they are static assets handed to Remotion's bundle() (webpack+esbuild), which understands JSX. They ship via package.json `files`.",
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/bridge/**/*", "dist", "node_modules"]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@html-video/adapter-remotion",
+  "version": "0.1.0",
+  "description": "Remotion adapter for html-video meta-layer — deterministic frame-by-frame rendering, the second real engine. Phase 1 bridges existing HTML/CSS/GSAP frames onto Remotion's timeline; Phase 2 (separate RFC) adds native React-tsx templates.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "bridge", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test \"test/**/*.test.mjs\""
+  },
+  "dependencies": {
+    "@html-video/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/renderer": "^4.0.0",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "peerDependenciesMeta": {
+    "remotion": { "optional": true },
+    "@remotion/bundler": { "optional": true },
+    "@remotion/renderer": { "optional": true },
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

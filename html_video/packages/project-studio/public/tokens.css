@@ -1,0 +1,84 @@
+/* Design tokens — refreshed to the Hyperframes (heygen.com/hyperframes) visual
+ * language: warm paper-white surfaces, mint-green accent, warm-grey hairline
+ * borders, tight radii, near-shadowless, mono-forward "code editor" feel.
+ * Only token VALUES changed — the studio layout/structure is untouched. */
+:root {
+  /* Surfaces — paper white + warm off-white panels (hyperframes #fff / #f6f5f1 / #f0efe9) */
+  --bg: #f6f5f1;
+  --bg-panel: #ffffff;
+  --bg-subtle: #f0efe9;
+  --bg-elevated: #ffffff;
+
+  /* Text — near-black on paper (hyperframes #1a1a1a / #6b6b6b / #aaa) */
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-faint: #aaaaaa;
+
+  /* Accent — mint green (hyperframes primary CTA #3ce6ac on dark text) */
+  --accent: #3ce6ac;
+  --accent-hover: #2fd49c;
+  --accent-soft: #d6f7ec;
+  --accent-fg: #0b0b0b;
+
+  /* Border — warm grey hairline (hyperframes #e0dfdb) */
+  --border: #e0dfdb;
+  --border-strong: #d0cfc9;
+
+  /* Status — keep the hyperframes traffic-light accents available */
+  --green: #16a34a;
+  --green-bg: #e3f5e8;
+  --blue: #2348b8;
+  --blue-bg: #e6ecfb;
+  --red: #e5484d;
+  --red-bg: #fbe7e7;
+  --amber: #b26200;
+  --amber-bg: #faedc8;
+
+  /* Selected (user chat bubbles) — sits on the dark/ink end, not the mint */
+  --selected: #1a1a1a;
+  --selected-fg: #ffffff;
+
+  /* Radii — hyperframes buttons 10-12px, pills 20px */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows — near-shadowless paper look; keep tiny lifts only */
+  --shadow-xs: 0 1px 1px rgba(20, 18, 11, 0.03);
+  --shadow-sm: 0 1px 3px rgba(20, 18, 11, 0.05);
+  --shadow-md: 0 4px 16px rgba(20, 18, 11, 0.07);
+  --shadow-lg: 0 18px 48px rgba(20, 18, 11, 0.14);
+
+  /* Typography — Inter (≈ TT Norms Pro) + JetBrains Mono (≈ TT Norms Pro Mono) */
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+}
+
+/* Dark mode — the hyperframes ink end (#0a0a0a) with the same mint accent. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --bg-panel: #141414;
+    --bg-subtle: #1c1c1c;
+    --bg-elevated: #1c1c1c;
+
+    --text: #f4f4f2;
+    --text-muted: #9a9a96;
+    --text-faint: #555552;
+
+    --accent: #3ce6ac;
+    --accent-hover: #54ecb9;
+    --accent-soft: #103a2c;
+    --accent-fg: #0b0b0b;
+
+    --border: #2a2a28;
+    --border-strong: #3a3a36;
+
+    --green-bg: #103a23;
+    --blue-bg: #16213f;
+    --red-bg: #3a1a1b;
+    --amber-bg: #3a2c0d;
+  }
+}

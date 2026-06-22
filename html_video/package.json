@@ -1,0 +1,41 @@
+{
+  "name": "html-video-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HTML→Video meta-layer for coding agents",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/nexu-io/html-video",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexu-io/html-video.git"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "workspaces": [
+    "packages/*",
+    "templates/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "smoke": "pnpm --filter @html-video/cli smoke",
+    "format": "biome format --write .",
+    "lint": "biome lint ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4",
+    "@remotion/renderer": "^4",
+    "react": "^18",
+    "react-dom": "^18",
+    "remotion": "^4"
+  }
+}

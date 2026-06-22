@@ -18,13 +18,14 @@ Download the `.skill` file and drag it into Claude Code's chat window — it aut
 mkdir -p ~/.claude/skills
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
 cp -r tutor ~/.claude/skills/exam-tutor
+cp -r html_video ~/.claude/skills/html-video
 ```
 
 ### Verification
 
 ```bash
 ls ~/.claude/skills/
-# cc-dispatch/  exam-tutor/
+# cc-dispatch/  exam-tutor/  html-video/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -35,6 +36,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 |-------|---------------|
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
+| `html-video` | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
 
 ---
 
@@ -117,6 +119,66 @@ output/
 - Strict gating: 12-item quality checklist must pass before chapter is declared complete
 
 **Install**: Download `exam-tutor.skill` and drag it into Claude Code.
+
+---
+
+### `html-video` — HTML→Video Meta-Layer for Coding Agents
+
+**Purpose**: Turn prompts, article links, or GitHub repos into multi-frame animated MP4 videos by letting coding agents pick rendering engines, fill curated templates, and render locally via headless Chromium + ffmpeg.
+
+**How it works**:
+
+```
+  prompt / link / repo
+        │
+        ▼
+  ① source fetch        studio pulls the URL or repo server-side
+        │
+        ▼
+  ② agent loop          agent reads the material + template style, emits a
+        │               content-graph (storyboard) + one HTML block per frame
+        ▼
+  ③ engine render       headless Chromium records animated HTML → webm
+        │
+        ▼
+  ④ ffmpeg              each webm → mp4 (libx264), concat into one video
+        │
+        ▼
+      your.mp4
+```
+
+**Key features**:
+
+- **14 coding agent backends** — Open Design (Vela), Windsurf CLI, Trae CLI, Claude Code, Cursor, Codex, Gemini, Grok, Qwen, OpenCode, Copilot, Aider, Hermes, Anthropic API — auto-detected and switchable
+- **21 curated templates** — data viz (NYT-style charts), title cards & VFX, heroes & cinematics, product promos, outros, explainer scaffolds — all license-clean with provenance trail
+- **Article / repo → video** — paste a URL or GitHub repo; studio fetches content server-side (WeChat 公众号 supported) and builds the video from real content
+- **Multi-frame storyboards** — content-graph drives multi-scene videos; edit per-frame text inline, reorder, re-render
+- **AI soundtrack** — optional background music + narration via MiniMax, mixed into the exported MP4
+- **Pluggable engines** — Hyperframes (shipped), Remotion (native support), with Motion Canvas/Revideo and Manim on the roadmap
+- **Real MP4 render** — headless Chromium + ffmpeg (libx264), locally — no cloud render, no per-clip fee
+- **Apache-2.0** — no per-render fees, no seat caps
+
+**Quick start**:
+
+```bash
+cd html_video
+pnpm install && pnpm -r build
+node packages/cli/dist/bin.js studio    # opens at http://127.0.0.1:3071
+```
+
+**Studio workflow**: pick a template → chat with your agent → edit per-frame text → add soundtrack → export MP4.
+
+**CLI utilities**:
+
+```bash
+node packages/cli/dist/bin.js doctor
+node packages/cli/dist/bin.js search-templates --intent "data chart" --top 3
+node packages/cli/dist/bin.js project-create --name "my-video" --template frame-glitch-title
+```
+
+**Prerequisites**: Node.js 20+, pnpm 9+, ffmpeg, Chromium (Playwright).
+
+**Install**: Download `html-video.skill` and drag it into Claude Code.
 
 ---
 

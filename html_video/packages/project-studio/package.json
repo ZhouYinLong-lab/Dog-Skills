@@ -1,0 +1,15 @@
+{
+  "name": "@html-video/project-studio",
+  "version": "0.1.0",
+  "description": "Browser studio UI for html-video — three-pane projects / assets / template+preview",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": ["public", "README.md"],
+  "exports": {
+    "./public": "./public/index.html"
+  },
+  "scripts": {
+    "build": "echo 'project-studio is static; nothing to build'",
+    "typecheck": "echo 'project-studio is static html'"
+  }
+}

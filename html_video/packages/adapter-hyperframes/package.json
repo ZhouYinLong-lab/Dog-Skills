@@ -1,0 +1,36 @@
+{
+  "name": "@html-video/adapter-hyperframes",
+  "version": "0.1.0",
+  "description": "Hyperframes adapter for html-video meta-layer",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "@html-video/core": "workspace:*",
+    "playwright": "^1.49.0"
+  },
+  "peerDependencies": {
+    "hyperframes": "^0.4.0"
+  },
+  "peerDependenciesMeta": {
+    "hyperframes": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
