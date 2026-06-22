@@ -26,6 +26,7 @@ cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r dbskill ~/.claude/skills/dbskill
+cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 ```
 
 ### Verification
@@ -33,7 +34,7 @@ cp -r dbskill ~/.claude/skills/dbskill
 ```bash
 ls ~/.claude/skills/
 # baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  exam-tutor/
-# find-skills/  html-video/  last30days/  nuwa/  ui-ux-pro-max/
+# find-skills/  html-video/  humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -52,6 +53,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
 | `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
+| `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
 
 ---
 
@@ -283,6 +285,27 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 - **Learning & chatrooms**: interactive learning, Austrian Economics chatroom (Hayek×Mises), directed multi-role chatrooms
 
 **Install**: `npx skills add dontbesilent2025/dbskill -g --all`. Or download `dbskill.skill`.
+
+---
+
+### `humanizer-zh` — AI 写作去痕工具
+
+**Purpose**: Removes AI-generated writing traces from text, making it sound more natural and human-like. Based on Wikipedia's "Signs of AI writing" guide maintained by WikiProject AI Cleanup. Detects and fixes: exaggerated symbolism, promotional language, shallow analysis, vague attributions, dash overuse, rule-of-three patterns, AI vocabulary, negative parallelism, excessive connective phrases.
+
+**What it detects (9 patterns)**:
+- 夸大的象征意义 (exaggerated symbolism)
+- 宣传性语言 (promotional language)
+- 肤浅分析 (shallow -ing analysis)
+- 模糊归因 (vague attributions)
+- 破折号过度使用 (dash overuse)
+- 三段式法则 (rule-of-three)
+- AI 词汇 (AI vocabulary)
+- 否定式排比 (negative parallelism)
+- 过多连接性短语 (excessive connective phrases)
+
+**Workflow**: Identify patterns → rewrite problematic passages → preserve meaning → maintain tone → inject authentic personality.
+
+**Install**: Download `humanizer-zh.skill` and drag it into Claude Code. Or: `npx skills add https://github.com/op7418/Humanizer-zh.git`
 
 ---
 
