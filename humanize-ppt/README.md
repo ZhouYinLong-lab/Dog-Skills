@@ -11,6 +11,8 @@
 [![Release](https://img.shields.io/github/v/release/LearnPrompt/humanize-ppt)](https://github.com/LearnPrompt/humanize-ppt/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**Author: 卡尔的AI沃兹** · 微信公众号「卡尔的AI沃兹」 · [LearnPrompt](https://github.com/LearnPrompt)
+
 **为演讲而生的 PPT 系统。** 好看的 HTML 模板满大街都是，缺的是把它讲出来的那条线。Humanize 干的是模板库不管的活：先用 AST（观众状态转移）把资料编成一条线，每翻一页都让观众多懂一点；该上画面的页，配真图、SVG 图表、Remotion 视频；渲染完它自己跑一遍演讲体检，把「只能看、不能讲」的页挑出来。最后给你的不是一摞静态页，是带演讲稿、知道状态怎么切、还留着 HTML 好看的演讲模式。整套 deck 还是下游模板库原生渲染——它把每页画好看，Humanize 让它能上台讲。
 
 [30 秒装上](#30-秒装上) · [一句话用起来](#一句话用起来) · [看效果](#看效果) · [它解决什么](#它解决什么) · [演讲体检](#演讲体检把只能看不能讲的页揪出来) · [视觉增强](#视觉增强配图图表视频都是真产出) · [风格画廊](#风格画廊出大纲前先比-4-张封面) · [英文路径](#英文路径) · [AST 理论](docs/AST-theory.md)

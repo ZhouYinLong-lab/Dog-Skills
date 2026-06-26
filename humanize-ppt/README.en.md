@@ -11,6 +11,8 @@
 [![Release](https://img.shields.io/github/v/release/LearnPrompt/humanize-ppt)](https://github.com/LearnPrompt/humanize-ppt/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**Author: 卡尔的AI沃兹** · WeChat「卡尔的AI沃兹」 · [LearnPrompt](https://github.com/LearnPrompt)
+
 **A presentation system, born for the talk.** Good-looking HTML templates are everywhere; what's missing is the line that lets you *deliver* one. Humanize does the part templates don't: it uses AST (audience-state-transfer) to weave your material into that line, so every page turn moves the audience forward; the pages that need a picture get a real image, SVG diagram, or Remotion clip; and after rendering it runs its own presentation checkup to pull out the pages you can only look at, not present. What ships isn't a stack of static pages — it's a presenter mode with a speaker script, its state transitions, and the HTML beauty intact. The full deck is still rendered natively by a downstream template skill: it paints each page, Humanize makes it deliverable on stage.
 
 [Install in 30s](#install-in-30s) · [Use it in one line](#use-it-in-one-line) · [See it](#see-it) · [What it solves](#what-it-solves) · [Presentation checkup](#presentation-checkup) · [Visual enhancement](#visual-enhancement) · [English path](#english-path) · [AST](docs/AST-theory.md)

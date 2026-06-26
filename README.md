@@ -29,6 +29,7 @@ cp -r dbskill ~/.claude/skills/dbskill
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r dog-frontier ~/.claude/skills/dog-frontier
 cp -r dog-tutor ~/.claude/skills/dog-tutor
+cp -r humanize-ppt ~/.claude/skills/humanize-ppt
 ```
 
 ### Verification
@@ -36,8 +37,8 @@ cp -r dog-tutor ~/.claude/skills/dog-tutor
 ```bash
 ls ~/.claude/skills/
 # baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
-# dog-tutor/  exam-tutor/  find-skills/  html-video/  humanizer-zh/
-# last30days/  nuwa/  ui-ux-pro-max/
+# dog-tutor/  exam-tutor/  find-skills/  html-video/  humanize-ppt/
+# humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -58,6 +59,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 | `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
 | `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "写一个 Vue 组件" |
+| `humanize-ppt` | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" / "帮我出个PPT大纲" |
 | `dog-tutor` | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" / "写入门指南" |
 
 ---
@@ -343,6 +345,31 @@ Discovery → Design System → Implementation → Handoff → Quality Review
 - "帮我把这段文案去 AI 味" → Phase 5 copy review
 
 **Install**: `npx skills add dog-frontier -g -y` (from local). Or download `dist/dog-frontier.skill`.
+
+---
+
+### `humanize-ppt` — 为演讲而生的PPT系统
+
+**Purpose**: An agent-facing PPT presentation orchestrator that turns raw material into an AST (audience-state-transfer) outline — every page turn moves the audience forward. It decides per-page visual enhancement (images, SVG diagrams, Remotion video), orchestrates downstream template skills to render beautiful HTML slides, then runs a 3-round presentation checkup (演讲体检) comparing rendered pages against the outline to flag slides that "can only be looked at, not presented."
+
+**Author**: 卡尔的AI沃兹 (微信公众号) · [LearnPrompt](https://github.com/LearnPrompt)
+
+**How it works**:
+```
+Raw Material → Style Gallery (≥4 cover candidates) → AST Outline
+   → Per-slide Plan (content + visual decisions)
+   → Downstream Skill renders HTML (guizang-ppt / frontend-slides / etc.)
+   → Presentation Checkup (3 rounds max) → Ready to Present
+```
+
+**Key features**:
+- **AST outline**: Audience-state-transfer model — each slide advances understanding, not just information display
+- **Style gallery**: Generates ≥4 cover candidates before committing to the full outline
+- **Visual enhancement**: Decides when to use real images (via baoyu-image-gen), SVG diagrams, or Remotion video
+- **Presentation checkup**: Post-render QA comparing rendered pages against outline specs — catches "eye candy only" slides
+- **Downstream agnostic**: Compatible with any HTML-PPT skill (Chinese: guizang-ppt-skill, English: frontend-slides / beautiful-html-templates)
+
+**Install**: `npx skills add LearnPrompt/humanize-ppt -g`. Or download from `humanize-ppt/` directory.
 
 ---
 
