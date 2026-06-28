@@ -30,6 +30,7 @@ cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r dog-frontier ~/.claude/skills/dog-frontier
 cp -r dog-tutor ~/.claude/skills/dog-tutor
 cp -r humanize-ppt ~/.claude/skills/humanize-ppt
+cp -r website-cloner ~/.claude/skills/website-cloner
 ```
 
 ### Verification
@@ -38,7 +39,7 @@ cp -r humanize-ppt ~/.claude/skills/humanize-ppt
 ls ~/.claude/skills/
 # baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
 # dog-tutor/  exam-tutor/  find-skills/  html-video/  humanize-ppt/
-# humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/
+# humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/  website-cloner/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -61,6 +62,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "写一个 Vue 组件" |
 | `humanize-ppt` | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" / "帮我出个PPT大纲" |
 | `dog-tutor` | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" / "写入门指南" |
+| `website-cloner` | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." / "Copy this website" |
 
 ---
 
@@ -402,6 +404,55 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 - "写一份 LLM API 开发的入门指南"
 
 **Install**: `npx skills add dog-tutor -g -y` (from local). Or download `dist/dog-tutor.skill`.
+
+---
+
+### `website-cloner` — AI 网站复刻器
+
+**Purpose**: Reverse-engineer and clone any website into a clean Next.js + shadcn/ui + Tailwind v4 codebase using AI coding agents. A multi-phase pipeline that extracts design tokens, assets, and component specs from live websites, then dispatches parallel builder agents in git worktrees to reconstruct every section with pixel-perfect fidelity.
+
+**Author**: [JCodesMore](https://github.com/JCodesMore) · Original repo: [ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) (22.4K ⭐, MIT License)
+
+**How it works**:
+
+```
+Phase 1: Reconnaissance     Phase 2: Foundation      Phase 3: Spec & Build      Phase 4: Assembly    Phase 5: QA
+┌──────────────┐          ┌──────────────┐          ┌──────────────────┐      ┌──────────────┐     ┌──────────────┐
+│ Screenshots  │          │ Fonts, colors│          │ Extract CSS      │      │ Wire all     │     │ Side-by-side │
+│ Design tokens│──────────▶│ Types, icons │─────────▶│ Write spec file  │─────▶│ sections     │────▶│ visual diff  │
+│ Behaviors    │          │ Asset dl    │          │ Dispatch builder │      │ Page-level   │     │ Fix issues   │
+│ Topology     │          │ npm build   │          │ Merge worktree   │      │ behaviors    │     │ Test interact│
+└──────────────┘          └──────────────┘          └──────────────────┘      └──────────────┘     └──────────────┘
+```
+
+**Key features**:
+
+- **Pixel-perfect emulation** — exact CSS values via `getComputedStyle()`, not approximate Tailwind classes
+- **Multi-agent parallel build** — one builder agent per section/component, working in isolated git worktrees
+- **Comprehensive extraction** — design tokens, fonts, all image/video assets, inline SVGs, real text content, favicons
+- **Behavior-aware cloning** — extracts not just static appearance but scroll-driven changes, hover states, click interactions, multi-state components (tabs, accordions, carousels)
+- **Component spec files** — every component gets a detailed specification with exact CSS values, interaction model, responsive behavior, and per-state content before any builder is dispatched
+- **Visual QA pass** — side-by-side comparison, section by section, at multiple viewport widths
+- **12-agent platform support** — Claude Code (recommended), Codex CLI, OpenCode, Copilot, Cursor, Windsurf, Gemini CLI, Cline, Roo Code, Continue, Amazon Q, Augment Code, Aider
+- **Guided by 9 core principles** — completeness beats speed, small tasks perfect results, real content real assets, foundation first, extract behavior not just appearance, identify interaction model first, extract every state, spec files are source of truth, build must always compile
+
+**Tech stack of generated clones**: Next.js 16 (App Router) · React 19 · TypeScript strict · shadcn/ui · Tailwind CSS v4 · oklch design tokens
+
+**Use cases**:
+
+- **Platform migration** — rebuild a site from WordPress/Webflow/Squarespace into modern Next.js
+- **Lost source code** — recover the codebase when the repo is gone, developer left, or stack is legacy
+- **Learning** — deconstruct how production sites achieve specific layouts, animations, and behaviors
+
+**Not intended for**: phishing/impersonation, passing off someone's design as your own, violating terms of service.
+
+**Trigger examples**:
+- "克隆这个网站 https://example.com" / "帮我复刻这个页面"
+- "Copy this website" / "Make a pixel-perfect clone of..." / "Rebuild this site in Next.js"
+- "/clone-website https://example.com"
+- "帮我用 Next.js 重建这个网站"
+
+**Install**: `npx skills add website-cloner -g -y` (from local). Or download from `website-cloner/` directory.
 
 ---
 
