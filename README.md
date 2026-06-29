@@ -16,6 +16,7 @@ Download the `.skill` file from `dist/` and drag it into Claude Code's chat wind
 
 ```bash
 mkdir -p ~/.claude/skills
+cp -r adversarial-review ~/.claude/skills/adversarial-review
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
 cp -r tutor ~/.claude/skills/exam-tutor
 cp -r html_video ~/.claude/skills/html-video
@@ -24,6 +25,7 @@ cp -r claude-to-im-skill ~/.claude/skills/claude-to-im
 cp -r last30days-skill ~/.claude/skills/last30days
 cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r vercel-labs-skills ~/.claude/skills/find-skills
+cp -r first-principles ~/.claude/skills/first-principles
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r dbskill ~/.claude/skills/dbskill
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
@@ -37,8 +39,8 @@ cp -r website-cloner ~/.claude/skills/website-cloner
 
 ```bash
 ls ~/.claude/skills/
-# baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
-# dog-tutor/  exam-tutor/  find-skills/  html-video/  humanize-ppt/
+# adversarial-review/  baoyu-skills/  cc-dispatch/  claude-to-im/  dbskill/  dog-frontier/
+# dog-tutor/  exam-tutor/  find-skills/  first-principles/  html-video/  humanize-ppt/
 # humanizer-zh/  last30days/  nuwa/  ui-ux-pro-max/  website-cloner/
 ```
 
@@ -48,6 +50,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
+| `adversarial-review` | ""帮我进行对抗式审查" / "多Agent并发审查找BUG" / "adversarial review my code"" |
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
 | `html-video` | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
@@ -56,6 +59,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
 | `ui-ux-pro-max` | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
 | `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
+| `first-principles` | ""从第一性原理出发" / "从本质出发重新思考" / "think from first principles"" |
 | `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 | `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
@@ -67,6 +71,31 @@ Once installed, skills trigger automatically when Claude detects a matching task
 ---
 
 ## Skills
+
+### `adversarial-review` — 对抗式审查 — Adversarial Review
+
+**Purpose**: 让 AI 站在对立面对代码、方案、文章进行对抗式审查——从"我要搞崩你的系统"的角度出发，找出逻辑漏洞、安全风险、边界条件、隐藏 Bug 和思维盲点。
+
+**Workflow**:
+
+```
+1. Define Target — Specify the code, plan, or article under review
+2. Adversarial Mindset — Adopt a "I want to break your system" perspective
+3. Multi-Agent Concurrent Scan — Multiple agents probe different angles simultaneously: logic flaws, security risks, boundary conditions, hidden bugs, thinking blind spots
+4. Compile Findings — Structured report with categorized vulnerabilities and blind spots
+5. Prioritize & Suggest — Rank findings by impact and suggest remediation strategies
+```
+
+**Key features**:
+- **Adversarial review mindset** — Approaches from a malicious user perspective to uncover blind spots conventional review misses
+- **Multi-agent concurrent review** — Multiple AI agents scan simultaneously from different angles for comprehensive coverage
+- **Broad applicability** — Works on code, technical proposals, product plans, and articles/essays
+- **Systematic vulnerability discovery** — Identifies logic flaws, security risks, boundary conditions, and hidden bugs
+- **Structured reporting** — Produces organized findings with severity levels and remediation suggestions
+
+**Install**: Download `dist/adversarial-review.skill` and drag it into Claude Code.
+
+---
 
 ### `cc-dispatch` — Codex × Claude Code Collaboration Protocol
 
@@ -267,6 +296,31 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 **Skill categories**: Web Development, Testing, DevOps, Documentation, Code Quality, Design, Productivity.
 
 **Install**: `npx skills add vercel-labs/agent-skills`. Or download `dist/vercel-labs-skills.skill`.
+
+---
+
+### `first-principles` — 第一性原理思考 — First Principles Thinking
+
+**Purpose**: 强制 AI 从第一性原理出发思考问题——打断类比推理，剥离所有假设，从最基本的事实和约束重新推导方案。
+
+**Workflow**:
+
+```
+1. Break Down — Decompose the problem, surfacing every assumption, convention, and analogy
+2. Strip Away — Remove layers of received wisdom, precedent, and existing solutions
+3. Identify Fundamentals — Find the irreducible facts, constraints, and first principles
+4. Rebuild — Derive a fresh solution from fundamentals without copying prior approaches
+5. Validate — Test the new solution against reality and stated constraints
+```
+
+**Key features**:
+- Strips away all assumptions, analogies, and received wisdom before reasoning
+- Starts from irreducible facts and fundamental constraints
+- Applicable to any domain: bug fixing, architecture design, business decisions, writing
+- Forces rigorous bottom-up reasoning instead of pattern matching
+- Single universal prompt that works across all complex problem types
+
+**Install**: Download `dist/first-principles.skill` and drag it into Claude Code.
 
 ---
 
