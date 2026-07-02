@@ -23,6 +23,7 @@ cp -r feynman-learning ~/.claude/skills/feynman-learning
 cp -r nuwa-skill ~/.claude/skills/nuwa
 cp -r last30days-skill ~/.claude/skills/last30days
 cp -r storm-research ~/.claude/skills/storm-research
+cp -r thinking-toolkit ~/.claude/skills/thinking-toolkit
 
 # 💻 Development
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
@@ -42,11 +43,19 @@ cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r dog-frontier ~/.claude/skills/dog-frontier
 cp -r html_video ~/.claude/skills/html-video
 cp -r lottie-animation ~/.claude/skills/lottie-animation
+cp -r brand-workshop ~/.claude/skills/brand-workshop
+cp -r pixel-art ~/.claude/skills/pixel-art
+cp -r presentation-design ~/.claude/skills/presentation-design
+cp -r article-poster ~/.claude/skills/article-poster
+cp -r canvas-design ~/.claude/skills/canvas-design
 
 # 📝 Content & Writing
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r humanize-ppt ~/.claude/skills/humanize-ppt
+cp -r writing-assistant ~/.claude/skills/writing-assistant
+cp -r scientific-writing-editor ~/.claude/skills/scientific-writing-editor
+cp -r ghostwriter ~/.claude/skills/ghostwriter
 
 # 📚 Learning & Teaching
 cp -r tutor ~/.claude/skills/exam-tutor
@@ -59,19 +68,20 @@ cp -r dbskill ~/.claude/skills/dbskill
 cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
+cp -r handshake ~/.claude/skills/handshake
 ```
 
 ### Verification
 
 ```bash
 ls ~/.claude/skills/
-# 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/
+# 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
 # 💻: adversarial-review/  cc-dispatch/  claude-to-im/  code-review-skill/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: dog-frontier/  html-video/  lottie-animation/  ui-ux-pro-max/
-# 📝: baoyu-skills/  humanize-ppt/  humanizer-zh/
+# 🎨: article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  ui-ux-pro-max/
+# 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 📚: dog-tutor/  exam-tutor/
 # 💼: dbskill/
-# 🔍: find-skills/  token-optimizer/  weread-skill/
+# 🔍: find-skills/  handshake/  token-optimizer/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -89,6 +99,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `feynman-learning` | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
 | `nuwa` | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
 | `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
+| `thinking-toolkit` | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
 
 ### 💻 Development
 
@@ -114,6 +125,11 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
 | `html-video` | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
 | `lottie-animation` | "帮我做一个心跳动效" / "生成 Lottie 动画" / "create a Lottie animation" |
+| `brand-workshop` | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
+| `pixel-art` | "画一幅像素画" / "做一个等距像素场景" / "create pixel art" |
+| `presentation-design` | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
+| `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片" / "article to infographic poster" |
+| `canvas-design` | "帮我设计活动海报" / "生成宣传单页" / "create a poster" |
 
 ### 📝 Content & Writing
 
@@ -122,6 +138,9 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
 | `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | `humanize-ppt` | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
+| `writing-assistant` | "帮我写一篇博客" / "写一份项目报告" / "draft a memo" |
+| `scientific-writing-editor` | "润色这篇论文" / "写基金申请书" / "回复审稿意见" |
+| `ghostwriter` | "帮我回这封邮件（用我的语气）" / "帮我想一个微信回复" / "draft a reply in my voice" |
 
 ### 📚 Learning & Teaching
 
@@ -143,6 +162,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
 | `weread-skill` | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
 | `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
+| `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
 
 ---
 
@@ -243,6 +263,22 @@ Once installed, skills trigger automatically when Claude detects a matching task
 **Sources (15+)**: Reddit, X, YouTube, TikTok, Instagram, HN, Polymarket, GitHub, Threads, Pinterest, Bluesky, Perplexity, general web.
 
 **Install**: Download `dist/last30days-skill.skill` and drag it into Claude Code. Or: `npx skills add mvanhorn/last30days-skill -g`
+
+---
+
+#### `thinking-toolkit` — 思考决策工具箱 · Thinking Toolkit
+
+**Purpose**: 元技能整合 6 大思考框架——superforecaster（校准预测）、decision-matrix（决策矩阵）、bayesian-reasoning（贝叶斯推理）、systems-thinking（系统思维）、scout-mindset（偏见审查）、doctor-strange（平行宇宙沙盘推演）。覆盖预测→决策→推理→系统分析→偏见审查→情景模拟的完整深度思考链路。
+
+**6 大子技能**:
+- **superforecaster** — 五阶段校准预测（基准率→证据更新→置信区间→复盘）
+- **decision-matrix** — 多维度量化权衡，含敏感度分析
+- **bayesian-reasoning** — 基于新证据持续更新信念
+- **systems-thinking** — 识别反馈回路、杠杆点和涌现行为
+- **scout-mindset** — 认知偏见审查（确认偏误/锚定/过度自信等）
+- **doctor-strange** — 多Agent并行模拟不同未来走向
+
+**Install**: `git clone https://github.com/lyndonkl/claude.git` (子技能来源) + `npx skills add MagicCube/agentara --skill doctor-strange -y -g`
 
 ---
 
@@ -611,6 +647,72 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+#### `brand-workshop` — 品牌全案设计工作坊
+
+**Purpose**: 三阶段品牌设计（Discovery→Concept→Creation），输出完整品牌标识包：Logo 多方案、品牌标语、品牌简介、DESIGN.md 设计令牌。
+
+**Key features**:
+- Logo 多方案比选，每种方案有设计理念说明
+- 3-5 个品牌标语候选，附适用场景
+- DESIGN.md 设计令牌（颜色/字体/间距体系）
+
+**Install**: `/plugin marketplace add sorawit-w/agent-skills` + `/plugin install agent-skills@sorawit-w`
+
+---
+
+#### `pixel-art` — 像素画工作室
+
+**Purpose**: 内置设计系统的像素画工具，输出真正的网格对齐像素 PNG/SVG。支持复古游戏、等距视角、角色精灵等风格。
+
+**Key features**:
+- 复古游戏风格 (8-bit / 16-bit)
+- 等距视角像素建筑和场景
+- 角色精灵含行走帧动画
+- 输出 PNG/SVG，可直接用于游戏和网站
+
+**Install**: `/plugin marketplace add sorawit-w/agent-skills` + `/plugin install agent-skills@sorawit-w`
+
+---
+
+#### `presentation-design` — 演示设计板生成器
+
+**Purpose**: 生成 6 页高级演示设计板（亮/暗双模式），合成为一张复合预览图，适合向客户或投资人展示设计方案。
+
+**Key features**:
+- 6 页设计板：封面 + 4 页内容 + 封底
+- 亮色/暗色一键切换
+- 命名布局库统一视觉语言
+
+**Install**: `npx skills add MagicCube/agentara --skill presentation-design -y -g`
+
+---
+
+#### `article-poster` — 文章→信息图海报
+
+**Purpose**: 从文章 URL 或文本自动生成精美信息图海报，适合社交媒体传播（小红书、公众号、Twitter）。
+
+**Key features**:
+- 自动提取文章关键信息
+- 信息图布局：数据可视化 + 要点提炼 + 金句高亮
+- 多平台尺寸适配
+
+**Install**: `npx skills add MagicCube/agentara --skill article-poster -y -g`
+
+---
+
+#### `canvas-design` — 程序化画布设计
+
+**Purpose**: Anthropic 官方出品。代码生成高分辨率 PNG/PDF 图形，适合海报、传单、社交媒体图、活动物料，可直接印刷。
+
+**Key features**:
+- 程序化生成，像素级精确控制
+- 高分辨率 PNG/PDF 输出
+- 任意尺寸、灵活布局
+
+**Install**: `/plugin install example-skills@anthropic-agent-skills`
+
+---
+
 ### 📝 Content & Writing
 
 ---
@@ -671,6 +773,46 @@ Raw Material → Style Gallery (≥4 cover candidates) → AST Outline
 - **Downstream agnostic**: Compatible with any HTML-PPT skill (Chinese: guizang-ppt-skill, English: frontend-slides / beautiful-html-templates)
 
 **Install**: `npx skills add LearnPrompt/humanize-ppt -g`. Or download from `humanize-ppt/` directory.
+
+---
+
+#### `writing-assistant` — 结构化写作助手
+
+**Purpose**: 从大纲到草稿到润色到发表前审查，覆盖完整写作流程。适用于博客、备忘录、论文、报告、Newsletter 等各类文体。
+
+**Key features**:
+- 四阶段写作流程：Outline → Draft → Revise → Pre-publish Gate
+- 多文体支持：博客/备忘录/论文/报告/Newsletter
+- 风格适配：正式/半正式/随性，按场景调整
+
+**Install**: `git clone https://github.com/lyndonkl/claude.git` (来自 lyndonkl 仓库)
+
+---
+
+#### `scientific-writing-editor` — 科学写作编辑
+
+**Purpose**: 专为学术场景设计的写作助手。覆盖论文手稿、基金申请书、推荐信、审稿回复等学术文体，确保符合学术规范和期刊要求。
+
+**Key features**:
+- 论文手稿结构化编辑
+- 基金申请书说服力增强
+- 审稿回复（逐条回应，礼貌而坚定）
+- 期刊格式适配
+
+**Install**: `git clone https://github.com/lyndonkl/claude.git` (来自 lyndonkl 仓库)
+
+---
+
+#### `ghostwriter` — AI 代笔专家
+
+**Purpose**: 用你自己的语气写消息，零 AI 痕迹。分析你的写作风格后，帮你写邮件、Slack、微信回复，读起来像你本人在打字。
+
+**Key features**:
+- 语气克隆——分析历史消息，提取语气特征
+- 零 AI 痕迹——不啰嗦、不官方、不模板化
+- 多平台适配——邮件/微信/Slack 自动切换正式度
+
+**Install**: `/plugin marketplace add sorawit-w/agent-skills` + `/plugin install agent-skills@sorawit-w`
 
 ---
 
@@ -797,6 +939,19 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `handshake` — 协作风格校准
+
+**Purpose**: 开工前与 Claude 的简短校准仪式。通过 6 个维度刻度（详细程度/技术深度/幽默感/质疑程度/创意自由度/简洁度）和 RPG 职业分类，让 Claude 了解你的协作偏好，从此不再给千篇一律的回答。
+
+**Key features**:
+- 6 维度协作偏好刻度
+- RPG 职业分类（架构师/黑客/探险家/外交官……）
+- 生成便携工作手册，跨会话生效
+
+**Install**: `/plugin marketplace add sorawit-w/agent-skills` + `/plugin install agent-skills@sorawit-w`
+
+---
+
 #### `token-optimizer` — 上下文 Token 优化工具
 
 **Purpose**: 重新组织项目文档结构，只保留 4 个核心文件在启动时自动加载（约 800 token），其他内容按需加载。实测省 90% token（11000 → 1300），一条命令 30 秒搞定。
@@ -833,13 +988,13 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 | Category | Skills |
 |----------|--------|
-| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days |
+| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
 | 💻 **Development** | cc-dispatch, adversarial-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-review-skill, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
-| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation |
-| 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt |
+| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design |
+| 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor |
 | 💼 **Business & Strategy** | dbskill |
-| 🔍 **Tools & Discovery** | find-skills, token-optimizer, weread-skill |
+| 🔍 **Tools & Discovery** | find-skills, handshake, token-optimizer, weread-skill |
 
 ---
 
