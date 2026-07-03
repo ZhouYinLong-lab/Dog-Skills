@@ -14,6 +14,8 @@ description: >
   翻译, translate, 压缩图片, compress image, YouTube transcript, markdown
   formatting, 小红书, infographic, 封面图, cover image, 微信公众号, 微博,
   Electron extract, format markdown, url to markdown.
+metadata:
+  category: content
 ---
 
 # baoyu-skills — 暴鱼技能合集

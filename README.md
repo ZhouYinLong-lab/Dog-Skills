@@ -27,12 +27,11 @@ cp -r thinking-toolkit ~/.claude/skills/thinking-toolkit
 
 # 💻 Development
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
-cp -r adversarial-review ~/.claude/skills/adversarial-review
+cp -r code-review ~/.claude/skills/code-review
 cp -r website-cloner ~/.claude/skills/website-cloner
 cp -r claude-to-im-skill ~/.claude/skills/claude-to-im
 cp -r superpowers ~/.claude/skills/superpowers
 cp -r planning-with-files ~/.claude/skills/planning-with-files
-cp -r code-review-skill ~/.claude/skills/code-review-skill
 cp -r code-simplifier ~/.claude/skills/code-simplifier
 cp -r webapp-testing ~/.claude/skills/webapp-testing
 cp -r ralph-loop ~/.claude/skills/ralph-loop
@@ -85,7 +84,7 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 ls ~/.claude/skills/
 # 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/
-# 💻: adversarial-review/  cc-dispatch/  claude-to-im/  code-review-skill/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
+# 💻: cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 💼: dbskill/
@@ -114,12 +113,11 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | Skill | Try saying... |
 |-------|---------------|
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
-| `adversarial-review` | "帮我进行对抗式审查" / "多Agent并发审查找BUG" / "adversarial review my code" |
+| `code-review` | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
 | `website-cloner` | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
 | `claude-to-im` | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
 | `superpowers` | "开始一个新功能开发" / "帮我按 Superpowers 流程来" / "brainstorm this feature" |
 | `planning-with-files` | "plan this feature" / "帮我做开发规划" / "记录这个设计决策" |
-| `code-review-skill` | "帮我审查代码" / "review my PR" / "提交前检查代码质量" / "/code-review" |
 | `code-simplifier` | "简化刚才生成的代码" / "优化这个模块的可读性" / "/simplify" |
 | `webapp-testing` | "测一下登录流程" / "部署前跑截图对比" / "帮我写 e2e 测试" |
 | `ralph-loop` | "自动迭代完成这些 story" / "启动循环开发" / "批量实现 PRD 任务" |
@@ -136,24 +134,23 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `brand-workshop` | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
 | `pixel-art` | "画一幅像素画" / "做一个等距像素场景" / "create pixel art" |
 | `presentation-design` | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
-| `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片" / "article to infographic poster" |
-| `canvas-design` | "帮我设计活动海报" / "生成宣传单页" / "create a poster" |
+| `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
+| `canvas-design` | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
+| `torn-paper-collage-poster` | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
 | `algorithmic-art` | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
 | `slack-gif-creator` | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
 | `theme-factory` | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
 | `soviet-storybook-grotesque` | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
-| `torn-paper-collage-poster` | "做一张撕纸拼贴海报" / "Zine 风格展览海报" / "collage poster" |
-
 ### 📝 Content & Writing
 
 | Skill | Try saying... |
 |-------|---------------|
-| `humanizer-zh` | "帮我把这段文字去AI味" / "改写得更像人写的" / "去除AI写作痕迹" |
+| `humanizer-zh` | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
 | `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | `humanize-ppt` | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
 | `writing-assistant` | "帮我写一篇博客" / "写一份项目报告" / "draft a memo" |
 | `scientific-writing-editor` | "润色这篇论文" / "写基金申请书" / "回复审稿意见" |
-| `ghostwriter` | "帮我回这封邮件（用我的语气）" / "帮我想一个微信回复" / "draft a reply in my voice" |
+| `ghostwriter` | "帮我回这封邮件（用我的语气）"【从零创作】 / "draft a reply in my voice" |
 
 ### 📚 Learning & Teaching
 
@@ -329,28 +326,20 @@ Codex acts as product manager: it decomposes requirements into a structured **Ta
 
 ---
 
-#### `adversarial-review` — 对抗式审查 — Adversarial Review
+#### `code-review` — 双模式代码审查元技能
 
-**Purpose**: 让 AI 站在对立面对代码、方案、文章进行对抗式审查——从"我要搞崩你的系统"的角度出发，找出逻辑漏洞、安全风险、边界条件、隐藏 Bug 和思维盲点。
+**Purpose**: 元技能整合两种互补审查模式。（1）Standard：5 Agent 并行五维审查（安全/性能/可维护/规范/边界）+ 置信度过滤；（2）Adversarial：恶意用户视角破坏性测试，逻辑漏洞·隐藏 Bug·思维盲点。覆盖从日常 PR 到安全审计的完整审查链路。
 
-**Workflow**:
+**两种模式**:
 
-```
-1. Define Target — Specify the code, plan, or article under review
-2. Adversarial Mindset — Adopt a "I want to break your system" perspective
-3. Multi-Agent Concurrent Scan — Multiple agents probe different angles simultaneously: logic flaws, security risks, boundary conditions, hidden bugs, thinking blind spots
-4. Compile Findings — Structured report with categorized vulnerabilities and blind spots
-5. Prioritize & Suggest — Rank findings by impact and suggest remediation strategies
-```
+| 模式 | 视角 | 触发 |
+|------|------|------|
+| Standard | 工程质量把关 | "帮我审查代码" / `/code-review` |
+| Adversarial | 攻击者视角 | "做对抗式审查" / "以攻击者视角审查" |
 
-**Key features**:
-- **Adversarial review mindset** — Approaches from a malicious user perspective to uncover blind spots conventional review misses
-- **Multi-agent concurrent review** — Multiple AI agents scan simultaneously from different angles for comprehensive coverage
-- **Broad applicability** — Works on code, technical proposals, product plans, and articles/essays
-- **Systematic vulnerability discovery** — Identifies logic flaws, security risks, boundary conditions, and hidden bugs
-- **Structured reporting** — Produces organized findings with severity levels and remediation suggestions
+**推荐流水线**: Code Simplifier → Code Review standard → Code Review adversarial → 人工 Review
 
-**Install**: Download `dist/adversarial-review.skill` and drag it into Claude Code.
+**Install**: 本仓库 skill 目录直接使用
 
 ---
 
@@ -450,28 +439,6 @@ brainstorming → using-git-worktrees → writing-plans → subagent-driven-deve
 **Install**: `/plugin install planning-with-files@claude-plugin-directory`（Claude Code 插件）
 
 **Usage**: 对 Claude Code 说 `plan this feature` 即可启动。
-
----
-
-#### `code-review-skill` — 多 Agent 并行代码审查
-
-**Purpose**: 5 个并行审查 Agent 从安全性、性能、可维护性、规范符合度、边界情况五个维度同时审查代码，合并成按严重程度分级的报告。内置置信度过滤机制，自动过滤假阳性。
-
-**Workflow**:
-
-```
-代码 → 5个Agent并行审查（安全/性能/可维护/规范/边界）→ 置信度过滤 → 按严重度分级报告
-```
-
-**Key features**:
-- **5 维并行审查** — 安全、性能、可维护、规范、边界，同时进行
-- **置信度过滤** — Agent 自评"这个发现靠谱吗？"，假阳性不出现在报告中
-- **严重度分级** — Critical → High → Medium → Low，Critical/High 必须先修
-- **第一道防线** — 不能替代人工审查，但能在同事审查前过滤大部分低级错误
-
-**Install**: `/plugin install code-review@claude-plugin-directory`（Claude Code 插件）
-
-**Usage**: `/code-review` 审查当前 diff, `/code-review --comment` 发布到 PR
 
 ---
 
@@ -1112,7 +1079,7 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 | Category | Skills |
 |----------|--------|
 | 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
-| 💻 **Development** | cc-dispatch, adversarial-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-review-skill, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
+| 💻 **Development** | cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |

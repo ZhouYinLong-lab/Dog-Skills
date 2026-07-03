@@ -10,6 +10,8 @@ description: >
   or trend in the last 30 days. Trigger keywords: /last30days, research,
   what are people saying, trending, sentiment, compare, ELI5, hiring signals,
   best takes, 调研, 最近30天, 大家都在说什么.
+metadata:
+  category: thinking
 ---
 
 # last30days — AI-Powered Topic Research

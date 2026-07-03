@@ -13,6 +13,8 @@ description: >
   问诊, 诊断, 对标, benchmark, 内容诊断, 钩子, hook, 小红书标题, AI检测,
   AI writing check, 慢就是快, slow is fast, 行动诊断, 解构, deconstruct,
   目标, goal, 好问题, good question, 决策系统, decision, 学习, learning.
+metadata:
+  category: business
 ---
 
 # dbskill — 别声张商业诊断工具箱

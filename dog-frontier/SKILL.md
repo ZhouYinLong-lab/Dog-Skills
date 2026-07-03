@@ -1,12 +1,16 @@
 ---
 name: dog-frontier
 description: >
-  前端设计综合技能系统(Dog-Frontier)。通过多轮对话精确理解需求,整合18个专业前端技能的精华,
+  前端设计综合技能系统(Dog-Frontier)【全栈元技能，已包含 ui-ux-pro-max】。
+  通过多轮对话精确理解需求,整合19个专业前端技能的精华,
   输出高质量、高结构化的前端设计方案与代码。覆盖 UI/UX 设计系统、Tailwind/shadcn 组件库、
-  Vue/React 技术栈、CSS 高级技巧、落地页生成、动画视频、品牌设计、设计令牌三大层级等全链路。
+  Vue/React 技术栈、CSS 高级技巧、落地页生成、动画视频、品牌设计、设计令牌三大层级、
+  反「AI味」设计审查等全链路。
+  如需轻量独立版，用 ui-ux-pro-max；需要全链路前端方案，用本技能。
   Trigger keywords: 前端设计, 前端开发, UI设计, 设计系统, 落地页, landing page, dashboard,
   仪表盘, 组件开发, Vue组件, React组件, Tailwind, shadcn, 配色方案, 字体搭配, 品牌设计,
   CSS动画, HTML视频, 响应式布局, 前端重构, 界面优化, UX审查, 设计令牌, design tokens,
+  反AI味, AI味, 去模板化, 有审美的前端, taste-skill, 独特设计, 审美约束,
   Dog-Frontier, 前端综合.
 allowed-tools:
   - Read
@@ -19,9 +23,10 @@ allowed-tools:
   - WebFetch
   - WebSearch
 metadata:
-  version: "1.0.0"
+  category: design
+  version: "1.1.0"
   license: MIT
-  integrated-skills: 18
+  integrated-skills: 19
 ---
 
 # Dog-Frontier — 前端设计综合技能
@@ -48,6 +53,7 @@ metadata:
 - UI/UX 审查 → 走[审查流程](references/workflow.md#phase-5-review)
 - 代码质量检查 → 走[QA流程](references/qa-checklist.md)
 - 文案去AI化 → 走[文案流程](references/workflow.md#phase-5-copy)
+- 反「AI味」设计审查 → 走[反AI味流程](#anti-ai-taste-审查)
 
 ---
 
@@ -122,7 +128,8 @@ Phase 5: Quality Review                            Phase 4: Handoff Check
 | 性能 | ≥ 3/5 | 5 |
 | 代码质量 | ≥ 4/5 | 5 |
 | 文案质量 | ≥ 3/5 | 5 |
-| **总计** | **≥ 22/30** | **30** |
+| 反AI味 | ≥ 4/5 | 5 |
+| **总计** | **≥ 26/35** | **35** |
 
 ### 阻断性缺陷 (一票否决)
 
@@ -148,6 +155,7 @@ Phase 5: Quality Review                            Phase 4: Handoff Check
 "把这个设计的文案改得更自然"        → Phase 5 文案流程
 "生成设计令牌/design tokens"       → Phase 2 令牌生成
 "做一个产品介绍视频"               → Phase 3 动画流程
+"反AI味设计/去模板化/审美审查"     → Phase 5 反AI味流程
 ```
 
 ---
@@ -172,8 +180,47 @@ Phase 5: Quality Review                            Phase 4: Handoff Check
 | L6 动画媒体 | html-video | Apache-2.0 | Phase 3 视频 |
 | L6 动画媒体 | sprite-animation | MIT | Phase 3 动画 |
 | L7 质量保证 | humanizer-zh | MIT | Phase 5 文案 |
+| L7 质量保证 | taste-skill | MIT | Phase 5 反AI味 |
 
 完整归属声明: [ATTRIBUTIONS.md](ATTRIBUTIONS.md)
+
+---
+
+## Anti-AI-Taste 审查
+
+防止 AI 生成千篇一律的模板化 UI。在 Phase 5 质量审查时,额外执行反「AI味」设计审查。
+
+### AI味反模式清单
+
+| # | AI味模式 | 判定标准 | 替代方案 |
+|---|---------|---------|---------|
+| 1 | **蓝紫渐变 Hero** | 首屏背景为 linear-gradient(blue, purple) | 纯色 / 照片背景 / 纹理 / 大量留白 |
+| 2 | **Inter/Roboto 字体** | 全站使用 AI 默认字体,无品牌感 | 衬线标题 + 无衬线正文 / 定制字体 |
+| 3 | **Bento Grid 布局** | 标准圆角卡片网格,无视觉层次 | 不对称网格 / 重叠布局 / 杂志排版 |
+| 4 | **Glassmorphism 堆叠** | 半透明模糊卡片 + 彩虹渐变背景 | 纯色卡片 / 细边框 + 阴影层级 |
+| 5 | **空洞文案** | "Empower your workflow" 等模板短语 | 具体、有态度的产品文案 |
+| 6 | **标准 Tailwind 色板** | 使用默认 blue-500 / gray-100 等 | 自定义 oklch 色值,品牌色系 |
+| 7 | **无理由圆角** | 所有卡片都是 rounded-xl,无体系 | 建立圆角层级(token): sm/md/lg/xl |
+| 8 | **图标泛滥** | 每个功能卡片都放 Heroicons 图标 | 有节制地使用,考虑自定义图标 |
+| 9 | **空白状态模板化** | "No items yet. Create one!" 模式 | 个性化空状态,符合产品语调 |
+
+### 审查流程
+
+```
+1. 视觉扫描 → 对照9项反模式清单逐一检查
+2. 辨识度测试 → 截图放到 Pinterest/Dribbble 中,能一眼认出吗?
+3. 设计溯源 → 每个设计决策有理由,而非「AI习惯这么做」
+4. 修复建议 → 对命中的模式给出1-2个替代方案
+5. 重验证 → 修复后再次走审查流程,直到通过率 ≥ 80%
+```
+
+### 阻断性反模式
+
+以下任一情况直接判定反AI味审查不通过:
+- 出现 ≥ 5 项 AI 味反模式
+- Hero 区域使用蓝紫渐变且无品牌理由
+- 全站仅使用 Inter 字体(无品牌字体注入)
+- 3 个以上 Glassmorphism 卡片相邻出现
 
 ---
 

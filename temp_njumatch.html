@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NJU Match是一款专为南京大学学生设计的沉浸式交友与匹配平台。在这里，我们用长问卷策展浪漫，拒绝快餐社交，为你匹配灵魂契合的那个Ta。" />
+    <meta name="keywords" content="NJU Match, NJU Date, 南大交友, 南京大学社交, 南京大学脱单, 南大匹配, 策展浪漫, 大学生交友" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph 社交分享标签 -->
+    <meta property="og:title" content="NJU Match - 策展浪漫" />
+    <meta property="og:description" content="专为南京大学学生设计的沉浸式交友平台，在这里策展你的浪漫。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://njumatch.com/" />
+    <meta property="og:site_name" content="NJU Match" />
+    <meta property="og:image" content="https://njumatch.com/icon.png" />
+
+    <link rel="icon" type="image/png" href="/icon-small.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: #fcfbf8;
+      }
+
+      .boot-loading {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at center, #ffffff 0%, #fcfbf8 58%, #f5efe8 100%);
+        color: #4b2b61;
+        font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", serif;
+      }
+
+      .boot-loading__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        transform: translateY(-4vh);
+      }
+
+      .boot-loading__spinner {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(75, 43, 97, 0.16);
+        border-top-color: #4b2b61;
+        border-radius: 999px;
+        animation: boot-spin 0.9s linear infinite;
+      }
+
+      .boot-loading__brand {
+        font-size: 13px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .boot-loading__text {
+        color: #8b7355;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+      }
+
+      @keyframes boot-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .boot-loading__spinner {
+          animation: none;
+        }
+      }
+    </style>
+    <title>NJU Match - 策展浪漫</title>
+    <script type="module" crossorigin src="/assets/index-BuUcYHaH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CsiURSeX.css">
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot-loading" role="status" aria-live="polite">
+        <div class="boot-loading__inner">
+          <div class="boot-loading__spinner" aria-hidden="true"></div>
+          <div class="boot-loading__brand">NJU Match</div>
+          <div class="boot-loading__text">正在打开</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -22,6 +22,7 @@ allowed-tools:
   - EnterWorktree
   - ExitWorktree
 metadata:
+  category: development
   version: "1.0.0"
   license: MIT
   original-author: JCodesMore

@@ -8,6 +8,8 @@ description: >
   and past papers. Triggers when the task involves reading course PDFs, analyzing exam
   patterns, identifying high-frequency topics, and producing organized markdown review
   content with quality audits.
+metadata:
+  category: learning
 ---
 
 # 复习资料生成器

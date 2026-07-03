@@ -1,18 +1,17 @@
 ---
 name: ui-ux-pro-max
 description: >
-  AI-powered design intelligence toolkit for coding assistants. Provides 67 UI
-  styles, 161 color palettes, 57 font pairings, 25 chart types, 99 UX guidelines,
+  AI-powered design intelligence toolkit for coding assistants【轻量独立版 · dog-frontier 已包含本技能】。
+  Provides 67 UI styles, 161 color palettes, 57 font pairings, 25 chart types, 99 UX guidelines,
   and 161 industry-specific reasoning rules across 16 tech stacks (HTML+Tailwind,
   React, Next.js, shadcn/ui, Vue, Svelte, SwiftUI, Flutter, etc.). The v2.0 Design
-  System Generator takes a project description and outputs a complete design system
-  (pattern, style, colors, typography, effects, anti-patterns, pre-delivery
-  checklist). Use when the user needs UI design recommendations, color palettes,
-  font pairings, design systems, UX guidelines, dashboard design, landing page
-  patterns, or stack-specific design guidance. Trigger keywords: UI design, UX,
-  design system, color palette, font pairing, dashboard design, landing page,
-  glassmorphism, minimalism, brutalism, neumorphism, Bento grid, shadcn/ui design,
-  Tailwind design, UI风格, 设计系统, 配色, 字体搭配.
+  System Generator takes a project description and outputs a complete design system.
+  只需设计推荐用本技能，需要全链路前端方案（含组件开发/品牌/动画）用 dog-frontier。
+  Trigger keywords: UI design, UX, design system, color palette, font pairing,
+  dashboard design, landing page, glassmorphism, minimalism, brutalism, neumorphism,
+  Bento grid, shadcn/ui design, Tailwind design, UI风格, 设计系统, 配色, 字体搭配.
+metadata:
+  category: design
 ---
 
 # UI UX Pro Max — Design Intelligence for AI Coding Agents

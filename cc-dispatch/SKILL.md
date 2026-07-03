@@ -9,6 +9,8 @@ description: >
   - 用户提出需求，你需要拆解并交给 Claude Code 实现
   - 你收到 Claude Code 的完成报告，需要执行验收
   - 需要对已完成任务提出修改意见并生成 Change Request
+metadata:
+  category: development
 ---
 
 # Codex ↔ Claude Code 协作协议

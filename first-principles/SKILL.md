@@ -18,6 +18,7 @@ allowed-tools:
   - TaskCreate
   - AskUserQuestion
 metadata:
+  category: thinking
   source: https://mp.weixin.qq.com/s/umPqTD_-IubbhXIgiS47eQ
   author: 卡尔的AI沃兹
   version: "1.0.0"

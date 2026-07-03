@@ -16,6 +16,7 @@ allowed-tools:
   - AskUserQuestion
   - WebFetch
 metadata:
+  category: learning
   version: "1.0.0"
   license: MIT
   based_on: SmartTutor Generator v1.1 by 莫弈 (2026)

@@ -30,6 +30,7 @@ requires-skills:
   remotion-video-toolkit: "Add only for complex video work — captions, charts, 3D, batch templates, automated render pipelines. Source: github.com/shreefentsar/remotion-video-toolkit."
   baoyu-image-gen: "Recommended for the image media slot. Drives the local Codex CLI (--provider codex-cli) using the logged-in Codex/ChatGPT subscription — no OPENAI_API_KEY needed. Generates the real hero/concept image to the slot's asset_path. Source: github.com/JimLiu/baoyu-skills. Verified in v0.9."
 metadata:
+  category: content
   tags: [presentation, ppt, html-slides, humanizer, ast, workflow, brief-orchestrator, hv-analysis, 9-styles]
 ---
 

@@ -10,6 +10,8 @@ description: >
   for any domain: web development, testing, DevOps, documentation, code
   quality, design, or productivity. Trigger keywords: find skill, search skill,
   discover skill, install skill, is there a skill, how do I, skill for X.
+metadata:
+  category: tools
 ---
 
 # find-skills — Discover and Install Agent Skills

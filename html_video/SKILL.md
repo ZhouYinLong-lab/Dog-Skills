@@ -13,6 +13,8 @@ description: >
   **Trigger keywords**: 做视频, 生成视频, 动画, video, MP4, animate, HTML→video,
   article to video, link to video, data visualization video, product promo video,
   explainer video, template video, hyperframes, remotion render.
+metadata:
+  category: design
 ---
 
 # html-video — HTML becomes video, on your laptop

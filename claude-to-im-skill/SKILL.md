@@ -18,6 +18,8 @@ allowed-tools:
   - AskUserQuestion
   - Grep
   - Glob
+metadata:
+  category: development
 ---
 
 # Claude-to-IM Bridge Skill
