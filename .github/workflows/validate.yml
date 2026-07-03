@@ -1,0 +1,69 @@
+name: Skill Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * 1'  # Every Monday 8am
+
+jobs:
+  validate-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate SKILL.md frontmatter
+        run: |
+          echo "=== Scanning all SKILL.md files ==="
+          errors=0
+          for f in */SKILL.md; do
+            dir=$(dirname "$f")
+            echo "Checking: $dir"
+
+            # Check required YAML frontmatter
+            if ! head -1 "$f" | grep -q '^---$'; then
+              echo "  ❌ Missing YAML frontmatter"
+              errors=$((errors + 1))
+              continue
+            fi
+
+            # Check name field
+            name=$(sed -n '/^---$/,/^---$/p' "$f" | grep '^name:' | head -1)
+            if [ -z "$name" ]; then
+              echo "  ❌ Missing 'name' in frontmatter"
+              errors=$((errors + 1))
+            fi
+
+            # Check description field
+            desc=$(sed -n '/^---$/,/^---$/p' "$f" | grep '^description:' | head -1)
+            if [ -z "$desc" ]; then
+              echo "  ❌ Missing 'description' in frontmatter"
+              errors=$((errors + 1))
+            fi
+
+            # Check metadata.category
+            cat=$(sed -n '/^---$/,/^---$/p' "$f" | grep 'category:' | head -1)
+            if [ -z "$cat" ]; then
+              echo "  ⚠️  Missing 'metadata.category'"
+            fi
+
+            echo "  ✅ $name"
+          done
+
+          echo "=== Total errors: $errors ==="
+          if [ $errors -gt 0 ]; then exit 1; fi
+
+      - name: Count skills
+        run: |
+          count=$(ls -d */SKILL.md 2>/dev/null | wc -l)
+          echo "Total skills: $count"
+          echo "SKILL_COUNT=$count" >> $GITHUB_ENV
+
+      - name: Summary
+        run: |
+          echo "## Skill Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total skills | ${{ env.SKILL_COUNT }} |" >> $GITHUB_STEP_SUMMARY
