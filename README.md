@@ -36,6 +36,7 @@ cp -r code-simplifier ~/.claude/skills/code-simplifier
 cp -r webapp-testing ~/.claude/skills/webapp-testing
 cp -r ralph-loop ~/.claude/skills/ralph-loop
 cp -r mcp-builder ~/.claude/skills/mcp-builder
+cp -r repo-evaluator ~/.claude/skills/repo-evaluator
 
 # 🎨 Design & Frontend
 cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
@@ -85,7 +86,7 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 ls ~/.claude/skills/
 # 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/
-# 💻: cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
+# 💻: cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 💼: dbskill/
@@ -122,6 +123,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `code-simplifier` | "简化刚才生成的代码" / "优化这个模块的可读性" / "/simplify" |
 | `webapp-testing` | "测一下登录流程" / "部署前跑截图对比" / "帮我写 e2e 测试" |
 | `ralph-loop` | "自动迭代完成这些 story" / "启动循环开发" / "批量实现 PRD 任务" |
+| `repo-evaluator` | "评估这个 GitHub 仓库" / "这个开源项目靠谱吗" / "对比这三个类似项目" |
 | `mcp-builder` | "帮我创建一个 MCP Server" / "把这个 API 包装成 MCP 工具" / "build an MCP server" |
 
 ### 🎨 Design & Frontend
@@ -486,6 +488,21 @@ brainstorming → using-git-worktrees → writing-plans → subagent-driven-deve
 **前置条件**：PRD story 必须小到一个上下文窗口完成；项目必须配 typecheck 和测试。
 
 **Install**: `git clone https://github.com/snarktank/ralph.git && cp -r ralph/scripts ./ && ./scripts/ralph/ralph.sh`
+
+---
+
+#### `repo-evaluator` — GitHub 仓库评估器
+
+**Purpose**: 多 Agent 并行评估任意开源项目的 6 类 30 项指标：社区健康、维护性、安全性、文档质量、采纳度、代码质量。每项指标附源 URL + 时间戳，输出结构化评分报告。
+
+**6 维评估**: 社区健康度 · 维护性 · 安全性 · 文档质量 · 采纳度 · 代码质量（等权重）
+
+**Key features**:
+- 6 Agent 并行评估，证据驱动可追溯
+- 适合开源选型、依赖审查、自评改进、投资尽调
+- "对比这三个类似的开源项目"→ 3×6 Agent 并行
+
+**Install**: `npx skills add maxamillion/skill-oss-project-kpi-evaluation`
 
 ---
 
@@ -1098,7 +1115,7 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 | Category | Skills |
 |----------|--------|
 | 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
-| 💻 **Development** | cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
+| 💻 **Development** | cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, dog-poster, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
