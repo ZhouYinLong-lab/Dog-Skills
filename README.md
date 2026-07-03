@@ -65,6 +65,7 @@ cp -r ghostwriter ~/.claude/skills/ghostwriter
 # 📚 Learning & Teaching
 cp -r tutor ~/.claude/skills/exam-tutor
 cp -r dog-tutor ~/.claude/skills/dog-tutor
+cp -r learning-studio ~/.claude/skills/learning-studio
 
 # 💼 Business & Strategy
 cp -r dbskill ~/.claude/skills/dbskill
@@ -75,6 +76,7 @@ cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
 cp -r handshake ~/.claude/skills/handshake
 cp -r vibe-sing ~/.claude/skills/vibe-sing
+cp -r family-doctor ~/.claude/skills/family-doctor
 ```
 
 ### Verification
@@ -82,12 +84,12 @@ cp -r vibe-sing ~/.claude/skills/vibe-sing
 ```bash
 ls ~/.claude/skills/
 # 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
+# 📚: dog-tutor/  exam-tutor/  learning-studio/
 # 💻: adversarial-review/  cc-dispatch/  claude-to-im/  code-review-skill/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
-# 📚: dog-tutor/  exam-tutor/
 # 💼: dbskill/
-# 🔍: find-skills/  handshake/  token-optimizer/  vibe-sing/  weread-skill/
+# 🔍: family-doctor/  find-skills/  handshake/  token-optimizer/  vibe-sing/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -159,6 +161,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 |-------|---------------|
 | `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
 | `dog-tutor` | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" |
+| `learning-studio` | "把机器学习做成一套课程" / "compare 三本书的观点" / "苏格拉底阅读模式" |
 
 ### 💼 Business & Strategy
 
@@ -175,6 +178,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
 | `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
 | `vibe-sing` | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
+| `family-doctor` | "分析我最近一周的健康数据" / "血压高帮我查原因" / "解读体检报告" / "制定减脂计划" |
 
 ---
 
@@ -982,6 +986,20 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `learning-studio` — 学习工作室 · Learning Studio
+
+**Purpose**: 元技能整合 4 大学习工具——studyws（任意主题→完整课程+播客）、The Knowledge Guy（PDF/EPUB→可查询书架+跨书对比）、ljg-read（中英双语苏格拉底式阅读）、Aibrary Skills（9 技能：书籍发现+3 种播客+成长计划）。覆盖课程生成→书籍消化→深度阅读→知识输出的完整学习闭环。
+
+**4 大子技能**:
+- **studyws** — 8 阶段流水线：`/sws:start→scope→research→write→diagrams→guide→slides→podcast`
+- **The Knowledge Guy** — PDF/EPUB→结构化 skill，`compare <主题>` 跨书对比
+- **ljg-read** — 三段标注（骨/肉/筋）+ 苏格拉底追问 + 三速阅读
+- **Aibrary Skills** — 3 种播客形式（单人/对话/AI 分身辩论）+ 成长计划
+
+**Install**: `npx studyws init` + `git clone https://github.com/vitalysim/the-knowledge-guy.git`
+
+---
+
 ### 💼 Business & Strategy
 
 ---
@@ -1001,6 +1019,20 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 ---
 
 ### 🔍 Tools & Discovery
+
+---
+
+#### `family-doctor` — AI 家庭健康管理套件
+
+**Purpose**: 26 个技能覆盖 17 个健康领域。核心差异：跨维度关联分析——血压升高自动检查钠摄入+睡眠+运动+压力。慢性病管理、营养分析、睡眠质量、ACSM 训练计划、心理健康筛查 (PHQ-9/GAD-7)、药物相互作用。
+
+**17 大领域**: 慢性病·营养·睡眠·运动·心理·药物·生命体征·体检解读·妇儿·老年·疼痛·过敏·皮肤·消化·心血管·呼吸·中医体质
+
+**Key features**:
+- 跨维度关联分析（非孤立分析每个指标）
+- 26 个专业技能模块化调用
+- 本地存储，零数据泄露
+- ⚠️ 辅助工具，不替代医生诊断
 
 ---
 
@@ -1083,9 +1115,9 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 | 💻 **Development** | cc-dispatch, adversarial-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-review-skill, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
-| 📚 **Learning & Teaching** | exam-tutor, dog-tutor |
+| 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
 | 💼 **Business & Strategy** | dbskill |
-| 🔍 **Tools & Discovery** | find-skills, handshake, token-optimizer, vibe-sing, weread-skill |
+| 🔍 **Tools & Discovery** | find-skills, family-doctor, handshake, token-optimizer, vibe-sing, weread-skill |
 
 ---
 
