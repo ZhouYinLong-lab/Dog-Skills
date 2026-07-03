@@ -52,6 +52,7 @@ cp -r slack-gif-creator ~/.claude/skills/slack-gif-creator
 cp -r theme-factory ~/.claude/skills/theme-factory
 cp -r soviet-storybook-grotesque ~/.claude/skills/soviet-storybook-grotesque
 cp -r torn-paper-collage-poster ~/.claude/skills/torn-paper-collage-poster
+cp -r poster-studio ~/.claude/skills/poster-studio
 
 # 📝 Content & Writing
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
@@ -85,7 +86,7 @@ ls ~/.claude/skills/
 # 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/
 # 💻: cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
+# 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  poster-studio/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 💼: dbskill/
 # 🔍: family-doctor/  find-skills/  handshake/  token-optimizer/  vibe-sing/  weread-skill/
@@ -137,6 +138,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
 | `canvas-design` | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
 | `torn-paper-collage-poster` | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
+| `poster-studio` | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
 | `algorithmic-art` | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
 | `slack-gif-creator` | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
 | `theme-factory` | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
@@ -657,6 +659,23 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+#### `poster-studio` — 海报设计工作室 · Poster Studio
+
+**Purpose**: 元技能——上游风格询问 + 下游路由到三个海报子技能。先通过三连问确定你的需求（内容来源/视觉风格/使用平台），然后自动路由：信息图风→article-poster，通用设计风→canvas-design，手工拼贴风→torn-paper-collage-poster。
+
+**路由逻辑**:
+
+| 你的需求 | 路由到 |
+|----------|--------|
+| 文章/链接→信息图 | article-poster |
+| 活动/产品→宣传海报 | canvas-design |
+| 艺术感→手工质感 | torn-paper-collage-poster |
+| 不确定 → "三种风格各来一张" | 三子技能并行生成 |
+
+**Install**: 三个子技能各自安装（article-poster / canvas-design / torn-paper-collage-poster）
+
+---
+
 #### `presentation-design` — 演示设计板生成器
 
 **Purpose**: 生成 6 页高级演示设计板（亮/暗双模式），合成为一张复合预览图，适合向客户或投资人展示设计方案。
@@ -1080,7 +1099,7 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 |----------|--------|
 | 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
 | 💻 **Development** | cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
-| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
+| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, poster-studio, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
 | 💼 **Business & Strategy** | dbskill |
