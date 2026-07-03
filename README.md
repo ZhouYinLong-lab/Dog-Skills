@@ -48,6 +48,11 @@ cp -r pixel-art ~/.claude/skills/pixel-art
 cp -r presentation-design ~/.claude/skills/presentation-design
 cp -r article-poster ~/.claude/skills/article-poster
 cp -r canvas-design ~/.claude/skills/canvas-design
+cp -r algorithmic-art ~/.claude/skills/algorithmic-art
+cp -r slack-gif-creator ~/.claude/skills/slack-gif-creator
+cp -r theme-factory ~/.claude/skills/theme-factory
+cp -r soviet-storybook-grotesque ~/.claude/skills/soviet-storybook-grotesque
+cp -r torn-paper-collage-poster ~/.claude/skills/torn-paper-collage-poster
 
 # 📝 Content & Writing
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
@@ -69,6 +74,7 @@ cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
 cp -r handshake ~/.claude/skills/handshake
+cp -r vibe-sing ~/.claude/skills/vibe-sing
 ```
 
 ### Verification
@@ -77,11 +83,11 @@ cp -r handshake ~/.claude/skills/handshake
 ls ~/.claude/skills/
 # 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
 # 💻: adversarial-review/  cc-dispatch/  claude-to-im/  code-review-skill/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  ui-ux-pro-max/
+# 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 📚: dog-tutor/  exam-tutor/
 # 💼: dbskill/
-# 🔍: find-skills/  handshake/  token-optimizer/  weread-skill/
+# 🔍: find-skills/  handshake/  token-optimizer/  vibe-sing/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -130,6 +136,11 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `presentation-design` | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
 | `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片" / "article to infographic poster" |
 | `canvas-design` | "帮我设计活动海报" / "生成宣传单页" / "create a poster" |
+| `algorithmic-art` | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
+| `slack-gif-creator` | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
+| `theme-factory` | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
+| `soviet-storybook-grotesque` | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
+| `torn-paper-collage-poster` | "做一张撕纸拼贴海报" / "Zine 风格展览海报" / "collage poster" |
 
 ### 📝 Content & Writing
 
@@ -163,6 +174,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `weread-skill` | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
 | `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
 | `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
+| `vibe-sing` | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
 
 ---
 
@@ -713,6 +725,71 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+#### `algorithmic-art` — p5.js 算法艺术
+
+**Purpose**: Anthropic 官方出品。用 p5.js 创作生成艺术——流场、粒子系统、分形、Perlin 噪声。每段代码都是独一无二的艺术品。
+
+**Key features**:
+- 流场 (Flow Fields)、粒子系统、递归分形
+- 种子随机——同一种子永远生成同一幅画
+- 多种调色板：复古、赛博朋克、自然
+
+**Install**: `/plugin install example-skills@anthropic-agent-skills`
+
+---
+
+#### `slack-gif-creator` — Slack GIF 动图
+
+**Purpose**: Anthropic 官方出品。创建 Slack 优化的动画 GIF——Emoji 128×128、消息 480×480，自动适配限制。
+
+**Key features**:
+- Emoji / 消息 GIF / 演示 GIF 三种规格
+- 自动优化帧率和文件大小
+- 从截图、录屏、代码动画生成
+
+**Install**: `/plugin install example-skills@anthropic-agent-skills`
+
+---
+
+#### `theme-factory` — 主题工厂
+
+**Purpose**: Anthropic 官方出品。10 套预设主题 + 自定义即时生成，一键应用到幻灯片/文档/HTML，含亮暗双模式。
+
+**Key features**:
+- 10 套预设主题（字体+颜色+间距+圆角+阴影）
+- 亮色/暗色双模式
+- 输出 CSS 变量 / Tailwind 配置 / DESIGN.md
+
+**Install**: `/plugin install example-skills@anthropic-agent-skills`
+
+---
+
+#### `soviet-storybook-grotesque` — 苏联童书怪诞风
+
+**Purpose**: 把照片变成粗糙褪色的东欧儿童书籍插图，配荒诞手写押韵诗。一种独特而有趣的艺术风格转换。
+
+**Key features**:
+- 苏联童书印刷质感——灰绿、棕黄、褪色红
+- 怪诞人物比例 + 手写押韵诗
+- 泛黄纸底 + 粗糙边缘
+
+**Install**: `npx skills add MagicCube/agentara --skill soviet-storybook-grotesque -y -g`
+
+---
+
+#### `torn-paper-collage-poster` — 撕纸拼贴海报
+
+**Purpose**: 手工感极强的编辑式拼贴海报——撕纸层叠 + 粗糙排版 + 邮票 + 胶带 + 贴纸 + 复印机纹理。适合独立杂志、音乐演出、艺术展览。
+
+**Key features**:
+- 撕纸层叠（不规则边缘、纤维毛边）
+- 粗糙排版 + 邮票邮戳 + 胶带贴纸
+- 复印机噪点纹理 + 手写注释
+
+**Install**: `npx skills add MagicCube/agentara --skill torn-paper-collage-poster -y -g`
+
+---
+
 ### 📝 Content & Writing
 
 ---
@@ -969,6 +1046,20 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `vibe-sing` — 让 Claude Code 为你唱歌
+
+**Purpose**: 读取当前会话记录 → Gemini 分析情绪 → Google Lyria 3 作曲并演唱 → 自动播放。支持 30 秒片段 (`/vibe-sing`) 和 2 分钟完整版 (`/vibe-sing pro`)。
+
+**Key features**:
+- 分析会话情绪和氛围生成对应风格的歌曲
+- Google Lyria 3 作曲+人声演唱
+- 约 4-8 美分一首歌
+- macOS/Linux 支持
+
+**Install**: `git clone https://github.com/harajlim/vibe-sing.git ~/.claude/skills/vibe-sing`（需 Google API Key）
+
+---
+
 #### `weread-skill` — 微信读书 AI 助手
 
 **Purpose**: 连接你的微信读书账号，用 AI 搜书、查笔记、看书评、分析阅读数据。支持查阅书架、阅读统计、笔记和划线、书籍搜索、书籍详情、个性化推荐。
@@ -990,11 +1081,11 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 |----------|--------|
 | 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
 | 💻 **Development** | cc-dispatch, adversarial-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-review-skill, code-simplifier, webapp-testing, ralph-loop, mcp-builder |
-| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design |
+| 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor |
 | 💼 **Business & Strategy** | dbskill |
-| 🔍 **Tools & Discovery** | find-skills, handshake, token-optimizer, weread-skill |
+| 🔍 **Tools & Discovery** | find-skills, handshake, token-optimizer, vibe-sing, weread-skill |
 
 ---
 
