@@ -1,13 +1,13 @@
 ---
-name: poster-studio
+name: dog-poster
 description: >
-  海报设计工作室元技能——上游通过风格询问确定你的需求，下游自动路由到最合适的
+  海报设计工作室元技能(Dog-Poster)——上游通过风格询问确定你的需求，下游自动路由到最合适的
   海报生成器：(1) 信息图风 → article-poster，(2) 通用设计风 → canvas-design，
   (3) 手工拼贴艺术风 → torn-paper-collage-poster。三个子技能各有所长，
   本技能负责帮你选对工具。
   Trigger keywords: 海报设计, 做海报, 海报, poster, 设计海报, 生成海报,
-  poster studio, 海报工作室, 帮我做海报, 宣传海报, 活动海报, 信息图海报,
-  拼贴海报, 我要做海报, create a poster, design a poster。
+  dog-poster, poster studio, 海报工作室, 帮我做海报, 宣传海报, 活动海报, 信息图海报,
+  拼贴海报, 我要做海报, create a poster, design a poster, Dog-Poster。
 allowed-tools:
   - Read
   - Write
@@ -25,7 +25,7 @@ metadata:
   license: MIT
 ---
 
-# Poster Studio — 海报设计工作室
+# Dog-Poster — 海报设计工作室
 
 > 先问你要什么风格，再帮你选对工具。三个海报子技能各有所长，本技能帮你做选择。
 
@@ -35,7 +35,7 @@ metadata:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│               Poster Studio — 上游路由                       │
+│               Dog-Poster — 上游路由                          │
 │                                                              │
 │  ① 你的内容来源是什么？                                       │
 │     A. 一篇文章/链接 → 提取要点做信息图                       │
