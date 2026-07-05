@@ -11,6 +11,7 @@ Use this template for every Claude Code implementation handoff.
 **Estimated Scope**: Small (<50 changed lines) / Medium (50-200) / Large (>200)
 **Target Working Directory**: `<absolute or repo-relative path>`
 **Depends on**: `<task id or none>`
+**Dependency Map**: `<none, or list runtime/tool/project/task dependencies below>`
 
 ---
 
@@ -24,6 +25,13 @@ Relevant files:
 
 Current commands worth checking:
 - `<command>` - <what it verifies>
+
+Dependency notes:
+- Tooling: `<claude/node/python/docker/etc. or none>`
+- Runtime services: `<database/cache/local server/etc. or none>`
+- Credentials/config: `<env vars/settings needed, never paste secret values>`
+- Task ordering: `<previous task ids or none>`
+- Risk if missing: `<fallback or expected blocked state>`
 
 ---
 
@@ -42,6 +50,7 @@ Current commands worth checking:
 - Preserve public function signatures unless explicitly listed in Requirements.
 - Follow existing project style and tooling.
 - Keep changes limited to the files needed for this task.
+- Do not introduce new runtime dependencies without stating why and updating the relevant manifest/docs.
 
 ---
 
@@ -79,5 +88,6 @@ Before dispatching, verify:
 - Every requirement starts with an action verb.
 - Every acceptance criterion can be checked by reading code, running a command, or using the app.
 - The constraints say what Claude Code must not touch.
+- Dependencies are explicit enough that a missing tool, credential, service, or prior task becomes a clear BLOCKED report instead of guesswork.
 - The test commands are realistic for the project.
 - The task is small enough that Codex can review the diff after completion.

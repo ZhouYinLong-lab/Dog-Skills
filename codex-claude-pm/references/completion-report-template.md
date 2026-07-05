@@ -24,6 +24,14 @@ Require Claude Code to return this structure after implementation.
 
 ---
 
+### Dependency Changes
+
+- New dependencies: <package/tool/service/config, or "None">
+- Removed dependencies: <package/tool/service/config, or "None">
+- Required but unavailable dependencies: <anything that blocked work, or "None">
+
+---
+
 ### Acceptance Criteria Status
 
 - [ ] AC-1: <criterion text> - PASS / FAIL / NOT RUN - <evidence>

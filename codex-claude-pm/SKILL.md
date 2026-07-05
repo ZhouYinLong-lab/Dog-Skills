@@ -22,6 +22,7 @@ Codex owns correctness. Claude Code may write code, but Codex must still inspect
    - Dispatch to Claude Code when the request is mostly implementation and can be specified with concrete files, constraints, and acceptance criteria.
    - Keep Codex-local work when the task is mainly product judgment, architecture choice, security review, small surgical edit, or high-risk secret/credential handling.
    - Split work before dispatch if it touches more than 3 unrelated modules, exceeds about 300 expected changed lines, or has separable dependencies.
+   - Read `references/dependencies.md` when the task depends on external tools, credentials, project services, generated assets, or multi-step task ordering.
 
 3. Write a Task Package.
    - Use `references/task-package-template.md`.
@@ -34,6 +35,7 @@ Codex owns correctness. Claude Code may write code, but Codex must still inspect
    - Read `references/review-checklist.md` when the task has meaningful risk.
    - Ensure Claude Code can act without follow-up questions.
    - Prefer smaller, verifiable tasks over one broad prompt.
+   - Include a dependency map when execution order, tooling, runtime services, or credentials affect success.
 
 5. Dispatch to Claude Code.
    - If the local CLI is available, use `scripts/Invoke-ClaudeDispatch.ps1`.
@@ -50,6 +52,7 @@ Codex owns correctness. Claude Code may write code, but Codex must still inspect
    - ACCEPT only when requirements, constraints, and tests are satisfied or deviations are explicitly acceptable.
    - Issue a Change Request when a fix is needed. Use `references/change-request-template.md`.
    - If Claude Code exposes unrelated failures, record them separately instead of silently expanding scope.
+   - Read `references/evaluation.md` when judging whether this skill itself worked well on the task.
 
 ## CLI Dispatch
 
@@ -84,6 +87,17 @@ powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Invoke-Claude
 
 The script writes each run under `.codex-claude-pm/runs/<timestamp>/` with the task package, command metadata, stdout, and stderr.
 
+## Dependency Check
+
+Before the first real dispatch in a project, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Test-ClaudeDispatchPrereqs.ps1 `
+  -WorkingDirectory .
+```
+
+This checks whether `claude` is available, whether the working directory and git state are readable, and whether non-interactive Claude Code can be invoked for basic CLI metadata.
+
 ## Accuracy Practices
 
 - Make every requirement observable: name the file, function, UI state, API response, or test behavior.
@@ -94,6 +108,10 @@ The script writes each run under `.codex-claude-pm/runs/<timestamp>/` with the t
 - Prefer `acceptEdits` or `auto` over `bypassPermissions` unless the project is isolated and trusted.
 - Use a fresh branch or worktree for large tasks.
 - If a completion report says tests failed because of pre-existing issues, verify that claim with targeted commands before accepting.
+
+## Evaluation
+
+Use `references/evaluation.md` to score the skill after real tasks. A good run produces a specific Task Package, a bounded diff, a structured Completion Report, independently verified tests, and either a clear ACCEPT or focused Change Request.
 
 ## Manual Handoff Format
 
@@ -110,3 +128,5 @@ When automatic CLI dispatch is not appropriate, respond with:
 - `references/completion-report-template.md` - required Claude Code response format.
 - `references/change-request-template.md` - format for follow-up fixes.
 - `references/review-checklist.md` - pre-dispatch and post-dispatch quality gates.
+- `references/dependencies.md` - dependency taxonomy and dependency map format.
+- `references/evaluation.md` - how to judge whether the skill is useful and accurate.
