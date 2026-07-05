@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Claude PM"
+  short_description: "Dispatch implementation work to Claude Code"
+  default_prompt: "Use $codex-claude-pm to split this coding request, dispatch it to Claude Code, and verify the result."
