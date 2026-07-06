@@ -41,9 +41,12 @@ Codex owns correctness. Claude Code may write code, but Codex must still inspect
    - If the local CLI is available, use `scripts/Invoke-ClaudeDispatch.ps1`.
    - If the CLI is unavailable or blocked by login, output the Task Package for manual paste into Claude Code.
    - Prefer non-interactive Claude Code mode: `claude -p`.
+   - Use foreground for small bounded tasks; use `-Background` for long-running implementation, broad investigation, or unclear runtime.
+   - Preserve Claude Code stdout as the transport result. Do not rewrite the Completion Report before Codex review.
 
 6. Verify the result.
    - Read Claude Code's Completion Report.
+   - For background work, use `scripts/Get-ClaudeDispatchRun.ps1` to check status and fetch the result.
    - Inspect `git diff --stat` and targeted `git diff` for modified files.
    - Run the requested tests yourself when feasible.
    - Check that all acceptance criteria are actually satisfied; do not trust PASS labels alone.
@@ -86,6 +89,36 @@ powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Invoke-Claude
 ```
 
 The script writes each run under `.codex-claude-pm/runs/<timestamp>/` with the task package, command metadata, stdout, and stderr.
+Each run now also writes `status.json` and has a stable Job ID.
+
+Background execution:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Invoke-ClaudeDispatch.ps1 `
+  -TaskPackagePath .\.codex-claude-pm\tasks\TASK-APP-001.md `
+  -WorkingDirectory . `
+  -Background
+```
+
+Inspect runs:
+
+```powershell
+# List recent runs
+powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Get-ClaudeDispatchRun.ps1 -WorkingDirectory .
+
+# Show one run result
+powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Get-ClaudeDispatchRun.ps1 `
+  -WorkingDirectory . `
+  -JobId cc-20260706-120000-abc123 `
+  -Result
+
+# Best-effort cancellation of a background run
+powershell -ExecutionPolicy Bypass -File .\codex-claude-pm\scripts\Stop-ClaudeDispatchRun.ps1 `
+  -WorkingDirectory . `
+  -JobId cc-20260706-120000-abc123
+```
+
+This mirrors the useful part of `openai/codex-plugin-cc`: setup/status/result/cancel are first-class operations, while Codex remains responsible for the final review.
 
 ## Dependency Check
 
@@ -113,6 +146,8 @@ This checks whether `claude` is available, whether the working directory and git
 
 Use `references/evaluation.md` to score the skill after real tasks. A good run produces a specific Task Package, a bounded diff, a structured Completion Report, independently verified tests, and either a clear ACCEPT or focused Change Request.
 
+Read `references/codex-plugin-cc-study.md` when changing the dispatcher architecture.
+
 ## Manual Handoff Format
 
 When automatic CLI dispatch is not appropriate, respond with:
@@ -130,3 +165,4 @@ When automatic CLI dispatch is not appropriate, respond with:
 - `references/review-checklist.md` - pre-dispatch and post-dispatch quality gates.
 - `references/dependencies.md` - dependency taxonomy and dependency map format.
 - `references/evaluation.md` - how to judge whether the skill is useful and accurate.
+- `references/codex-plugin-cc-study.md` - implementation lessons adopted from `openai/codex-plugin-cc`.

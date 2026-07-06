@@ -6,6 +6,8 @@ tutor/source/
 
 # Generated output
 tutor/output/
+wx2md/output/articles/
+.codex-claude-pm/runs/
 
 # Python cache
 __pycache__/

@@ -13,6 +13,7 @@ A run is good when:
 - Tests or equivalent checks were run and reported.
 - Codex independently inspected the report, diff, and important test evidence.
 - The final decision was unambiguous: ACCEPT, CHANGE REQUEST, PARTIAL, or BLOCKED.
+- Long-running work can be tracked through status/result files without losing stdout, stderr, or metadata.
 
 ## Scorecard
 
@@ -28,12 +29,13 @@ Score each category 0-2 after a real task.
 | Verification | Codex trusted report only | Some diff/test review | Independent diff and test verification |
 | Accuracy | Buggy or unreviewable result | Mostly correct with fixes | Correct or precise Change Request |
 | Token efficiency | More work than direct Codex edit | Similar cost | Codex saved implementation tokens while preserving review quality |
+| Run management | Output lost or hard to find | Logs exist but status unclear | Job ID, status, stdout, stderr, metadata, and cancellation path are clear |
 
 Interpretation:
 
-- 14-16: Excellent. Keep using this workflow.
-- 10-13: Useful. Tighten weak categories.
-- 6-9: Marginal. Split tasks smaller or improve templates.
+- 16-18: Excellent. Keep using this workflow.
+- 12-15: Useful. Tighten weak categories.
+- 7-11: Marginal. Split tasks smaller or improve templates.
 - 0-5: Poor fit. Codex should handle this type of task directly or redesign the workflow.
 
 ## Smoke Tests
@@ -59,6 +61,20 @@ powershell -ExecutionPolicy Bypass -File ".\codex-claude-pm\scripts\Invoke-Claud
   -TaskPackage "## Task Package`n`nSmoke test only. Do not edit files." `
   -WorkingDirectory . `
   -DryRun
+```
+
+4. Background plumbing dry-run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ".\codex-claude-pm\scripts\Invoke-ClaudeDispatch.ps1" `
+  -TaskPackage "## Task Package`n`nDry run only." `
+  -WorkingDirectory . `
+  -DryRun `
+  -JobId cc-smoke-test
+
+powershell -ExecutionPolicy Bypass -File ".\codex-claude-pm\scripts\Get-ClaudeDispatchRun.ps1" `
+  -WorkingDirectory . `
+  -JobId cc-smoke-test
 ```
 
 ## Forward Tests

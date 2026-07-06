@@ -38,6 +38,7 @@ Include this in any Task Package where dependencies matter:
 - PowerShell can execute `scripts/Invoke-ClaudeDispatch.ps1`.
 - The target working directory exists and is trusted.
 - Codex can inspect git status and diffs after Claude Code runs.
+- For background dispatch, PowerShell `Start-Process` must be available and the platform must allow hidden child processes.
 
 ## Fallbacks
 
@@ -46,6 +47,7 @@ Include this in any Task Package where dependencies matter:
 - If project tests cannot run because tooling is missing, require Claude Code to report `NOT RUN` with the missing command and have Codex decide whether code inspection is enough.
 - If runtime services are missing, split the task into implementation and integration-verification tasks.
 - If task ordering is unclear, create a dependency chain of smaller Task Packages before dispatching.
+- If background process control is unreliable on the platform, run foreground or manually paste the Task Package into Claude Code.
 
 ## Dependency Rules
 
@@ -54,3 +56,4 @@ Include this in any Task Package where dependencies matter:
 - Treat missing dependencies as explicit `BLOCKED` or `PARTIAL`, not as silent assumptions.
 - Prefer commands that verify dependencies mechanically.
 - Record new dependencies in the Completion Report under `Dependency Changes`.
+- Treat the dispatcher output files as local state. Do not commit `.codex-claude-pm/runs/`.

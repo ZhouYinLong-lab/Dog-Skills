@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wx2md-local"
+version = "0.1.0"
+description = "Export WeChat Official Account articles to local Markdown with images."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "beautifulsoup4>=4.12.0",
+  "httpx>=0.27.0",
+  "lxml>=5.0.0",
+  "markdownify>=0.12.1",
+  "playwright>=1.45.0",
+]
+
+[project.scripts]
+wx2md = "wx2md.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,3 @@
+# One WeChat Official Account article URL per line.
+# Empty lines and comments are ignored.
+https://mp.weixin.qq.com/s/replace-with-real-article-id

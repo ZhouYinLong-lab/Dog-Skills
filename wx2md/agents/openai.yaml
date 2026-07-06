@@ -1,0 +1,4 @@
+interface:
+  display_name: "WX2MD"
+  short_description: "Export WeChat articles to Markdown"
+  default_prompt: "Use $wx2md to export a WeChat Official Account article link to local Markdown with images."
