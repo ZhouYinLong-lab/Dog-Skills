@@ -1,7 +1,12 @@
 import { resolveXToMarkdownChromeProfileDir } from "./paths.js";
 
+// NOTE: This was previously a hardcoded X.com internal bearer token.
+// The compromised token has been removed. Users should obtain their own
+// bearer token and set it via environment variable (e.g., TWITTER_BEARER_TOKEN).
+// If you were using the previously hardcoded token, IMMEDIATELY REVOKE AND ROTATE
+// it at https://developer.twitter.com/ as it is now publicly exposed.
 export const DEFAULT_BEARER_TOKEN =
-  "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
+  process.env.TWITTER_BEARER_TOKEN || "YOUR_TWITTER_BEARER_TOKEN";
 export const DEFAULT_USER_AGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36";
 export const X_LOGIN_URL = "https://x.com/home";
