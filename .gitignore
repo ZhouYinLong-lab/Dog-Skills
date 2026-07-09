@@ -19,6 +19,9 @@ __pycache__/
 # Node modules
 node_modules/
 
+# Claude local settings (contains user-specific paths and permissions)
+.claude/settings.local.json
+
 # IDE
 .vscode/
 .idea/
