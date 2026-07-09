@@ -1,5 +1,5 @@
 ---
-name: exam-review-generator
+name: exam-tutor
 description: >
   Generate structured exam review materials from course PDFs — chapter-by-chapter
   tutorials and exercise class handouts — by analyzing past exam papers, answer keys,

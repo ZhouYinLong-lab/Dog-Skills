@@ -40,7 +40,7 @@ template gallery, optional AI soundtrack.
 ## Setup
 
 ```bash
-cd html_video
+cd html-video
 pnpm install
 pnpm -r build
 ```

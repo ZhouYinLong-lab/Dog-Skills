@@ -43,7 +43,7 @@ cp -r repo-evaluator ~/.claude/skills/repo-evaluator
 # 🎨 Design & Frontend
 cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r dog-frontier ~/.claude/skills/dog-frontier
-cp -r html_video ~/.claude/skills/html-video
+cp -r html-video ~/.claude/skills/html-video
 cp -r lottie-animation ~/.claude/skills/lottie-animation
 cp -r brand-workshop ~/.claude/skills/brand-workshop
 cp -r pixel-art ~/.claude/skills/pixel-art
@@ -711,7 +711,7 @@ Discovery → Design System → Implementation → Handoff → Quality Review
 **Quick start**:
 
 ```bash
-cd html_video
+cd html-video
 pnpm install && pnpm -r build
 node packages/cli/dist/bin.js studio    # opens at http://127.0.0.1:3071
 ```

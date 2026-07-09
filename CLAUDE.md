@@ -97,7 +97,7 @@ The root `README.md` is organized into **category sections** (see above). Within
 Some skills use different source directory names vs install names:
 - `tutor/` → installs as `exam-tutor`
 - `nuwa-skill/` → installs as `nuwa`
-- `html_video/` → installs as `html-video`
+- `html-video/` → installs as `html-video`
 - `claude-to-im-skill/` → installs as `claude-to-im`
 - `vercel-labs-skills/` → installs as `find-skills`
 - `last30days-skill/` → installs as `last30days`
