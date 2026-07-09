@@ -152,6 +152,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `slack-gif-creator` | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
 | `theme-factory` | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
 | `soviet-storybook-grotesque` | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
+
 ### 📝 Content & Writing
 
 | Skill | Try saying... |
