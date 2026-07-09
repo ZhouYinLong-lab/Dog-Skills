@@ -109,7 +109,7 @@ Some skills in this repo are wrappers/guides for Claude Code plugins. These use 
 
 - `superpowers/` → `/plugin install superpowers@claude-plugins-official`
 - `planning-with-files/` → `/plugin install planning-with-files@claude-plugin-directory`
-- `code-review-skill/` → `/plugin install code-review@claude-plugin-directory`
+- `code-review/` → `/plugin install code-review@claude-plugin-directory`
 - `code-simplifier/` → `/plugin install code-simplifier@claude-plugin-directory`
 - `webapp-testing/` → `/plugin install webapp-testing@claude-plugin-directory`
 - `mcp-builder/` → `/plugin install mcp-builder@claude-plugin-directory`
