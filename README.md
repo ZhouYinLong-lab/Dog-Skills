@@ -78,6 +78,7 @@ cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
 cp -r handshake ~/.claude/skills/handshake
+cp -r markitdown ~/.claude/skills/markitdown
 cp -r vibe-sing ~/.claude/skills/vibe-sing
 cp -r family-doctor ~/.claude/skills/family-doctor
 ```
@@ -92,7 +93,7 @@ ls ~/.claude/skills/
 # 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 💼: dbskill/
-# 🔍: family-doctor/  find-skills/  handshake/  token-optimizer/  vibe-sing/  weread-skill/
+# 🔍: family-doctor/  find-skills/  handshake/  markitdown/  token-optimizer/  vibe-sing/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -182,6 +183,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `weread-skill` | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
 | `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
 | `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
+| `markitdown` | "帮我把这个PDF转成Markdown / convert this Word doc to Markdown for Obsidian / 用MarkItDown批量转换文档" |
 | `vibe-sing` | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
 | `family-doctor` | "分析我最近一周的健康数据" / "血压高帮我查原因" / "解读体检报告" / "制定减脂计划" |
 
@@ -1119,6 +1121,32 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `markitdown` — MarkItDown — 微软开源文档转换神器
+
+**Purpose**: 微软开源文档转换工具 — PDF/Word/PPT/Excel/HTML 等 20+ 种格式一键转干净 Markdown，Obsidian 知识库入库利器
+
+**Workflow**:
+
+```
+1. 输入文档 — 接收 PDF/Word/PPT/Excel/HTML/EPUB/图片/音频 等 20+ 种格式
+2. 格式解析 — 自动识别文档类型，调用对应解析引擎进行结构化提取
+3. 内容保留 — 保留标题层级、有序/无序列表、表格、超链接、代码块等结构
+4. Markdown 输出 — 生成语法正确、语义完整的干净 Markdown 文件
+```
+
+**Key features**:
+- **20+ 格式支持** — PDF、Word、PPT、Excel、HTML、EPUB、图片（OCR）、音频（语音转文字）等，覆盖日常所有文档类型
+- **结构完美保留** — 标题层级、列表、表格、链接、代码块，转出 Markdown 结构完整可直接使用
+- **Obsidian 知识库入库利器** — 批量转换文档后一键导入 Obsidian 个人知识库
+- **RAG 文档预处理** — 将各种格式的文档统一转为干净 Markdown，方便向量化嵌入和检索
+- **AI 阅读友好** — 转出 Markdown 语义结构清晰，AI 分析处理时无信息损失
+
+**Prerequisites**: Python 3.10+，安装 `pip install markitdown`
+
+**Install**: Download `dist/markitdown.skill` and drag it into Claude Code.
+
+---
+
 #### `token-optimizer` — 上下文 Token 优化工具
 
 **Purpose**: 重新组织项目文档结构，只保留 4 个核心文件在启动时自动加载（约 800 token），其他内容按需加载。实测省 90% token（11000 → 1300），一条命令 30 秒搞定。
@@ -1175,7 +1203,7 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
 | 💼 **Business & Strategy** | dbskill |
-| 🔍 **Tools & Discovery** | find-skills, family-doctor, handshake, token-optimizer, vibe-sing, weread-skill |
+| 🔍 **Tools & Discovery** | family-doctor, find-skills, handshake, markitdown, token-optimizer, vibe-sing, weread-skill |
 
 ---
 
