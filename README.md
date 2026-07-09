@@ -1,5 +1,15 @@
 # Dog-Skills
 
+<div align="center">
+
+[![Skills](https://img.shields.io/badge/Skills-51-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
+[![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
+[![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
+[![PRs](https://img.shields.io/badge/PRs-welcome-purple?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/pulls)
+
+</div>
+
 > A collection of Claude skills for AI-assisted development workflows.
 
 Skills are installable prompt bundles for [Claude](https://claude.ai) (Cowork / Claude Code). Each skill teaches Claude a specialized workflow so you don't have to re-explain it every time.
@@ -106,94 +116,99 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
-| `first-principles` | "从第一性原理出发" / "从本质出发重新思考" / "think from first principles" |
-| `storm-research` | "用 STORM 方法做技术调研" / "做一份深度研究简报" / "Stanford STORM research" |
-| `feynman-learning` | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
-| `nuwa` | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
-| `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
-| `life-designer` | "帮我设计人生，我最近有点迷茫 / life design — help me figure out my next move / 我想生成三个奥德赛计划" |
-| `scientific-research` | "帮我做一份关于 XX 的科学研究综述" / "systematic literature review" / "学术文献调研" |
-| `thinking-toolkit` | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
+| [`first-principles`](first-principles/) | "从第一性原理出发" / "从本质出发重新思考" / "think from first principles" |
+| [`storm-research`](storm-research/) | "用 STORM 方法做技术调研" / "做一份深度研究简报" / "Stanford STORM research" |
+| [`feynman-learning`](feynman-learning/) | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
+| [`nuwa`](nuwa-skill/) | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
+| [`last30days`](last30days-skill/) | "/last30days Cursor vs Copilot" / "research what people think about..." |
+| [`life-designer`](life-designer/) | "帮我设计人生，我最近有点迷茫 / life design — help me figure out my next move / 我想生成三个奥德赛计划" |
+| [`scientific-research`](scientific-research/) | "帮我做一份关于 XX 的科学研究综述" / "systematic literature review" / "学术文献调研" |
+| [`thinking-toolkit`](thinking-toolkit/) | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
 
 ### 💻 Development
 
 | Skill | Try saying... |
 |-------|---------------|
-| `architecture-diagram` | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
-| `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
-| `codex-claude-pm` | "Codex 作为 PM 帮我分配任务给 Claude Code" / "拆分 task package" / "Codex 审查实现结果" |
-| `code-review` | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
-| `website-cloner` | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
-| `claude-to-im` | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
-| `superpowers` | "开始一个新功能开发" / "帮我按 Superpowers 流程来" / "brainstorm this feature" |
-| `planning-with-files` | "plan this feature" / "帮我做开发规划" / "记录这个设计决策" |
-| `code-simplifier` | "简化刚才生成的代码" / "优化这个模块的可读性" / "/simplify" |
-| `webapp-testing` | "测一下登录流程" / "部署前跑截图对比" / "帮我写 e2e 测试" |
-| `ralph-loop` | "自动迭代完成这些 story" / "启动循环开发" / "批量实现 PRD 任务" |
-| `repo-evaluator` | "评估这个 GitHub 仓库" / "这个开源项目靠谱吗" / "对比这三个类似项目" |
-| `mcp-builder` | "帮我创建一个 MCP Server" / "把这个 API 包装成 MCP 工具" / "build an MCP server" |
+| [`architecture-diagram`](architecture-diagram/) | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
+| [`cc-dispatch`](cc-dispatch/) | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
+| [`codex-claude-pm`](codex-claude-pm/) | "Codex 作为 PM 帮我分配任务给 Claude Code" / "拆分 task package" / "Codex 审查实现结果" |
+| [`code-review`](code-review/) | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
+| [`website-cloner`](website-cloner/) | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
+| [`claude-to-im`](claude-to-im-skill/) | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
+| [`superpowers`](superpowers/) | "开始一个新功能开发" / "帮我按 Superpowers 流程来" / "brainstorm this feature" |
+| [`planning-with-files`](planning-with-files/) | "plan this feature" / "帮我做开发规划" / "记录这个设计决策" |
+| [`code-simplifier`](code-simplifier/) | "简化刚才生成的代码" / "优化这个模块的可读性" / "/simplify" |
+| [`webapp-testing`](webapp-testing/) | "测一下登录流程" / "部署前跑截图对比" / "帮我写 e2e 测试" |
+| [`ralph-loop`](ralph-loop/) | "自动迭代完成这些 story" / "启动循环开发" / "批量实现 PRD 任务" |
+| [`repo-evaluator`](repo-evaluator/) | "评估这个 GitHub 仓库" / "这个开源项目靠谱吗" / "对比这三个类似项目" |
+| [`mcp-builder`](mcp-builder/) | "帮我创建一个 MCP Server" / "把这个 API 包装成 MCP 工具" / "build an MCP server" |
 
 ### 🎨 Design & Frontend
 
 | Skill | Try saying... |
 |-------|---------------|
-| `ui-ux-pro-max` | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
-| `dog-frontier` | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
-| `html-video` | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
-| `lottie-animation` | "帮我做一个心跳动效" / "生成 Lottie 动画" / "create a Lottie animation" |
-| `brand-workshop` | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
-| `pixel-art` | "画一幅像素画" / "做一个等距像素场景" / "create pixel art" |
-| `presentation-design` | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
-| `article-poster` | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
-| `canvas-design` | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
-| `torn-paper-collage-poster` | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
-| `dog-poster` | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
-| `algorithmic-art` | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
-| `slack-gif-creator` | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
-| `theme-factory` | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
-| `soviet-storybook-grotesque` | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
+| [`ui-ux-pro-max`](ui-ux-pro-max-skill/) | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
+| [`dog-frontier`](dog-frontier/) | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
+| [`html-video`](html_video/) | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
+| [`lottie-animation`](lottie-animation/) | "帮我做一个心跳动效" / "生成 Lottie 动画" / "create a Lottie animation" |
+| [`brand-workshop`](brand-workshop/) | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
+| [`pixel-art`](pixel-art/) | "画一幅像素画" / "做一个等距像素场景" / "create pixel art" |
+| [`presentation-design`](presentation-design/) | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
+| [`article-poster`](article-poster/) | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
+| [`canvas-design`](canvas-design/) | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
+| [`torn-paper-collage-poster`](torn-paper-collage-poster/) | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
+| [`dog-poster`](dog-poster/) | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
+| [`algorithmic-art`](algorithmic-art/) | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
+| [`slack-gif-creator`](slack-gif-creator/) | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
+| [`theme-factory`](theme-factory/) | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
+| [`soviet-storybook-grotesque`](soviet-storybook-grotesque/) | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
 
 ### 📝 Content & Writing
 
 | Skill | Try saying... |
 |-------|---------------|
-| `humanizer-zh` | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
-| `baoyu-skills` | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
-| `humanize-ppt` | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
-| `writing-assistant` | "帮我写一篇博客" / "写一份项目报告" / "draft a memo" |
-| `scientific-writing-editor` | "润色这篇论文" / "写基金申请书" / "回复审稿意见" |
-| `ghostwriter` | "帮我回这封邮件（用我的语气）"【从零创作】 / "draft a reply in my voice" |
+| [`humanizer-zh`](humanizer-zh/) | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
+| [`baoyu-skills`](baoyu-skills/) | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
+| [`humanize-ppt`](humanize-ppt/) | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
+| [`writing-assistant`](writing-assistant/) | "帮我写一篇博客" / "写一份项目报告" / "draft a memo" |
+| [`scientific-writing-editor`](scientific-writing-editor/) | "润色这篇论文" / "写基金申请书" / "回复审稿意见" |
+| [`ghostwriter`](ghostwriter/) | "帮我回这封邮件（用我的语气）"【从零创作】 / "draft a reply in my voice" |
 
 ### 📚 Learning & Teaching
 
 | Skill | Try saying... |
 |-------|---------------|
-| `exam-tutor` | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
-| `dog-tutor` | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" |
-| `learning-studio` | "把机器学习做成一套课程" / "compare 三本书的观点" / "苏格拉底阅读模式" |
+| [`exam-tutor`](tutor/) | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
+| [`dog-tutor`](dog-tutor/) | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" |
+| [`learning-studio`](learning-studio/) | "把机器学习做成一套课程" / "compare 三本书的观点" / "苏格拉底阅读模式" |
 
 ### 💼 Business & Strategy
 
 | Skill | Try saying... |
 |-------|---------------|
-| `dbskill` | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
+| [`dbskill`](dbskill/) | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 
 ### 🔍 Tools & Discovery
 
 | Skill | Try saying... |
 |-------|---------------|
-| `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
-| `weread-skill` | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
-| `wx2md` | "帮我把这个公众号文章转成 Markdown" / "导出微信文章" / "WeChat article to Markdown" |
-| `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
-| `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
-| `markitdown` | "帮我把这个PDF转成Markdown / convert this Word doc to Markdown for Obsidian / 用MarkItDown批量转换文档" |
-| `vibe-sing` | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
-| `family-doctor` | "分析我最近一周的健康数据" / "血压高帮我查原因" / "解读体检报告" / "制定减脂计划" |
+| [`find-skills`](vercel-labs-skills/) | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
+| [`weread-skill`](weread-skill/) | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
+| [`wx2md`](wx2md/) | "帮我把这个公众号文章转成 Markdown" / "导出微信文章" / "WeChat article to Markdown" |
+| [`token-optimizer`](token-optimizer/) | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
+| [`handshake`](handshake/) | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
+| [`markitdown`](markitdown/) | "帮我把这个PDF转成Markdown / convert this Word doc to Markdown for Obsidian / 用MarkItDown批量转换文档" |
+| [`vibe-sing`](vibe-sing/) | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
+| [`family-doctor`](family-doctor/) | "分析我最近一周的健康数据" / "血压高帮我查原因" / "解读体检报告" / "制定减脂计划" |
 
 ---
 
 ## Skills
+
+| 🧠 Thinking `8` | 💻 Development `13` | 🎨 Design `15` | 📝 Content `6` | 📚 Learning `3` | 💼 Business `1` | 🔍 Tools `8` |
+|-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
+
+---
 
 ### 🧠 Thinking & Research
 
