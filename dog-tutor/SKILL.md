@@ -16,11 +16,10 @@ allowed-tools:
   - AskUserQuestion
   - WebFetch
 metadata:
-  category: learning
+  category: [learning, education-meta-skill]
   version: "1.0.0"
   license: MIT
   based_on: SmartTutor Generator v1.1 by 莫弈 (2026)
-  category: education-meta-skill
 ---
 
 # Dog-Tutor — 智能教程编制系统
