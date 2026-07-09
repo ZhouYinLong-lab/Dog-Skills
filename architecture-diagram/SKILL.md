@@ -17,7 +17,12 @@ allowed-tools:
   - WebSearch
 metadata:
   category: design
-  source: Cocoon-AI/architecture-diagram-generator (MIT)
+  source: https://github.com/Cocoon-AI/architecture-diagram-generator (MIT)
+  references:
+    - https://mp.weixin.qq.com/s/h2pD2DrC6fkHSRatzmI-tg
+  author:
+    original: Cocoon AI
+    chinese_intro: 卡兹克
   version: "2.1.0"
   license: MIT
 ---
@@ -549,3 +554,47 @@ cp -r architecture-diagram/ ~/.claude/skills/architecture-diagram/
 - ✅ 增加 **Iteration Protocol 迭代修改协议**
 - ✅ 增加中文触发关键词和双语支持
 - ✅ 保留上游 v1.1 的完整设计系统、模板和导出功能
+
+---
+
+## 中文介绍
+
+> 以下内容整理自卡兹克的介绍文章：[《又一个神级画图 Skill 开源，再见 draw.io！》](https://mp.weixin.qq.com/s/h2pD2DrC6fkHSRatzmI-tg)
+
+### 这是什么？
+
+Cocoon AI 开源的 Claude Skill，说人话就能画架构图。跟 Claude 描述系统架构，它直接生成一张深色主题的 HTML 架构图，浏览器打开就能看，还能导出 PNG 和 PDF。不用碰 Draw.io，颜色、箭头、对齐 Claude 全包了。
+
+开源地址：https://github.com/Cocoon-AI/architecture-diagram-generator
+
+### 功能亮点
+
+**说人话就能画。** 不需要写代码、不用学标记语法。把架构描述丢给 Claude，它自己决定组件怎么摆、箭头往哪指、用什么颜色。
+
+**颜色自动分类。** 深色主题 + JetBrains Mono 字体，颜色语义固定：青色给前端，翠绿给后端，紫色给数据库，琥珀色给 AWS 等云服务，玫瑰色给认证和安全模块，一眼就能分辨模块类型。
+
+**一键导出。** 生成的 HTML 右上角三个按钮：Copy PNG 到剪贴板、Download PNG、Download PDF。零命令行，零额外依赖。
+
+### 安装方式
+
+Claude Code：把 zip 解压到 `~/.claude/skills/` 或项目本地 `.claude/skills/` 目录。
+
+Codex / Cursor / Copilot 等：用 `npx skills add` 安装，或让 AI 直接重构一个适配版本。
+
+### 使用方式
+
+三种路子获得架构描述：
+1. **让 AI 分析代码库**：把代码丢给 Codex/Claude，让它分析结构并输出组件清单
+2. **自己手写**：直接列出组件和连接关系，比如 "React 前端 talking to Node.js API，PostgreSQL 数据库，Redis 缓存"
+3. **让 Claude 给模板**：没有具体系统的话，直接问 "画一个典型的 SaaS 应用架构图"
+
+然后把描述贴进对话，加一句"用你的架构图 Skill 生成一张架构图"，Codex/Claude 返回 HTML 文件。想改图直接在聊天里说"把 Redis 挪到消息队列旁边"或"加一层 CDN"就行。
+
+### 适用与不适用
+
+✅ 擅长：软件架构、云基础设施、微服务拓扑等有明确层次和连接关系的图
+❌ 不适合：物理硬件图、流程图（流程图的姐妹项目 [process-flow-diagram-generator](https://github.com/Cocoon-AI/process-flow-diagram-generator) 同作者出品）
+
+### 省下时间干嘛？
+
+写代码、想设计、或者干脆摸鱼，都比调箭头颜色有意义。
