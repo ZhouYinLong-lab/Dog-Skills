@@ -22,10 +22,12 @@ cp -r first-principles ~/.claude/skills/first-principles
 cp -r feynman-learning ~/.claude/skills/feynman-learning
 cp -r nuwa-skill ~/.claude/skills/nuwa
 cp -r last30days-skill ~/.claude/skills/last30days
+cp -r life-designer ~/.claude/skills/life-designer
 cp -r storm-research ~/.claude/skills/storm-research
 cp -r thinking-toolkit ~/.claude/skills/thinking-toolkit
 
 # 💻 Development
+cp -r architecture-diagram ~/.claude/skills/architecture-diagram
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
 cp -r code-review ~/.claude/skills/code-review
 cp -r website-cloner ~/.claude/skills/website-cloner
@@ -84,9 +86,9 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 
 ```bash
 ls ~/.claude/skills/
-# 🧠: feynman-learning/  first-principles/  last30days/  nuwa/  storm-research/  thinking-toolkit/
+# 🧠: feynman-learning/  first-principles/  last30days/  life-designer/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/
-# 💻: cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
+# 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
 # 💼: dbskill/
@@ -108,12 +110,14 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `feynman-learning` | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
 | `nuwa` | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
 | `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
+| `life-designer` | "帮我设计人生，我最近有点迷茫 / life design — help me figure out my next move / 我想生成三个奥德赛计划" |
 | `thinking-toolkit` | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
 
 ### 💻 Development
 
 | Skill | Try saying... |
 |-------|---------------|
+| `architecture-diagram` | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | `code-review` | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
 | `website-cloner` | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
@@ -283,6 +287,33 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ---
 
+#### `life-designer` — 人生设计师 — Life Designer
+
+**Purpose**: 斯坦福人生设计课 AI 助手 — 基于设计思维方法论，通过深度苏格拉底式追问帮你设计三个完全不同的五年人生版本，输出个人人生设计蓝图
+
+**Workflow**:
+
+```
+1. 现状诊断 — 评估健康/工作/娱乐/爱四个仪表盘，区分重力问题与可设计的真问题
+2. 指南针校准 — 探索工作观与人生观，构建一致性指南针
+3. 心流发现 — 识别能量模式与心流时刻，记录美好时光日志
+4. 奥德赛计划 — 生成三个完全不同的五年人生版本（Plan A/B/C）
+5. 原型行动 — 设计低成本原型访谈与体验，制定下一步行动清单
+6. 蓝图输出 — 输出 8000-12000 字的个人人生设计蓝图
+```
+
+**Key features**:
+- 6-9 轮深度苏格拉底式追问，帮你从迷茫到清晰
+- 四仪表盘现状评估（健康/工作/娱乐/爱）
+- 区分重力问题（不可解决）与可设计的真问题
+- 校准工作观与人生观指南针，确保方向一致
+- 生成三个完全不同的五年奥德赛计划（Plan A/B/C）
+- 输出 8000-12000 字个人人生设计蓝图，含原型行动清单
+
+**Install**: Download `dist/life-designer.skill` and drag it into Claude Code.
+
+---
+
 #### `thinking-toolkit` — 思考决策工具箱 · Thinking Toolkit
 
 **Purpose**: 元技能整合 6 大思考框架——superforecaster（校准预测）、decision-matrix（决策矩阵）、bayesian-reasoning（贝叶斯推理）、systems-thinking（系统思维）、scout-mindset（偏见审查）、doctor-strange（平行宇宙沙盘推演）。覆盖预测→决策→推理→系统分析→偏见审查→情景模拟的完整深度思考链路。
@@ -300,6 +331,30 @@ Once installed, skills trigger automatically when Claude detects a matching task
 ---
 
 ### 💻 Development
+
+---
+
+#### `architecture-diagram` — Architecture Diagram Generator — 架构图生成器
+
+**Purpose**: 多轮结构化提问理解系统架构，生成精美深色主题自包含 HTML+SVG 架构图
+
+**Workflow**:
+
+```
+1. 多轮结构化提问 → 理解系统架构、组件关系、数据流向
+2. 确定图表类型 → 系统架构图/云基础设施图/微服务拓扑图/安全架构图/网络拓扑图
+3. 生成 HTML+SVG → 精美深色主题自包含架构图
+4. 迭代优化 → 根据反馈调整布局和标注
+```
+
+**Key features**:
+- 多轮结构化提问精准理解系统架构需求
+- 生成深色主题自包含 HTML+SVG 文件，无需外部依赖
+- 支持 6+ 架构图类型：系统架构、云基础设施、微服务拓扑、安全架构、网络拓扑、部署架构
+- 输出可直接分享和嵌入文档的独立文件
+- 覆盖从技术方案到演示汇报的架构可视化场景
+
+**Install**: cp -r architecture-diagram/ ~/.claude/skills/architecture-diagram/
 
 ---
 
@@ -1114,8 +1169,8 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 | Category | Skills |
 |----------|--------|
-| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, thinking-toolkit |
-| 💻 **Development** | cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
+| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, life-designer, thinking-toolkit |
+| 💻 **Development** | architecture-diagram, cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, dog-poster, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
