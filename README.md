@@ -112,6 +112,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | `nuwa` | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
 | `last30days` | "/last30days Cursor vs Copilot" / "research what people think about..." |
 | `life-designer` | "帮我设计人生，我最近有点迷茫 / life design — help me figure out my next move / 我想生成三个奥德赛计划" |
+| `scientific-research` | "帮我做一份关于 XX 的科学研究综述" / "systematic literature review" / "学术文献调研" |
 | `thinking-toolkit` | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
 
 ### 💻 Development
@@ -120,6 +121,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 |-------|---------------|
 | `architecture-diagram` | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
 | `cc-dispatch` | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
+| `codex-claude-pm` | "Codex 作为 PM 帮我分配任务给 Claude Code" / "拆分 task package" / "Codex 审查实现结果" |
 | `code-review` | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
 | `website-cloner` | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
 | `claude-to-im` | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
@@ -181,6 +183,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 |-------|---------------|
 | `find-skills` | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
 | `weread-skill` | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
+| `wx2md` | "帮我把这个公众号文章转成 Markdown" / "导出微信文章" / "WeChat article to Markdown" |
 | `token-optimizer` | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
 | `handshake` | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
 | `markitdown` | "帮我把这个PDF转成Markdown / convert this Word doc to Markdown for Obsidian / 用MarkItDown批量转换文档" |
@@ -316,6 +319,30 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ---
 
+#### `scientific-research` — 科学研究方法 — Scientific Research
+
+**Purpose**: 系统性科学研究方法——提出研究问题、文献综述、方法论设计、结果分析与讨论。适用于学术论文、技术报告、实验设计等场景。
+
+**Workflow**:
+
+```
+1. 问题定义 — 明确研究问题、假设与目标
+2. 文献综述 — 系统检索、筛选与综合相关文献
+3. 方法设计 — 选择研究方法、数据收集与分析策略
+4. 结果分析 — 数据解释、可视化与发现总结
+5. 讨论与结论 — 结果解读、局限性与未来工作
+```
+
+**Key features**:
+- 覆盖科学研究全流程：从问题提出到论文撰写
+- 结构化方法论引导，确保研究严谨性
+- 适用于自然科学、社会科学、工程研究等多领域
+- 内置文献综述框架与质量评估标准
+
+**Install**: Download `dist/scientific-research.skill` and drag it into Claude Code.
+
+---
+
 #### `thinking-toolkit` — 思考决策工具箱 · Thinking Toolkit
 
 **Purpose**: 元技能整合 6 大思考框架——superforecaster（校准预测）、decision-matrix（决策矩阵）、bayesian-reasoning（贝叶斯推理）、systems-thinking（系统思维）、scout-mindset（偏见审查）、doctor-strange（平行宇宙沙盘推演）。覆盖预测→决策→推理→系统分析→偏见审查→情景模拟的完整深度思考链路。
@@ -384,6 +411,28 @@ Codex acts as product manager: it decomposes requirements into a structured **Ta
 - **Quality checklist** — Pre-flight self-check before handing off a task package
 
 **Install**: Download `dist/cc-dispatch.skill` and drag it into Claude Code.
+
+---
+
+#### `codex-claude-pm` — Codex as Product Manager for Claude Code
+
+**Purpose**: 让 Codex 担任产品经理和审查者，将软件开发任务拆分为精确的 Task Package 并委托给 Claude Code 执行。Codex 负责规划、审查和验收，Claude Code 负责实现——形成结构化的工单系统而非开放式对话。
+
+**Workflow**:
+
+```
+Codex (PM)  ──[Task Package]──▶  Claude Code (Executor)
+                                        │
+Codex (QA)  ◀──[Completion Report]──────┘
+```
+
+**Key features**:
+- 结构化任务拆分与验收标准
+- Completion Report 格式：状态/改动文件/AC 检查清单/测试输出/偏差说明
+- Change Request 增量修订机制
+- 节省 Codex 配额：精确的 Task Package 减少来回确认
+
+**Install**: cp -r codex-claude-pm/ ~/.claude/skills/codex-claude-pm/
 
 ---
 
@@ -1193,17 +1242,41 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `wx2md` — WeChat Official Account to Markdown Exporter
+
+**Purpose**: 将微信公众号文章从 mp.weixin.qq.com 导出为本地 Markdown 文件，包含 front matter 和本地化图片。支持 Playwright 页面加载、DOM 提取、图片下载、Markdown 转换、批量 URL 处理和导出验证。
+
+**Workflow**:
+
+```
+1. 输入公众号文章链接
+2. Playwright 加载页面 → DOM 结构化提取
+3. 图片自动下载并本地引用
+4. 生成带 front matter 的干净 Markdown 文件
+5. 可选验证：检查导出完整性
+```
+
+**Key features**:
+- 支持单篇文章和批量 URL 处理
+- 自动下载文章内嵌图片到本地
+- 生成标准化 front matter (标题/日期/作者/来源)
+- 输出适合 Obsidian 等知识库工具的 Markdown 格式
+
+**Install**: cp -r wx2md/ ~/.claude/skills/wx2md/
+
+---
+
 ## Skill Categories
 
 | Category | Skills |
 |----------|--------|
-| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, life-designer, thinking-toolkit |
-| 💻 **Development** | architecture-diagram, cc-dispatch, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
+| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, life-designer, scientific-research, thinking-toolkit |
+| 💻 **Development** | architecture-diagram, cc-dispatch, codex-claude-pm, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, dog-poster, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
 | 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
 | 💼 **Business & Strategy** | dbskill |
-| 🔍 **Tools & Discovery** | family-doctor, find-skills, handshake, markitdown, token-optimizer, vibe-sing, weread-skill |
+| 🔍 **Tools & Discovery** | family-doctor, find-skills, handshake, markitdown, token-optimizer, vibe-sing, weread-skill, wx2md |
 
 ---
 
