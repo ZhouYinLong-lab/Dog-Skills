@@ -78,6 +78,7 @@ Step 3: 匹配技能 → 生成
 | 技能 | 最擅长 | 输出 | 适用场景 |
 |------|--------|------|---------|
 | **ppt-master** | 正式交付 | 原生可编辑 PPTX | 发给老板/客户/团队继续改 |
+| **dashi-ppt** | 浏览器编辑+导出 | HTML→PPTX/PDF | 12 套主题·锁模板填文案·三道校验·在线编辑自动保存 |
 | **huashu-slides** | 端到端幻灯片 | PPTX + AI 插画 | 从内容到成品演示文稿 |
 | **humanize-ppt** | PPT 体检+质检 | PPTX | 已有 deck 需要优化渲染/排版/演讲备注 |
 | **huashu-design** | 视觉包装 | 视觉 Demo + AI 提示词 | 公众号封面/知识卡/图文资产/演示原型 |
@@ -107,12 +108,14 @@ Step 3: 匹配技能 → 生成
 ## 实用选择规则
 
 ```
-要交付可编辑文件   →  ppt-master
+要交付可编辑文件   →  ppt-master（自由发挥）或 dashi-ppt（12主题锁模板）
+要浏览器在线编辑   →  dashi-ppt（唯一支持编辑+自动保存+导出PPTX）
 要做视觉包装       →  huashu-design 或 guizang-ppt-skill
 要讲论文和资料     →  先用 paper-deck 或 qiaomu
 要上台演示         →  别忘了 html-ppt-skill
 要轻内容亲和       →  baoyu-skills
 要先定品牌调性     →  brand-workshop → 再选 PPT 技能
+要稳定可控不出错   →  dashi-ppt（三道校验+契约填槽）
 ```
 
 ---
@@ -122,6 +125,8 @@ Step 3: 匹配技能 → 生成
 | 用户说什么 | 路由方案 |
 |-----------|---------|
 | "帮我把这份资料做成PPT给老板汇报" | **ppt-master** — 需要可编辑 PPTX |
+| "内容明确但缺设计，要稳定不出错" | **dashi-ppt** — 12主题选一套，锁模板填文案 |
+| "想在浏览器里编辑调整再导出" | **dashi-ppt** — 唯一支持在线编辑+自动保存 |
 | "帮我把这个PDF做成PPT" | **qiaomu** 先结构化 → **ppt-master** 生成 |
 | "我要在学术会议上讲论文" | **paper-deck** 拆论文 → **html-ppt-skill** 辅助演讲 |
 | "做一个产品发布会的演示" | **guizang-ppt-skill** 视觉冲击 或 **brand-workshop** + **huashu-slides** |

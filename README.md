@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Skills](https://img.shields.io/badge/Skills-116-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![Skills](https://img.shields.io/badge/Skills-117-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
 [![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
@@ -64,6 +64,7 @@ cp -r repo-evaluator ~/.claude/skills/repo-evaluator
 # 🎨 Design & Frontend
 cp -r animation-craft ~/.claude/skills/animation-craft
 cp -r apple-design ~/.claude/skills/apple-design
+cp -r dashi-ppt ~/.claude/skills/dashi-ppt
 cp -r design-buddy ~/.claude/skills/design-buddy
 cp -r dog-ppt ~/.claude/skills/dog-ppt
 cp -r excalidraw-diagram ~/.claude/skills/excalidraw-diagram
@@ -132,7 +133,7 @@ ls ~/.claude/skills/
 # 🧠: comprehensive-thinking/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/  teach/
 # 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  design-buddy/  dog-frontier/  dog-ppt/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  text-logic-diagram/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
+# 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  dashi-ppt/  design-buddy/  dog-frontier/  dog-ppt/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  text-logic-diagram/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baokuan-title-generator/  baoyu-skills/  ghostwriter/  huashu-proofreading/  huashu-skills/  humanize-ppt/  humanizer-zh/  khazix-writer/  ppt-master/  scientific-writing-editor/  writing-assistant/
 # 💼: creator-buddy/  dbskill/  huashu-data-pro/  ljg-invest/  minimalist-entrepreneur/
 # 🔍: agency-agents-zh/  family-doctor/  find-skills/  handshake/  markitdown/  read-buddy/  token-optimizer/  topic-collector/  vibe-sing/  weread-skill/
@@ -196,6 +197,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`article-poster`](article-poster/) | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
 | [`brand-workshop`](brand-workshop/) | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
 | [`canvas-design`](canvas-design/) | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
+| [`dashi-ppt`](dashi-ppt/) | "做PPT导出PPTX" / "浏览器里编辑幻灯片" / "12套主题选一套做演示" |
 | [`design-buddy`](design-buddy/) | "给这篇文章配图" / "画个用户旅程图" / "做公众号排版" / "生成故事分镜" |
 | [`dog-frontier`](dog-frontier/) | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
 | [`dog-ppt`](dog-ppt/) | "帮我做PPT但不知道用哪个工具" / "选哪个PPT skill" / "怎么做论文答辩PPT" |
@@ -269,7 +271,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ## Skills
 
-| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `30` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
+| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `31` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
 |-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
 
 ---
@@ -976,6 +978,24 @@ brainstorming → using-git-worktrees → writing-plans → subagent-driven-deve
 **Tech stacks (16)**: HTML+Tailwind, React, Next.js, shadcn/ui, Vue, Nuxt, Svelte, Astro, SwiftUI, React Native, Flutter, Jetpack Compose, Angular, Laravel, JavaFX.
 
 **Install**: `npx uipro-cli init --ai <platform>`. Or download `dist/ui-ux-pro-max-skill.skill` and drag into Claude Code.
+
+---
+
+#### `dashi-ppt` — 浏览器可编辑 HTML 演示生成器
+
+**Purpose**: 基于 12 套预置视觉主题，生成可在浏览器中编辑、自动保存、一键导出 PPTX/PDF 的 HTML 演示。核心哲学"锁模板填文案"——AI 只填 content slot，不改视觉结构。三道校验保证交付质量。唯一支持浏览器在线编辑+自动保存的 PPT 技能。
+
+**Key features**:
+- **12 套工业化主题**：轻拟态/炫光紫绿/深浅代码/玻璃糖果/色谱图表/深色图谱/冷白调研/黑金实验/深蓝杂志/金色指数/高能增长/声波霓虹，每套数十个页面组件
+- **结构化 goal.json 驱动**：AI 按 layout 契约填 copyKeys，不改视觉结构
+- **浏览器在线编辑**：侧边栏改文案/换图/调属性 → 自动写回 index.html → 一键导出 PPTX/PDF
+- **三道校验流水线**：validate:goal-spec → validate:swiss → validate:goal-copy
+- **layout:query 查询系统** + **props:safe 安全写入**，填错自动拦截
+- 内置 10 款 woff2 字体、Unicorn Studio 动效背景、i18n 国际化、媒体素材管线
+
+**Install**: `cp -r dashi-ppt/ ~/.claude/skills/dashi-ppt/`
+
+> 完整 PPT 技能对比与选型指南：[`ppt/README.md`](ppt/README.md)
 
 ---
 
