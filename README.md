@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Skills](https://img.shields.io/badge/Skills-51-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![Skills](https://img.shields.io/badge/Skills-109-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
 [![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
@@ -28,11 +28,20 @@ Download the `.skill` file from `dist/` and drag it into Claude Code's chat wind
 mkdir -p ~/.claude/skills
 
 # 🧠 Thinking & Research
+cp -r comprehensive-thinking ~/.claude/skills/comprehensive-thinking
 cp -r first-principles ~/.claude/skills/first-principles
 cp -r feynman-learning ~/.claude/skills/feynman-learning
+cp -r gpt-researcher ~/.claude/skills/gpt-researcher
+cp -r hv-analysis ~/.claude/skills/hv-analysis
 cp -r nuwa-skill ~/.claude/skills/nuwa
 cp -r last30days-skill ~/.claude/skills/last30days
 cp -r life-designer ~/.claude/skills/life-designer
+cp -r ljg-blind ~/.claude/skills/ljg-blind
+cp -r ljg-book ~/.claude/skills/ljg-book
+cp -r ljg-constraint ~/.claude/skills/ljg-constraint
+cp -r ljg-rank ~/.claude/skills/ljg-rank
+cp -r ljg-roundtable ~/.claude/skills/ljg-roundtable
+cp -r ljg-skills ~/.claude/skills/ljg-skills
 cp -r storm-research ~/.claude/skills/storm-research
 cp -r thinking-toolkit ~/.claude/skills/thinking-toolkit
 
@@ -45,15 +54,22 @@ cp -r claude-to-im-skill ~/.claude/skills/claude-to-im
 cp -r superpowers ~/.claude/skills/superpowers
 cp -r planning-with-files ~/.claude/skills/planning-with-files
 cp -r code-simplifier ~/.claude/skills/code-simplifier
+cp -r fireworks-tech-graph ~/.claude/skills/fireworks-tech-graph
 cp -r webapp-testing ~/.claude/skills/webapp-testing
 cp -r ralph-loop ~/.claude/skills/ralph-loop
 cp -r mcp-builder ~/.claude/skills/mcp-builder
+cp -r neat-freak ~/.claude/skills/neat-freak
 cp -r repo-evaluator ~/.claude/skills/repo-evaluator
 
 # 🎨 Design & Frontend
+cp -r animation-craft ~/.claude/skills/animation-craft
+cp -r apple-design ~/.claude/skills/apple-design
+cp -r excalidraw-diagram ~/.claude/skills/excalidraw-diagram
 cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r dog-frontier ~/.claude/skills/dog-frontier
 cp -r html-video ~/.claude/skills/html-video
+cp -r huashu-design ~/.claude/skills/huashu-design
+cp -r ljg-card ~/.claude/skills/ljg-card
 cp -r lottie-animation ~/.claude/skills/lottie-animation
 cp -r brand-workshop ~/.claude/skills/brand-workshop
 cp -r pixel-art ~/.claude/skills/pixel-art
@@ -71,19 +87,28 @@ cp -r dog-poster ~/.claude/skills/dog-poster
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r humanize-ppt ~/.claude/skills/humanize-ppt
+cp -r khazix-writer ~/.claude/skills/khazix-writer
+cp -r ppt-master ~/.claude/skills/ppt-master
 cp -r writing-assistant ~/.claude/skills/writing-assistant
 cp -r scientific-writing-editor ~/.claude/skills/scientific-writing-editor
 cp -r ghostwriter ~/.claude/skills/ghostwriter
+cp -r huashu-proofreading ~/.claude/skills/huashu-proofreading
+cp -r huashu-slides ~/.claude/skills/huashu-skills
 
 # 📚 Learning & Teaching
-cp -r tutor ~/.claude/skills/exam-tutor
 cp -r dog-tutor ~/.claude/skills/dog-tutor
 cp -r learning-studio ~/.claude/skills/learning-studio
+cp -r teach ~/.claude/skills/teach
+cp -r tutor ~/.claude/skills/exam-tutor
 
 # 💼 Business & Strategy
 cp -r dbskill ~/.claude/skills/dbskill
+cp -r huashu-data-pro ~/.claude/skills/huashu-data-pro
+cp -r ljg-invest ~/.claude/skills/ljg-invest
+cp -r minimalist-entrepreneur ~/.claude/skills/minimalist-entrepreneur
 
 # 🔍 Tools & Discovery
+cp -r agency-agents-zh ~/.claude/skills/agency-agents-zh
 cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
@@ -97,13 +122,13 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 
 ```bash
 ls ~/.claude/skills/
-# 🧠: feynman-learning/  first-principles/  last30days/  life-designer/  nuwa/  storm-research/  thinking-toolkit/
-# 📚: dog-tutor/  exam-tutor/  learning-studio/
-# 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  mcp-builder/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: algorithmic-art/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  html-video/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
-# 📝: baoyu-skills/  ghostwriter/  humanize-ppt/  humanizer-zh/  scientific-writing-editor/  writing-assistant/
-# 💼: dbskill/
-# 🔍: family-doctor/  find-skills/  handshake/  markitdown/  token-optimizer/  vibe-sing/  weread-skill/
+# 🧠: comprehensive-thinking/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
+# 📚: dog-tutor/  exam-tutor/  learning-studio/  teach/
+# 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
+# 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
+# 📝: baoyu-skills/  ghostwriter/  huashu-proofreading/  huashu-skills/  humanize-ppt/  humanizer-zh/  khazix-writer/  ppt-master/  scientific-writing-editor/  writing-assistant/
+# 💼: dbskill/  huashu-data-pro/  ljg-invest/  minimalist-entrepreneur/
+# 🔍: agency-agents-zh/  family-doctor/  find-skills/  handshake/  markitdown/  token-optimizer/  vibe-sing/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -116,12 +141,21 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
+| [`comprehensive-thinking`](comprehensive-thinking/) | "全面思考这个问题 / think comprehensively about this" |
 | [`first-principles`](first-principles/) | "从第一性原理出发" / "从本质出发重新思考" / "think from first principles" |
 | [`storm-research`](storm-research/) | "用 STORM 方法做技术调研" / "做一份深度研究简报" / "Stanford STORM research" |
 | [`feynman-learning`](feynman-learning/) | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
+| [`gpt-researcher`](gpt-researcher/) | "帮我做一份 LLM Agent 框架的深度调研" / "调研 2025 年 AI 安全最佳实践" / "deep research on quantum computing" |
+| [`hv-analysis`](hv-analysis/) | "用横纵分析法研究一下Cursor / deep research on a product using HV analysis" |
 | [`nuwa`](nuwa-skill/) | "蒸馏 Paul Graham 的思维方式" / "分析张一鸣的决策框架" / "造一个 skill" |
 | [`last30days`](last30days-skill/) | "/last30days Cursor vs Copilot" / "research what people think about..." |
 | [`life-designer`](life-designer/) | "帮我设计人生，我最近有点迷茫 / life design — help me figure out my next move / 我想生成三个奥德赛计划" |
+| [`ljg-blind`](ljg-blind/) | "扫描我的思维盲区 / 照一照我有什么盲区 / 我昨天想漏了什么 / 检查认知盲区" |
+| [`ljg-book`](ljg-book/) | "帮我拆一下《思考，快与慢》 / analyze this book's x→f→f(x)" |
+| [`ljg-constraint`](ljg-constraint/) | "找这个领域的约束 / 分析这个角色的三层约束 / 这个行业的硬约束是什么 / 为什么产品和增长总吵架" |
+| [`ljg-rank`](ljg-rank/) | "给这个领域降秩 / 找这个领域的根骨架 / 背后的生成器是什么 / 把复杂领域砍到极简" |
+| [`ljg-roundtable`](ljg-roundtable/) | "开个圆桌讨论AI创造力 / 请几个人辩论自由意志 / 多方视角讨论这个议题" |
+| [`ljg-skills`](ljg-skills/) | "安装 ljg 技能集 / ljg 有哪些技能 / ljg-skills 思维工具 / 用什么思维工具分析约束" |
 | [`scientific-research`](scientific-research/) | "帮我做一份关于 XX 的科学研究综述" / "systematic literature review" / "学术文献调研" |
 | [`thinking-toolkit`](thinking-toolkit/) | "帮我做校准预测" / "对这三个方案做决策矩阵" / "用贝叶斯更新我的判断" / "沙盘推演未来走向" |
 
@@ -132,6 +166,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`architecture-diagram`](architecture-diagram/) | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
 | [`cc-dispatch`](cc-dispatch/) | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | [`codex-claude-pm`](codex-claude-pm/) | "Codex 作为 PM 帮我分配任务给 Claude Code" / "拆分 task package" / "Codex 审查实现结果" |
+| [`fireworks-tech-graph`](fireworks-tech-graph/) | "画一张RAG架构图，暗黑风格 / generate a microservices diagram in blueprint style" |
 | [`code-review`](code-review/) | "帮我审查代码" / "/code-review"→工程质量 / "做对抗式审查" / "adversarial review"→攻击视角 |
 | [`website-cloner`](website-cloner/) | "克隆这个网站" / "帮我复刻这个页面" / "/clone-website https://..." |
 | [`claude-to-im`](claude-to-im-skill/) | "帮我把 Claude 连到 Telegram" / "setup claude-to-im" / "在手机上跟 Claude 聊天" |
@@ -142,26 +177,32 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`ralph-loop`](ralph-loop/) | "自动迭代完成这些 story" / "启动循环开发" / "批量实现 PRD 任务" |
 | [`repo-evaluator`](repo-evaluator/) | "评估这个 GitHub 仓库" / "这个开源项目靠谱吗" / "对比这三个类似项目" |
 | [`mcp-builder`](mcp-builder/) | "帮我创建一个 MCP Server" / "把这个 API 包装成 MCP 工具" / "build an MCP server" |
+| [`neat-freak`](neat-freak/) | "整理一下项目文档 / sync up, tidy up docs, audit the rules" |
 
 ### 🎨 Design & Frontend
 
 | Skill | Try saying... |
 |-------|---------------|
-| [`ui-ux-pro-max`](ui-ux-pro-max-skill/) | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
-| [`dog-frontier`](dog-frontier/) | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
-| [`html-video`](html_video/) | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
-| [`lottie-animation`](lottie-animation/) | "帮我做一个心跳动效" / "生成 Lottie 动画" / "create a Lottie animation" |
+| [`algorithmic-art`](algorithmic-art/) | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
+| [`animation-craft`](animation-craft/) | "审查一下这个组件的动画" / "这个动效怎么感觉怪怪的" / "review my animations" |
+| [`apple-design`](apple-design/) | "做一个 iOS 风格的底部抽屉" / "像 Apple 那样丝滑的弹窗" / "create fluid gesture animation" |
+| [`article-poster`](article-poster/) | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
 | [`brand-workshop`](brand-workshop/) | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
+| [`canvas-design`](canvas-design/) | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
+| [`dog-frontier`](dog-frontier/) | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
+| [`dog-poster`](dog-poster/) | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
+| [`excalidraw-diagram`](excalidraw-diagram/) | "画个架构草图，我之后还要改" / "用 Excalidraw 画个流程图" / "create a hand-drawn diagram" |
+| [`html-video`](html_video/) | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
+| [`huashu-design`](huashu-design/) | "帮我设计一个AI产品落地页的视觉风格 / recommend design philosophy for my brand" |
+| [`ljg-card`](ljg-card/) | "把这段话铸成一张信息图 / cast this content into a PNG visual card" |
+| [`lottie-animation`](lottie-animation/) | "帮我做一个心跳动效" / "生成 Lottie 动画" / "create a Lottie animation" |
 | [`pixel-art`](pixel-art/) | "画一幅像素画" / "做一个等距像素场景" / "create pixel art" |
 | [`presentation-design`](presentation-design/) | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
-| [`article-poster`](article-poster/) | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
-| [`canvas-design`](canvas-design/) | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
-| [`torn-paper-collage-poster`](torn-paper-collage-poster/) | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
-| [`dog-poster`](dog-poster/) | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
-| [`algorithmic-art`](algorithmic-art/) | "生成一幅流场艺术画" / "用 p5.js 画分形" / "create generative art" |
 | [`slack-gif-creator`](slack-gif-creator/) | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
-| [`theme-factory`](theme-factory/) | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
 | [`soviet-storybook-grotesque`](soviet-storybook-grotesque/) | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
+| [`theme-factory`](theme-factory/) | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
+| [`torn-paper-collage-poster`](torn-paper-collage-poster/) | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
+| [`ui-ux-pro-max`](ui-ux-pro-max-skill/) | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
 
 ### 📝 Content & Writing
 
@@ -170,9 +211,13 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`humanizer-zh`](humanizer-zh/) | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
 | [`baoyu-skills`](baoyu-skills/) | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
 | [`humanize-ppt`](humanize-ppt/) | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
+| [`khazix-writer`](khazix-writer/) | "写公众号文章, 帮我写稿子, 续写这篇文章 / "write a WeChat article", "continue writing this draft in Khazix's style", "turn this brief into a long-form article", "expand on this outline"" |
+| [`ppt-master`](ppt-master/) | "帮我把这份PDF做成PPT" / "生成一份麦肯锡风的10页幻灯片" / "make a PowerPoint from this document" |
 | [`writing-assistant`](writing-assistant/) | "帮我写一篇博客" / "写一份项目报告" / "draft a memo" |
 | [`scientific-writing-editor`](scientific-writing-editor/) | "润色这篇论文" / "写基金申请书" / "回复审稿意见" |
 | [`ghostwriter`](ghostwriter/) | "帮我回这封邮件（用我的语气）"【从零创作】 / "draft a reply in my voice" |
+| [`huashu-proofreading`](huashu-proofreading/) | "这篇文章AI味太重了，帮我审校一下 / proofread this article to reduce AI detection rate" |
+| [`huashu-slides`](huashu-slides/) | "帮我把这份资料做成PPT / make a presentation from this document" |
 
 ### 📚 Learning & Teaching
 
@@ -181,12 +226,16 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`exam-tutor`](tutor/) | "帮我生成第5章复习资料" / "分析往年卷的高频考点" / "为这道题写一份习题讲解" |
 | [`dog-tutor`](dog-tutor/) | "帮我生成 Linux 入门教程" / "编制一份 R 语言学习材料" / "设计课程大纲" |
 | [`learning-studio`](learning-studio/) | "把机器学习做成一套课程" / "compare 三本书的观点" / "苏格拉底阅读模式" |
+| [`teach`](teach/) | "teach me Rust" / "教我学吉他" / "帮我做一个交互式Python入门" / "interactive learning" |
 
 ### 💼 Business & Strategy
 
 | Skill | Try saying... |
 |-------|---------------|
 | [`dbskill`](dbskill/) | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
+| [`huashu-data-pro`](huashu-data-pro/) | "分析这份投放数据做ROI复盘 / analyze this Excel data and create a report" |
+| [`ljg-invest`](ljg-invest/) | "分析这个项目值不值得投 / 写一份投资分析报告 / 这个公司是秩序创造机器吗" |
+| [`minimalist-entrepreneur`](minimalist-entrepreneur/) | "帮我验证一个创业想法 / 一人公司怎么做 / 我该不该做这个功能 / validate my startup idea" |
 
 ### 🔍 Tools & Discovery
 
@@ -199,18 +248,45 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`handshake`](handshake/) | "/handshake 校准协作风格" / "帮我做 whoami 画像" / "calibrate how we work" |
 | [`markitdown`](markitdown/) | "帮我把这个PDF转成Markdown / convert this Word doc to Markdown for Obsidian / 用MarkItDown批量转换文档" |
 | [`vibe-sing`](vibe-sing/) | "/vibe-sing 给我来一首" / "/vibe-sing pro 完整版" / "写完了唱首歌" |
+| [`agency-agents-zh`](agency-agents-zh/) | "帮我找一个XX专家 / 切换到代码审查员角色 / 用什么角色做小红书运营 / 加载安全工程师角色 / 以产品经理身份分析 / 作为前端开发者实现" |
 | [`family-doctor`](family-doctor/) | "分析我最近一周的健康数据" / "血压高帮我查原因" / "解读体检报告" / "制定减脂计划" |
 
 ---
 
 ## Skills
 
-| 🧠 Thinking `8` | 💻 Development `13` | 🎨 Design `15` | 📝 Content `6` | 📚 Learning `3` | 💼 Business `1` | 🔍 Tools `8` |
+| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `27` | 📝 Content `23` | 📚 Learning `6` | 💼 Business `3` | 🔍 Tools `10` |
 |-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
 
 ---
 
 ### 🧠 Thinking & Research
+
+---
+
+#### `comprehensive-thinking` — 全面思考
+
+**Purpose**: Use when Codex must make a high-quality judgment on any complex problem, not only technical problems.
+
+**Workflow**:
+
+```
+1. Define key questions and domain — surface deep goals, identify the real problem, set boundaries
+2. Apply domain master theories — ground analysis in established frameworks and mental models
+3. Collect critical facts and synthesize — gather evidence guided by theory, form a comprehensive theory system for the problem
+4. Adversarial dialectic — strongest counter-opinion, premise analysis, competitive explanations
+5. Holistic understanding and verifiable closure — systematic understanding with boundaries, validation paths, and confidence levels
+```
+
+**Key features**:
+- Five-layer structured analysis from problem definition to actionable judgment
+- Applicable to any high-stakes domain: architecture, strategy, engineering, financial, product
+- Includes adversarial dialectic step to surface blind spots and prevent confirmation bias
+- Premise dialectical analysis traces every premise to its source (fact, speculation, inference, authority, narrative inertia)
+- Emphasizes systematic, hierarchical, deep understanding — not just opinions or task lists
+- Designed for scenarios where cost of being wrong is high: financial truth, live trading, multi-module systems
+
+**Install**: Download `dist/comprehensive-thinking.skill` and drag it into Claude Code.
 
 ---
 
@@ -282,6 +358,57 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ---
 
+#### `gpt-researcher` — 开源深度研究 Agent · GPT Researcher
+
+**Purpose**: 基于 GPT Researcher v3.5.1（28,000+ ⭐）的开源深度研究 Agent。Planner + Executor 双智能体架构，并行抓取 20+ 来源，5 分钟生成 2000+ 字带引用研究报告。支持 Deep Research 递归模式、MCP Server 集成、本地文档研究。
+
+**Architecture**:
+
+```
+用户提问 → Planner（拆解问题，生成研究方向）
+                ↓
+         Executor（并行抓取 20+ 来源）
+                ↓
+         Publisher（聚合、去重、引用，生成最终报告）
+```
+
+**Key features**:
+- 双 Agent 架构：Planner 拆解问题 + Executor 并行抓取 + Publisher 聚合报告
+- 2000+ 字研究报告，20+ 引用来源
+- Deep Research 递归模式：树形探索，~5 分钟，~$0.40/次
+- 报告输出到 `D:\Projects\Dog\Dog-Research/<topic-slug>/`，每次研究独立文件夹
+- 支持 PDF/Word/Markdown 本地文档作为研究来源
+- MCP Server 模式可接入 Claude Desktop、Cursor 等工具
+- 5 种报告类型：research_report / detailed_report / resource_report / outline_report / deep_research
+
+**Install**: `pip install gpt-researcher` + `cp -r gpt-researcher ~/.claude/skills/gpt-researcher/`
+
+---
+
+#### `hv-analysis` — 横纵分析法深度研究
+
+**Purpose**: 横纵分析法深度研究——纵轴追踪历史+横轴竞品对比→交叉洞察→精美PDF报告
+
+**Workflow**:
+
+```
+1. 纵轴分析 — 追踪目标从诞生到当下的完整生命历程，识别关键转折点和演化脉络
+2. 横轴分析 — 在当下时间截面上与竞品进行系统性横向对比，评估相对位置
+3. 交叉洞察 — 将纵轴与横轴的分析结果交叉，产出独到的战略洞察
+4. 报告生成 — 将研究成果组织为排版精美的 PDF 研究报告
+```
+
+**Key features**:
+- 双轴分析框架：纵轴追踪历史演化 + 横轴竞品对比，双维度系统性研究
+- 交叉洞察：两条轴交汇产出孤立分析无法发现的独特见解
+- 精美 PDF 报告：研究成果自动组织为排版精美的 PDF 文档
+- 适用范围广：产品、公司、概念、人物的系统性深度研究均可应用
+- 中英双语触发：支持中文（横纵分析/研究一下/深度研究）和英文（deep research/hv analysis）触发词
+
+**Install**: Download `dist/hv-analysis.skill` and drag it into Claude Code.
+
+---
+
 #### `nuwa` — 女娲 · Distill Anyone's Thinking into an AI Skill
 
 **Purpose**: A meta-skill that distills any person's way of thinking into a runnable AI skill. Launches 6 parallel research agents to scour public sources (writings, interviews, decisions, criticism, timeline), triple-verifies extracted mental models, and generates a complete SKILL.md that acts as a cognitive advisor in that person's voice.
@@ -332,6 +459,149 @@ Once installed, skills trigger automatically when Claude detects a matching task
 - 输出 8000-12000 字个人人生设计蓝图，含原型行动清单
 
 **Install**: Download `dist/life-designer.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-blind` — 盲区扫描
+
+**Purpose**: 盲区扫描 — 读取你与 AI 的历史对话，照出暴露的思维盲区（不是不懂的知识，是让某类真相一直看不见的思维习惯），精准定位后给出针对性补全建议。
+
+**Workflow**:
+
+```
+1. 获取对话材料 — 读取用户与 AI 的历史对话记录
+2. 扫描盲区信号 — 按 5 种信号（绕开点 / 空转框架 / 单一取景框 / 未检前提 / 相邻空缺）逐一过检
+3. 选一个盲区 — 依据杠杆、真盲、对位三条判据排序，宁一个说透，不五个都点一遍
+4. 深度诊断 — 分析形成机制，给出原文证据，找到它让你看不见什么
+5. 补全建议 — 对症阅读（标注具体章节）+ 可操作的实践练习 + 信号词
+```
+
+**Key features**:
+- 5 种盲区信号扫描：绕开点、空转框架、单一取景框、未检前提、相邻空缺
+- 每条判断落到具体对话原文，凭证据不凭感觉
+- 三类判据（杠杆 / 真盲 / 对位）精准选出最要紧的一个盲区
+- 深度诊断：说清盲区的形成机制和为什么你自己看不见
+- 对症补全方案：书籍章节、实践练习、信号词
+- 有温度有毛刺的母语语气，禁用自夸修辞
+
+**Install**: Download `dist/ljg-blind.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-book` — ljg-book：读懂一本书的 x → f → f(x)
+
+**Purpose**: 拆书——x→f→f(x)逻辑链：问题→核心回答→改变什么判断或行动
+
+**Key features**:
+- 用 x→f→f(x) 逻辑链拆解任何一本书，提炼核心结构
+- 精准定位作者处理的真问题（x），而非表面议题
+- 提取核心回答（f）——概念、区分、框架、方法、模型或叙事视角
+- 追问回答如何改变判断或行动（f(x)），将知识与决策连接
+- 从"读了什么"到"改变了什么"，打通信息到行动的完整闭环
+
+**Install**: Download `dist/ljg-book.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-constraint` — 约束引擎
+
+**Purpose**: 约束引擎 — 给一个领域、专业、角色、产品或争论，找出真正框住它的几条约束，判明它们属于硬约束（世界层）、软约束（规则层）还是自设约束（认知层），看清这组约束框出的解空间，解释为什么这个角色的行为是必然的。
+
+**Workflow**:
+
+```
+1. 铺约束候选 — 对着领域/角色追问目标、不可行假设、激励不对称、信息不对称、时间尺度
+2. 分层归位 — 每条候选定位到硬约束（世界层）/软约束（规则层）/自设约束（认知层）
+3. 真伪定性 — 追查被当作硬约束的条目的不可违背性
+4. 找约束错配 — 在争论中找出各方默认约束的不同
+5. 找矛盾对 — 识别互相打架的约束及其导致的拧巴行为
+6. 找身份约束 — 找出拿掉就不再是它自己的那一条
+7. 两把透镜收口 — f论（定义域）与进化论（选择压）双重审视
+```
+
+**Key features**:
+- 三层约束硬度判别：硬约束（世界层不可违背）、软约束（规则层可违但有代价）、自设约束（认知层可重写）
+- 从约束到解空间到行为的完整推理链——解释为什么某个角色只能那么做
+- 约束错配诊断——争论双方以为在争方案，其实在争不同的题面
+- 矛盾对识别——发现互相打架的约束及其导致的拧巴行为
+- 输出一气呵成的分析文配 ASCII 结构图，推理自推不分章节
+
+**Install**: Download `dist/ljg-constraint.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-rank` — 降秩引擎
+
+**Purpose**: 降秩引擎 — 给一个领域，找出背后真正撑着它的几根独立的生成器。
+
+**Workflow**:
+
+```
+1. 陈述领域 — 用户描述要分析的领域或现象集合
+2. 现象枚举 — 列出该领域的所有已知现象和表现
+3. 归约追问 — 不断追问"这个现象背后靠什么撑着"，砍掉冗余现象
+4. 秩的判定 — 识别独立生成器（不可再少的根骨架）
+5. 回推验证 — 用生成器逐一还原现象，验证是否够用
+```
+
+**Key features**:
+- 十几个现象砍到不可再少的根骨架，动一根就塌
+- 砍完能把现象一个个生回来才算数
+- 不是总结要点，不是关键要素，是底层生成器
+- 适用于理解复杂领域、找到本质驱动力、构建思维模型
+
+**Install**: Download `dist/ljg-rank.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-roundtable` — 圆桌讨论
+
+**Purpose**: 圆桌讨论 — 一个议题，一场圆桌：主持人请来 3-5 位真实人物（历史的当代的都行），定义开场，逐轮交锋，每轮收一张 ASCII 结构图，用户用指令控节奏，散场后生成完整讨论记录。
+
+**Workflow**:
+
+```
+1. 定议题 — 用户提供议题，或主持人先问议题
+2. 请人 — 邀请 3-5 位真实人物（至少一位行外人），每人附立场说明
+3. 开场 — 主持人定义核心概念，每人依次发言，格式固定
+4. 讨论循环 — 交替发言 → 主持人综述 + ASCII 结构图 → 用户指令（可/止/深入此节/引入新人物）
+5. 收场 — 全局总结 + 完整知识网络 ASCII 图 + 开放问题列表
+6. 存档 — 输出一字不差的完整讨论记录
+```
+
+**Key features**:
+- 邀请 3-5 位真实人物（历史的当代的都行），多视角探讨复杂议题
+- 主持人引导深度交锋，每轮只追一个核心争议点
+- 每轮生成 ASCII 结构图（2x2 矩阵、光谱轴、因果环、层级树）
+- 用户通过指令控制节奏：可/止/深入此节/引入新人物
+- 收场生成完整知识网络图与开放问题列表
+- 最终输出一字不差的完整讨论记录
+
+**Install**: Download `dist/ljg-roundtable.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-skills` — ljg-skills — 思维工具 + 深度学习 + 内容可视化技能集
+
+**Purpose**: lijigang 的 Claude Code 技能集（23 技能 + 2 工作流）— 思维工具 + 深度学习 + 内容可视化的精品集合。
+
+**Workflow**:
+
+```
+1. 用户描述需求（思维工具 / 深度学习 / 内容可视化）
+2. 元技能识别 ljg-skills 生态中的匹配子技能
+3. 引导安装和使用相关子技能
+4. 对用户具体任务应用选定的技能工作流
+```
+
+**Key features**:
+- 元技能包装 23 个专业子技能 + 2 个工作流，一站式发现和安装
+- 覆盖约束分析、降秩引擎、盲区扫描、圆桌讨论等思维工具，支持拆书、论文溯源、白话引擎等深度学习能力
+- 提供投资分析、内容铸卡等可视化与决策工具
+- 中英双语触发，支持丰富的自然语言描述入口
+- 本 skill 为元技能包装，帮助你发现、安装和使用 ljg-skills 生态
+
+**Install**: npx skills add lijigang/ljg-skills -g --all
 
 ---
 
@@ -449,6 +719,31 @@ Codex (QA)  ◀──[Completion Report]──────┘
 - 节省 Codex 配额：精确的 Task Package 减少来回确认
 
 **Install**: cp -r codex-claude-pm/ ~/.claude/skills/codex-claude-pm/
+
+---
+
+#### `fireworks-tech-graph` — Fireworks Tech Graph — 技术图生成器
+
+**Purpose**: 自然语言→SVG+PNG技术图，8种风格·14种图类型·完整UML支持·AI/Agent领域Pattern
+
+**Workflow**:
+
+```
+1. User describes system or architecture in natural language (Chinese or English)
+2. AI analyzes the request and recommends the optimal diagram type from 14 types
+3. User selects from 8 visual styles (flat, dark geek, blueprint, Notion minimal, glassmorphism, Claude official, OpenAI official, dark luxury)
+4. AI generates the diagram as publishable SVG + PNG with selected style
+5. User iterates via natural language feedback for refinement
+```
+
+**Key features**:
+- 8 visual styles: flat, dark geek, blueprint, Notion minimal, glassmorphism, Claude official, OpenAI official, dark luxury
+- 14 diagram types: architecture diagram, data flow, flowchart, sequence diagram, full UML suite, ER diagram, mind map, timeline, network topology, and more
+- Built-in AI/Agent domain patterns: RAG, Agentic Search, Mem0, Multi-Agent, Tool Call
+- Natural language input in Chinese or English — no diagramming tools needed
+- Direct publishable SVG + PNG output, ready for documentation and presentations
+
+**Install**: git clone https://github.com/yizhiyanhua-ai/fireworks-tech-graph.git ~/.claude/skills/fireworks-tech-graph
 
 ---
 
@@ -641,6 +936,21 @@ brainstorming → using-git-worktrees → writing-plans → subagent-driven-deve
 
 ---
 
+#### `neat-freak` — 洁癖 — Knowledge Base Neat-Freak
+
+**Purpose**: 洁癖级知识库清理——CLAUDE.md/docs/memory三层同步+规范审计，跨平台通用
+
+**Key features**:
+- 三层知识同步 — Agent memory / CLAUDE.md / docs 三层知识一致性审查与同步
+- 规范审计 — 检查命名约定、必备文件、死引用等项目规范执行情况
+- 四层自检体系 — 事实层→逻辑层→风格层→情绪层，层层把关知识质量
+- 知识毕业机制 — 稳定知识自动从 memory 提升到 CLAUDE.md/docs，保持知识库精简
+- 跨平台通用 — Claude Code / Codex / OpenCode / OpenClaw 均适用
+
+**Install**: Download `dist/neat-freak.skill` and drag it into Claude Code.
+
+---
+
 ### 🎨 Design & Frontend
 
 ---
@@ -747,6 +1057,39 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+
+#### `huashu-design` — 设计哲学顾问
+
+**Purpose**: 设计哲学顾问——20种设计哲学·5大流派·3方向并行Demo·专家评审
+
+
+**Key features**:
+- 20种设计哲学知识库，覆盖信息建筑、运动诗学、极简主义、实验先锋、东方哲学5大流派
+- 从设计哲学库中精准推荐3个最适合方向，并行生成视觉Demo直观对比
+- 每个方向附带AI提示词DNA，可在Midjourney等AI工具中复现迭代
+- 设计完成后自动进行专家评审，提供结构化反馈与改进建议
+- 适用于品牌设计、产品落地页、UI视觉风格等多种场景
+
+**Install**: Download `dist/huashu-design.skill` and drag it into Claude Code.
+
+---
+
+
+#### `ljg-card` — ljg-card: 铸
+
+**Purpose**: 内容铸卡——将内容转化为PNG视觉卡片。7种模具：长阅读卡(-l)、信息图(-i)、多卡片(-m)、视觉笔记(-v)、漫画(-c)、白板(-w)、大字碑刻图(-b,1080×1440).
+
+**Key features**:
+- 7 种视觉模具覆盖主流展示场景：长阅读卡、信息图、多卡片、视觉笔记、漫画、白板、大字碑刻图
+- 一段文字或文章链接直接生成 PNG 视觉卡片，开箱即用无需复杂配置
+- 每种模具针对特定场景优化（小红书竖版、信息图分享、演示白板等）
+- 自然语言触发，支持中英文双语指令
+- 大字碑刻模式 1080×1440 专为移动端社交媒体设计
+
+**Install**: Download `dist/ljg-card.skill` and drag it into Claude Code.
+
+---
+
 #### `lottie-animation` — Lottie 动画生成 + Prompt 优化层
 
 **Purpose**: 一句话让 Claude Code 生成轻量 Lottie 动画动效。
@@ -815,6 +1158,30 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+#### `excalidraw-diagram` — 手绘风技术图生成器
+
+**Purpose**: 自然语言描述系统，输出可编辑的 `.excalidraw` 文件。内置 Prompt 优化层（图类型识别→组件梳理→关系映射→布局推荐），确认后生成手绘风格的白板图。与 architecture-diagram（正式文档风）和 fireworks-tech-graph（多风格成品图）形成互补三角——Excalidraw 走"AI起稿→人工精调"的协作路线。
+
+**Workflow**:
+
+```
+1. Prompt 分析 → 识别图类型 + 梳理组件 + 明确关系 + 推荐布局
+2. 用户确认 → 展示结构化图描述，用户修改或确认
+3. 生成 .excalidraw → 写入本地 JSON 文件，可拖入 excalidraw.com 编辑
+```
+
+**Key features**:
+- **9 种图类型**：流程图·关系图·思维导图·架构图·数据流图·泳道图·类图·时序图·ER 图
+- **Prompt 优化层**：生成前自动梳理组件和关系，减少返工
+- **手绘风格**：strokeSharpness round + roughness + hachure 填充，白板质感
+- **语义 8 色系统**：按组件类型自动分色（蓝=服务/绿=数据库/红=外部/橙=消息队列...）
+- **可编辑输出**：.excalidraw JSON 可在 excalidraw.com / VS Code / Obsidian 中继续编辑
+- **迭代修改协议**：支持增量修改节点·连线·布局·颜色，无需整图重新生成
+
+**Install**: `cp -r excalidraw-diagram/ ~/.claude/skills/excalidraw-diagram/`
+
+---
+
 #### `presentation-design` — 演示设计板生成器
 
 **Purpose**: 生成 6 页高级演示设计板（亮/暗双模式），合成为一张复合预览图，适合向客户或投资人展示设计方案。
@@ -864,6 +1231,46 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 - 多种调色板：复古、赛博朋克、自然
 
 **Install**: `/plugin install example-skills@anthropic-agent-skills`
+
+---
+
+#### `animation-craft` — 动画工艺元技能
+
+**Purpose**: 整合 Emil Kowalski 三件套（animation-vocabulary + emil-design-eng + review-animations）为一站式动画工艺流水线。三阶段：术语转换（模糊感觉→精确术语）→ 设计工程（按10条工艺规则生成代码）→ 质量审查（Before→After→Why 输出）。解决 AI 生成动画"生硬、缓动不对、时长不合理"的常见问题。
+
+**Workflow**:
+
+```
+Phase 1: Vocabulary    →  模糊感觉 → 精确动画术语（"弹出来" → spring scale-in）
+Phase 2: Design-Eng    →  按工艺规则生成/优化代码（时长·缓动·GPU属性·无障碍）
+Phase 3: Review        →  10条硬标准逐项审查 → Before → After → Why
+```
+
+**Key features**:
+- 动画术语词汇表：入场/出场/序列/状态切换/反馈/缓动/滚动 7 大类精确术语
+- 10 条设计工程规则：时长控制（≤300ms）、缓动选择（入场=ease-out）、GPU 属性、弹出层 transform-origin、弹簧物理参数
+- 10 条审查硬标准：动画有目的·频率匹配·缓动正确·时长·transform-origin·可中断·GPU属性·无障碍·非镜像·统一
+- 审查输出 Before → After → Why 三段式，每条含代码对比
+- 模糊描述→精确术语→优化代码→质量审查，完整闭环
+
+**Install**: `cp -r animation-craft/ ~/.claude/skills/animation-craft/`
+
+---
+
+#### `apple-design` — Apple 设计哲学（Web 实现版）
+
+**Purpose**: 将 Apple WWDC 流体界面设计原则翻译为 Web 端的 CSS/JS 实现。16 条原则覆盖：即时响应·直接操作·中断性·弹簧物理·速度传递·动量投影·橡皮筋边界·空间一致性·帧级流畅·材质景深·排版·色彩·触觉·无障碍（三种媒体查询）。
+
+**Key features**:
+- 16 条 Apple 设计原则，每条含 Web 实现代码（CSS + JS）
+- 弹簧物理参数指南（Damping Ratio + Response，按交互类型推荐）
+- 材质层级系统：5 层 backdrop-filter 方案（L0 背景 → L4 系统覆盖）
+- Apple 排版规范：SF Pro 字间距/行高/动态字重，rem/em 布局
+- 三种无障碍媒体查询：prefers-reduced-motion / reduced-transparency / contrast
+- 动量投影公式（指数衰减）+ 橡皮筋阻力函数（渐进边界）
+- 与 animation-craft 互补：apple-design 提供哲学层，animation-craft 提供工艺执行层
+
+**Install**: `cp -r apple-design/ ~/.claude/skills/apple-design/`
 
 ---
 
@@ -920,6 +1327,30 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 ---
 
 ### 📝 Content & Writing
+
+---
+
+### `huashu-proofreading` — AI味审校
+
+**Purpose**: 三遍审校降AI味——内容→AI腔识别→节奏打磨，系统化降至30%以下
+
+**Workflow**:
+
+```
+1. 第一遍：内容审校 — 事实核查、逻辑链验证、信息准确性检查
+2. 第二遍：AI腔识别与改写 — 6大类AI腔识别（套话、句式、词汇、结构、态度、细节缺失）
+3. 第三遍：节奏打磨 — 句长变化、段落呼吸、排版微调，自然度优化
+```
+
+**Key features**:
+- 三遍审校系统化流程：内容审校 → AI腔识别与改写 → 节奏打磨
+- 6大类AI腔识别：套话、句式、词汇、结构、态度、细节缺失
+- 事实核查与逻辑链验证，确保内容准确性和推理严谨
+- 句长变化与段落呼吸优化，让文本更自然流畅
+- 排版微调细致打磨，消除AI句式模板化痕迹
+- 系统化降低AI检测率至30%以下
+
+**Install**: Download `dist/huashu-proofreading.skill` and drag it into Claude Code.
 
 ---
 
@@ -982,6 +1413,56 @@ Raw Material → Style Gallery (≥4 cover candidates) → AST Outline
 
 ---
 
+#### `khazix-writer` — 卡兹克公众号长文写作
+
+**Purpose**: 数字生命卡兹克（Khazix）的公众号长文写作skill。
+
+**Key features**:
+- HKR质检体系（Happy·Knowledge·Resonance）确保内容质量与读者共鸣
+- AI角色边界分工，明确AI与人类在创作中的各自职责
+- 四层自检体系，从多维度审核文章质量，层层把关
+- 支持续写、扩写、根据素材产出长文，灵活适配各种写作需求
+- 可模仿指定风格进行写作，按你的风格出稿
+- 适用于公众号文章、长文、稿子等多种写作场景
+
+**Install**: Download `dist/khazix-writer.skill` and drag it into Claude Code.
+
+---
+
+#### `ppt-master` — AI 生成真正可编辑的 PowerPoint · PPT Master
+
+**Purpose**: AI 从任意文档（PDF/Word/Markdown/URL）生成真正可编辑的 .pptx 文件——原生 PowerPoint 形状、图表和动画（DrawingML），不是截图拼凑的假 PPT。27,000+ GitHub Star，MIT 开源。
+
+**Author**: [Hugo He](https://github.com/hugohe3) · Original repo: [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) (27,000+ ⭐, MIT License)
+
+**How it works**:
+
+```
+输入文档 → AI 生成 SVG（设计稿）→ Python 转换 SVG → DrawingML → 输出原生可编辑 .pptx
+```
+
+**Key features**:
+
+- **真正可编辑** — 每个文本框、形状、图表都是 DrawingML 原生对象，可在 PowerPoint 中独立编辑
+- **20 套内置模板** — Anthropic 风、麦肯锡风、Google 风、学术答辩风、科技创业风等
+- **多尺寸输出** — 16:9、4:3、小红书竖版 3:4、朋友圈 1:1、A4，支持自定义
+- **6000+ Tabler 图标** + **33 种图表模板** — 无需外部下载，按需引用
+- **原生动画系统** — 页面过渡 + 元素入场动画，三种触发方式（on-click / after-previous / with-previous）
+- **旁白转语音** — 演讲者备注 → AI 语音旁白（90+ 语言）→ PowerPoint 一键导出 MP4 视频
+- **本地运行** — 文档不离开电脑，零数据泄露风险
+- **支持自定义模板** — 可上传自己的 .pptx 作为样式模板
+
+**Trigger examples**:
+- "帮我把这份 PDF 做成 PPT，麦肯锡风，10 页以内"
+- "把这篇 Markdown 转成学术答辩风格的幻灯片"
+- "用这个 Word 文档生成投资人 Pitch，16:9，带动画"
+- "给这份 PPT 加上演讲旁白，导出 MP4"
+- "make a PowerPoint from this document with Google style"
+
+**Install**: `/plugin marketplace add hugohe3/ppt-master` + `/plugin install ppt-master@ppt-master`（Claude Code 插件）。或 `npx skills add hugohe3/ppt-master`。Python 3.10+ 环境需 `pip install -r requirements.txt`。
+
+---
+
 #### `writing-assistant` — 结构化写作助手
 
 **Purpose**: 从大纲到草稿到润色到发表前审查，覆盖完整写作流程。适用于博客、备忘录、论文、报告、Newsletter 等各类文体。
@@ -1019,6 +1500,31 @@ Raw Material → Style Gallery (≥4 cover candidates) → AST Outline
 - 多平台适配——邮件/微信/Slack 自动切换正式度
 
 **Install**: `/plugin marketplace add sorawit-w/agent-skills` + `/plugin install agent-skills@sorawit-w`
+
+---
+
+#### `huashu-slides` — AI 演示文稿工作流
+
+**Purpose**: 端到端PPT制作——18种设计风格·三种协作模式→可编辑PPTX
+
+**Workflow**:
+
+```
+1. 内容结构化 — 将原始资料整理为结构化演示文稿框架
+2. 设计系统选择 — 从18种设计风格（浮世绘、包豪斯、Snoopy、像素画等）中匹配视觉方案
+3. AI插画生成 — 由 AI 根据内容自动生成配套插画
+4. 幻灯片组装 — 将结构、设计、插画组合为完整幻灯片
+5. 细节打磨 — 精细化调整每个页面直到满意
+```
+
+**Key features**:
+- 5阶段端到端流水线：内容结构化→设计系统→AI插画→幻灯片组装→细节打磨
+- 18种设计风格预设，覆盖浮世绘、包豪斯、Snoopy、像素画等多种视觉风格
+- 三种协作模式，适配个人创作、团队协作等不同工作场景
+- 输出可编辑PPTX文件，原生形状和文本均可修改
+- 支持从一句话描述到完整演示文稿的全自动生成
+
+**Install**: git clone https://github.com/alchaincyf/huashu-skills.git ~/.claude/skills/huashu-skills/
 
 ---
 
@@ -1125,6 +1631,35 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `teach` — Knowledge · Skills · Wisdom 三层学习框架
+
+**Purpose**: Matt Pocock 的三层学习框架——Knowledge（知识获取）→ Skills（交互练习）→ Wisdom（社区智慧）。AI 变成你的私人导师：从高质量资源提取知识生成 HTML 交互课件，设计动手练习并给即时反馈，对于 AI 教不了的判断力，帮你找到真实的社区和人。
+
+**Workflow**:
+
+```
+1. Mission → 了解用户为什么想学，写入 MISSION.md
+2. Research → 从高质量资源提取知识，写入 RESOURCES.md
+3. Reference → 生成速查表和术语表（reference/*.html）
+4. Lessons → 设计交互式课件（lessons/0001-*.html）
+5. Practice → 设计动手练习，给即时反馈
+6. Wisdom → 对教不了的部分，推荐真实社区和人
+7. Record → 记录学习洞察，追踪最近发展区
+```
+
+**Key features**:
+- 三层学习框架：Knowledge（知识获取）→ Skills（动手练习）→ Wisdom（社区智慧）
+- 每句话都有引用来源，不信任 AI 参数化知识
+- 交互式 HTML 课件 + 即时反馈练习，Tufte 风格排版
+- 结构化教学空间：MISSION.md / RESOURCES.md / reference / lessons / learning-records
+- 承认 AI 边界——教不了 Wisdom，帮你找到真实社区和人
+- 基于最近发展区设计练习难度，区分存储强度与流畅感
+
+**Install**: Download `dist/teach.skill` and drag it into Claude Code.
+
+---
+
+
 ### 💼 Business & Strategy
 
 ---
@@ -1143,7 +1678,119 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+### `huashu-data-pro` — 数据分析与办公提效助手
+
+**Purpose**: 数据分析与办公提效——Excel·ROI·可视化·5种报告风格→交互式HTML+PDF
+
+**Key features**:
+- 端到端数据分析工作流，覆盖数据处理、分析洞察、报告撰写与数据可视化
+- Excel 数据分析与公式处理，支持复杂表格和数据处理任务
+- 投放复盘与 ROI 测算，从数据到洞察的完整分析链路
+- 5 种报告风格输出，支持交互式 HTML 和 PDF 格式
+- 图表生成与数据可视化，直观呈现分析结果
+- 周报/月报自动生成，覆盖汇报场景需求
+
+**Install**: Download `dist/huashu-data-pro.skill` and drag it into Claude Code.
+
+---
+
+#### `ljg-invest` — 投资分析
+
+**Purpose**: 投资分析 — 给一个项目（公司名、BP、创始人对话），写一份深度投资分析报告。核心判断只有一个：这个项目是不是一台"秩序创造机器"。
+
+**Workflow**:
+
+```
+1. 项目信息收集 — 收集公司名、BP、创始人对话等信息，知名公司直接搜索最新数据
+2. 秩序创造判定 — 从飞轮效应、抗冲击能力、资源引力三个角度判断：是不是秩序创造机器
+3. 创生公式提炼 — 写出一句话的核心算法，追问验证次数与差异
+4. 市场认知差分析 — 市场看见的 vs 我们看见的，定位 S 曲线阶段与认知折价
+5. 投资建议输出 — 交换建议（投/观察/放弃）+ 核心假设 + 退出信号 + 未解问题
+```
+
+**Key features**:
+- 不走传统投资分析路，核心判断：项目是不是一台"秩序创造机器"
+- 五区块报告结构：这是什么 → 秩序创造判定 → 创生公式 → 市场认知差 → 投资建议
+- 敢下判断，每个判断带证据，禁用模糊表达（"既可能好也可能坏"禁止）
+- 基于"财富是被欲望照亮的秩序"核心定义，钱只是秩序的计量单位
+- 数据分析禁止编造，查不到的直接标注，不硬撑
+- 每个决策押在明确的假设上，配具体的退出信号
+
+**Install**: Download `dist/ljg-invest.skill` and drag it into Claude Code.
+
+---
+
+#### `minimalist-entrepreneur` — 极简创业 AI 商业顾问 · Minimalist Entrepreneur
+
+**Purpose**: 基于 Sahil Lavingia《The Minimalist Entrepreneur》（《小而美》）方法论，10 个 Claude Code Plugin 技能覆盖一人公司全链路：找社群 → 验证想法 → MVP → 流程化 → 首批100客户 → 定价 → 营销 → 稳健增长 → 公司价值观 → 极简复盘。核心理念：不融资、先盈利、手动跑通再产品化、从第一天就收费。
+
+**10 步创业全链路**:
+
+```
+找社群        验证想法         MVP          流程化       首批100客户
+/find-       /validate-      /mvp        /processize    /first-
+community    idea                                        customers
+   │             │              │              │              │
+   └─────────────┴──────┬───────┴──────────────┴──────────────┘
+                        │
+       定价             营销          稳健增长      公司价值观      极简复盘
+       /pricing     /marketing-     /grow-        /company-     /minimalist-
+                      plan        sustainably      values        review
+```
+
+**10 个 Skill 速览**:
+
+| # | 命令 | 一句话核心 |
+|---|------|-----------|
+| 1 | `/find-community` | 你不需要找社群，你已经在好几个里了——关键是里面的人在反复抱怨什么 |
+| 2 | `/validate-idea` | 别问"酷不酷"，问"有人付钱吗" |
+| 3 | `/mvp` | 只做一件事，能在周末交付的才做 |
+| 4 | `/processize` | 先手动跑 10 次，把步骤写在纸上，再写代码 |
+| 5 | `/first-customers` | 100 个客户之前别搞发布会，从亲友一圈圈往外卖 |
+| 6 | `/pricing` | 从第一天就收费，免费和 1 块钱之间是质变不是量变 |
+| 7 | `/marketing-plan` | 先花时间再花钱，博客免费社交免费，跑通了再投广告 |
+| 8 | `/grow-sustainably` | 盈利给你无限跑道，别人可能超过你但 10 年后你还在 |
+| 9 | `/company-values` | 价值观用故事写不是口号，Nordstrom 接受轮胎退货才是价值观 |
+| 10 | `/minimalist-review` | 八个问题筛完，答案通常就清楚了——最通用的决策过滤器 |
+
+**Key features**:
+- 10 个 Skill 形成完整创业链路，每一步都是下一步的前提
+- 对话式 AI 商业顾问：带着真实想法来，它一步步追问，不给答案只给问题
+- `/minimalist-review` 是最通用的决策过滤器：8 条极简原则从 8 个维度同时过筛
+- 两个 Skill 接力使用能看到整条路径的问题，而非孤立的一个点
+- 不止创业：至少 5 个 Skill 对副业、社群、任何"做不做"的决策有帮助
+- 基于 Sahil Lavingia 真实经历：Gumroad 从裁员到只剩自己一人再到盈利的全过程
+
+**Install**: `/plugin marketplace add slavingia/skills` → `/plugin install minimalist-entrepreneur`（推荐）。或: `cp -r minimalist-entrepreneur ~/.claude/skills/minimalist-entrepreneur/`（文档包装器）。
+
+**Source**: [slavingia/skills](https://github.com/slavingia/skills) (9000+ ⭐) by Sahil Lavingia (Pinterest 联合创始人, Gumroad 创始人). MIT License.
+
+---
+
 ### 🔍 Tools & Discovery
+
+---
+
+#### `agency-agents-zh` — Agency Agents 中文版 — 266 个 AI 专家角色库
+
+**Purpose**: 266 个即插即用的 AI 专家角色库 — 覆盖工程、设计、产品、营销、金融、安全、游戏等 20 个部门。
+
+**Workflow**:
+
+```
+1. 理解需求 — 分析用户任务目标和领域，确定需要的专家角色类型
+2. 推荐角色 — 从 266 个角色库中匹配最合适的角色，说明角色定位和能力
+3. 角色激活 — 加载对应角色提示词，按角色定义的工作流程和交付标准执行
+4. 多角色协作 — 可选：通过编排器让多位专家按 DAG 自动协作完成复杂任务
+```
+
+**Key features**:
+- 266 个即插即用的 AI 专家角色，覆盖工程、设计、产品、营销、金融、安全、游戏等 20 个部门
+- 每个角色都有独立的人设、专业流程和可交付成果，非通用提示词模板
+- 含 50 个中国市场原创智能体（小红书/抖音/微信/B站/飞书/钉钉等）
+- 搭配编排器 agency-orchestrator，一句话即可让多位专家按 DAG 自动协作
+
+**Install**: Download `dist/agency-agents-zh.skill` and drag it into Claude Code.
 
 ---
 
@@ -1286,11 +1933,11 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 | Category | Skills |
 |----------|--------|
-| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, nuwa, last30days, life-designer, scientific-research, thinking-toolkit |
+| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, gpt-researcher, nuwa, last30days, life-designer, scientific-research, thinking-toolkit |
 | 💻 **Development** | architecture-diagram, cc-dispatch, codex-claude-pm, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, dog-poster, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
-| 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, writing-assistant, scientific-writing-editor, ghostwriter |
-| 📚 **Learning & Teaching** | exam-tutor, dog-tutor, learning-studio |
+| 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, ppt-master, writing-assistant, scientific-writing-editor, ghostwriter |
+| 📚 **Learning & Teaching** | dog-tutor, exam-tutor, learning-studio, teach |
 | 💼 **Business & Strategy** | dbskill |
 | 🔍 **Tools & Discovery** | family-doctor, find-skills, handshake, markitdown, token-optimizer, vibe-sing, weread-skill, wx2md |
 
