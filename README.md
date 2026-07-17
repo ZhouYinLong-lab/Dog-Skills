@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Skills](https://img.shields.io/badge/Skills-109-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![Skills](https://img.shields.io/badge/Skills-116-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
 [![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
@@ -64,7 +64,10 @@ cp -r repo-evaluator ~/.claude/skills/repo-evaluator
 # 🎨 Design & Frontend
 cp -r animation-craft ~/.claude/skills/animation-craft
 cp -r apple-design ~/.claude/skills/apple-design
+cp -r design-buddy ~/.claude/skills/design-buddy
+cp -r dog-ppt ~/.claude/skills/dog-ppt
 cp -r excalidraw-diagram ~/.claude/skills/excalidraw-diagram
+cp -r text-logic-diagram ~/.claude/skills/text-logic-diagram
 cp -r ui-ux-pro-max-skill ~/.claude/skills/ui-ux-pro-max
 cp -r dog-frontier ~/.claude/skills/dog-frontier
 cp -r html-video ~/.claude/skills/html-video
@@ -84,6 +87,7 @@ cp -r torn-paper-collage-poster ~/.claude/skills/torn-paper-collage-poster
 cp -r dog-poster ~/.claude/skills/dog-poster
 
 # 📝 Content & Writing
+cp -r baokuan-title-generator ~/.claude/skills/baokuan-title-generator
 cp -r humanizer-zh ~/.claude/skills/humanizer-zh
 cp -r baoyu-skills ~/.claude/skills/baoyu-skills
 cp -r humanize-ppt ~/.claude/skills/humanize-ppt
@@ -102,6 +106,7 @@ cp -r teach ~/.claude/skills/teach
 cp -r tutor ~/.claude/skills/exam-tutor
 
 # 💼 Business & Strategy
+cp -r creator-buddy ~/.claude/skills/creator-buddy
 cp -r dbskill ~/.claude/skills/dbskill
 cp -r huashu-data-pro ~/.claude/skills/huashu-data-pro
 cp -r ljg-invest ~/.claude/skills/ljg-invest
@@ -109,6 +114,8 @@ cp -r minimalist-entrepreneur ~/.claude/skills/minimalist-entrepreneur
 
 # 🔍 Tools & Discovery
 cp -r agency-agents-zh ~/.claude/skills/agency-agents-zh
+cp -r read-buddy ~/.claude/skills/read-buddy
+cp -r topic-collector ~/.claude/skills/topic-collector
 cp -r vercel-labs-skills ~/.claude/skills/find-skills
 cp -r weread-skill ~/.claude/skills/weread-skill
 cp -r token-optimizer ~/.claude/skills/token-optimizer
@@ -125,10 +132,10 @@ ls ~/.claude/skills/
 # 🧠: comprehensive-thinking/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/  teach/
 # 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
-# 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  dog-frontier/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
-# 📝: baoyu-skills/  ghostwriter/  huashu-proofreading/  huashu-skills/  humanize-ppt/  humanizer-zh/  khazix-writer/  ppt-master/  scientific-writing-editor/  writing-assistant/
-# 💼: dbskill/  huashu-data-pro/  ljg-invest/  minimalist-entrepreneur/
-# 🔍: agency-agents-zh/  family-doctor/  find-skills/  handshake/  markitdown/  token-optimizer/  vibe-sing/  weread-skill/
+# 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  design-buddy/  dog-frontier/  dog-ppt/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  text-logic-diagram/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
+# 📝: baokuan-title-generator/  baoyu-skills/  ghostwriter/  huashu-proofreading/  huashu-skills/  humanize-ppt/  humanizer-zh/  khazix-writer/  ppt-master/  scientific-writing-editor/  writing-assistant/
+# 💼: creator-buddy/  dbskill/  huashu-data-pro/  ljg-invest/  minimalist-entrepreneur/
+# 🔍: agency-agents-zh/  family-doctor/  find-skills/  handshake/  markitdown/  read-buddy/  token-optimizer/  topic-collector/  vibe-sing/  weread-skill/
 ```
 
 Once installed, skills trigger automatically when Claude detects a matching task — no special command needed.
@@ -189,7 +196,9 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`article-poster`](article-poster/) | "把这篇文章做成信息图海报" / "生成知识卡片"→数据可视化风 |
 | [`brand-workshop`](brand-workshop/) | "帮我做品牌全案设计" / "run brand workshop for my startup" / "设计Logo和标语" |
 | [`canvas-design`](canvas-design/) | "帮我设计活动海报" / "生成宣传单页"→通用设计风 |
+| [`design-buddy`](design-buddy/) | "给这篇文章配图" / "画个用户旅程图" / "做公众号排版" / "生成故事分镜" |
 | [`dog-frontier`](dog-frontier/) | "帮我设计一个 AI SaaS 落地页" / "审查这个仪表盘的 UX" / "生成设计系统" / "反AI味审查" |
+| [`dog-ppt`](dog-ppt/) | "帮我做PPT但不知道用哪个工具" / "选哪个PPT skill" / "怎么做论文答辩PPT" |
 | [`dog-poster`](dog-poster/) | "帮我做海报"【先问风格再路由】 / "同主题三种风格各来一张" / "poster studio" |
 | [`excalidraw-diagram`](excalidraw-diagram/) | "画个架构草图，我之后还要改" / "用 Excalidraw 画个流程图" / "create a hand-drawn diagram" |
 | [`html-video`](html_video/) | "把这篇文章做成视频" / "用这个 GitHub 仓库生成一个介绍视频" / "做一个产品宣传动画" |
@@ -200,6 +209,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | [`presentation-design`](presentation-design/) | "设计演示方案板" / "做一套投资人Pitch视觉方案" / "design presentation board" |
 | [`slack-gif-creator`](slack-gif-creator/) | "做一张 Slack 动图" / "把录屏转 GIF 发 Slack" / "create animated emoji" |
 | [`soviet-storybook-grotesque`](soviet-storybook-grotesque/) | "把这张照片变成苏联童书风" / "东欧绘本风格插画" |
+| [`text-logic-diagram`](text-logic-diagram/) | "把这段论述画成逻辑图" / "文章结构可视化" / "递进/层次/对比/矩阵图" |
 | [`theme-factory`](theme-factory/) | "给幻灯片换一个科技风主题" / "生成一套品牌配色" / "apply a dark theme" |
 | [`torn-paper-collage-poster`](torn-paper-collage-poster/) | "做一张撕纸拼贴海报" / "Zine 风格展览海报"→手工拼贴艺术风 |
 | [`ui-ux-pro-max`](ui-ux-pro-max-skill/) | "推荐一个 SaaS landing page 的配色" / "生成 design system" / "dashboard 用什么字体" |
@@ -208,8 +218,9 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
-| [`humanizer-zh`](humanizer-zh/) | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
+| [`baokuan-title-generator`](baokuan-title-generator/) | "帮我起个爆款标题" / "这篇文章叫什么好" / "标题优化" / "多组标题" |
 | [`baoyu-skills`](baoyu-skills/) | "帮我生成幻灯片" / "画一个架构图" / "翻译这篇文章" / "压缩图片" |
+| [`humanizer-zh`](humanizer-zh/) | "帮我把这段文字去AI味"【改已有文本】 / "改写得更像人写的" |
 | [`humanize-ppt`](humanize-ppt/) | "帮我把这份资料做成PPT" / "给我的deck做演讲体检" / "PPT渲染质检" |
 | [`khazix-writer`](khazix-writer/) | "写公众号文章, 帮我写稿子, 续写这篇文章 / "write a WeChat article", "continue writing this draft in Khazix's style", "turn this brief into a long-form article", "expand on this outline"" |
 | [`ppt-master`](ppt-master/) | "帮我把这份PDF做成PPT" / "生成一份麦肯锡风的10页幻灯片" / "make a PowerPoint from this document" |
@@ -232,6 +243,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
+| [`creator-buddy`](creator-buddy/) | "找选题 / 小红书搜热点 / 公众号爆款分析 / B站趋势 / 赛道分析" |
 | [`dbskill`](dbskill/) | "/问诊 我的商业模式有问题吗" / "/好问题" / "/决策系统" / "/对标" |
 | [`huashu-data-pro`](huashu-data-pro/) | "分析这份投放数据做ROI复盘 / analyze this Excel data and create a report" |
 | [`ljg-invest`](ljg-invest/) | "分析这个项目值不值得投 / 写一份投资分析报告 / 这个公司是秩序创造机器吗" |
@@ -242,6 +254,8 @@ Once installed, skills trigger automatically when Claude detects a matching task
 | Skill | Try saying... |
 |-------|---------------|
 | [`find-skills`](vercel-labs-skills/) | "有没有能做 PR 描述的 skill" / "find a skill for code review" |
+| [`read-buddy`](read-buddy/) | "读网页/RSS/播客/飞书/OCR/小宇宙/X分析——帮你把信息拿回来" |
+| [`topic-collector`](topic-collector/) | "今日AI热点 / 采集选题 / 看看今天有什么新闻 / daily AI briefing" |
 | [`weread-skill`](weread-skill/) | "帮我查查我的书架" / "分析我的阅读统计" / "搜索某本书的评分" |
 | [`wx2md`](wx2md/) | "帮我把这个公众号文章转成 Markdown" / "导出微信文章" / "WeChat article to Markdown" |
 | [`token-optimizer`](token-optimizer/) | "优化项目 token 消耗" / "cto audit" / "帮我清理上下文" / "检查 token 用量" |
@@ -255,7 +269,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ## Skills
 
-| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `27` | 📝 Content `23` | 📚 Learning `6` | 💼 Business `3` | 🔍 Tools `10` |
+| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `30` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
 |-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
 
 ---
@@ -965,6 +979,21 @@ brainstorming → using-git-worktrees → writing-plans → subagent-driven-deve
 
 ---
 
+#### `design-buddy` — 视觉生产中台
+
+**Purpose**: 19 种设计生产能力的总控路由元技能。覆盖图表·幻灯片·海报·Logo·品牌UI·公众号排版·故事板·文章配图·生成艺术·Gemini文生图等全视觉链路。从内容出发自动选择图表类型、风格系统和输出格式。与 Dog-Skills 现有设计技能互补——优先推荐已有技能，Design Buddy 补独有能力（文章→逻辑图/公众号富HTML排版/故事分镜/Gemini后端/零代码生图Skill）。
+
+**Key features**:
+- 19 个子技能覆盖图表/品牌/视觉/页面/故事五大类
+- 四层架构：内容理解 → 视觉决策 → 资产生成 → 交付整理
+- 智能路由：Dog-Skills 已有覆盖优先，Design Buddy 独有能力补充
+- 支持 GPT-image-2/Gemini/Mermaid/p5.js 多后端
+- 60+ 品牌 DESIGN.md 自动匹配生成品牌风格 UI
+
+**Install**: `cp -r design-buddy/ ~/.claude/skills/design-buddy/`
+
+---
+
 #### `dog-frontier` — 前端设计综合技能系统
 
 **Purpose**: A comprehensive frontend design meta-skill that integrates 19 specialized skills through structured multi-turn dialogue. Covers the full chain: UI/UX design systems → Tailwind/shadcn components → Vue/React framework patterns → CSS expertise → landing pages → animation/video → brand design → design tokens (3-layer architecture) → anti-AI-taste design review.
@@ -1141,6 +1170,20 @@ node packages/cli/dist/bin.js project-create --name "my-video" --template frame-
 
 ---
 
+#### `dog-ppt` — AI 做 PPT 总控路由
+
+**Purpose**: 不做 PPT，帮你在 8+ 个 PPT 技能中选对工具。三步选型法：先判断交付物（可编辑PPTX？视觉卡？网页演示？演讲辅助？）→ 再判断内容类型（论文？网页？轻内容？品牌发布？）→ 最后匹配合适的技能。覆盖 Dog-Skills 内置 8 个 PPT 相关技能和外部推荐技能。
+
+**Key features**:
+- 8+ PPT 技能选型地图：ppt-master（正式交付）/ huashu-slides（端到端）/ humanize-ppt（体检质检）/ huashu-design（视觉包装）/ baoyu-skills（轻内容）/ dog-frontier（网页演示）/ brand-workshop（品牌定调）/ presentation-design（方案板）
+- 外部推荐：paper-deck（论文PPT）/ guizang-ppt-skill（视觉冲击）/ html-ppt-skill（演讲辅助）/ qiaomu（上游整理）
+- 四个实用规则：要可编辑→ppt-master / 要视觉→huashu-design / 要论文→paper-deck / 要演讲→html-ppt-skill
+- 核心洞察：内容整理 × 视觉表达 × 演示交付——三步拆开做
+
+**Install**: `cp -r dog-ppt/ ~/.claude/skills/dog-ppt/`
+
+---
+
 #### `dog-poster` — 海报设计工作室 · Dog-Poster
 
 **Purpose**: 元技能——上游风格询问 + 下游路由到三个海报子技能。先通过三连问确定你的需求（内容来源/视觉风格/使用平台），然后自动路由：信息图风→article-poster，通用设计风→canvas-design，手工拼贴风→torn-paper-collage-poster。
@@ -1287,6 +1330,21 @@ Phase 3: Review        →  10条硬标准逐项审查 → Before → After → 
 
 ---
 
+#### `text-logic-diagram` — 文章→逻辑图
+
+**Purpose**: 将论述性文本拆解为递进·流程·循环·层次·对比·矩阵六种逻辑关系，生成深色/浅色双主题自包含 HTML+SVG 图。与 architecture-diagram（系统架构）和 fireworks-tech-graph（技术图）互补——本技能专注"论述逻辑"可视化。多段落一次拆解多张图。
+
+**Key features**:
+- 六种逻辑关系类型：递进/流程/循环/层次/对比/矩阵，各有独立视觉规范
+- 深色主题（Cursor暖色深底+赭石强调色）和浅色主题（羊皮纸底+暖棕）
+- 概念抽象：每节点≤15字，自动提取关键词
+- 多段落处理：每段独立 SVG，同文件顺序排列，含主题切换按钮
+- JetBrains Mono 等宽字体，节点阴影+圆角，支持箭头/虚线/曲线连接
+
+**Install**: `cp -r text-logic-diagram/ ~/.claude/skills/text-logic-diagram/`
+
+---
+
 #### `theme-factory` — 主题工厂
 
 **Purpose**: Anthropic 官方出品。10 套预设主题 + 自定义即时生成，一键应用到幻灯片/文档/HTML，含亮暗双模式。
@@ -1351,6 +1409,30 @@ Phase 3: Review        →  10条硬标准逐项审查 → Before → After → 
 - 系统化降低AI检测率至30%以下
 
 **Install**: Download `dist/huashu-proofreading.skill` and drag it into Claude Code.
+
+---
+
+---
+
+#### `baokuan-title-generator` — 爆款标题生成器
+
+**Purpose**: 科技/AI/互联网领域公众号 10 万+ 爆款标题生成器。16 种爆款标题方法（强时效·实体锚定·数字反差·极值·内幕感·冲突对立·反差转折·亲测态度·任务结果·生活痛点·身份场景·收益损失·对话剧本·问题悬念·隐藏机制·场景画面），输入内容→建简报→多方法批量生成→逐条评分标风险→按用途分角色推荐→Top 5 + A/B 建议。方法论提炼自 1000+ 篇真实科技类 10 万+ 标题样本(2026年)。
+
+**Workflow**:
+
+```
+内容简报 → 类型路由 → 多方法批量生成(≥6种方法) → 评分去重风险校验 → 标题矩阵 + Top 5 + 角色推荐 + A/B 建议
+```
+
+**Key features**:
+- 16 种爆款标题方法，每种有真实爆文范例和公式
+- 7 个增强器可叠加：时间前置/热词前置/具体化/省略号留白/身份反差/信息缺口/口语语气
+- 内容类型→方法路由表：新闻→强时效, 产品测评→亲测转折, 趋势分析→冲突对立, 教程→数字结果
+- 百分制评分（点击潜力30+一致性25+实体力15+表达力15+传播力10+风险5）
+- 输出含公众号头条/小红书封面/B站标题/资讯快讯四角色推荐
+- 绝不牺牲标题与正文的一致性——点进去必须能兑现
+
+**Install**: `cp -r baokuan-title-generator/ ~/.claude/skills/baokuan-title-generator/`
 
 ---
 
@@ -1664,6 +1746,22 @@ Ingestion → Domain Analysis → Outline → Content Writing → Quality Review
 
 ---
 
+#### `creator-buddy` — 内容运营情报中心
+
+**Purpose**: 5 个内容运营研究技能的总控路由元技能。从小红书·公众号·B站·抖音的真实数据中搜索热点、拆爆款、分析赛道、生成标题。与 last30days（海外平台）互补形成完整选题研究体系：creator-buddy 覆盖中文内容生态，last30days 覆盖海外平台。
+
+**5 个子技能**: xhs-hotnotes（小红书热榜）/ global-content-search（全域搜索：小红书+B站+抖音）/ gzh-explosive-content-detector（公众号爆款检测）/ baokuan-article-analysis（赛道级爆款聚合）/ baokuan-title-generator（16法爆款标题，已独立封装）。
+
+**Key features**:
+- 四层架构：平台访问 → 数据整理（JSON）→ 报告生成（HTML）→ 运营判断
+- 只读公开数据，不做账号动作，低频按需采样
+- 部分子技能需 API Key（REDFOX_API_KEY/GUAIKEI_API_TOKEN），凭据不入库
+- 与 last30days 协作模式：海外信号 + 中文生态 = 选题蓝海
+
+**Install**: `cp -r creator-buddy/ ~/.claude/skills/creator-buddy/`
+
+---
+
 #### `dbskill` — 商业诊断工具箱 · 21 Business Diagnostic Skills
 
 **Purpose**: Business diagnostic toolbox with 21 Claude Code skills extracted from 12,307 tweets and refined into 4,176 knowledge atoms. Created by dontbesilent. Version 2.14.2, CC BY-NC 4.0.
@@ -1859,6 +1957,22 @@ community    idea                                        customers
 
 ---
 
+#### `read-buddy` — 信息读取中心
+
+**Purpose**: 18 种信息读取能力的总控路由元技能。覆盖网页·RSS·YouTube·播客·X/Twitter·飞书文档·图片OCR·微信读书·小宇宙·个人数据等全来源。根据内容来源自动选择读取策略，优先推荐 Dog-Skills 已有工具（markitdown/weread-skill/baoyu-skills），Read Buddy 独有能力（RSS聚合/OCR/飞书/小宇宙/X分析/播客工作流/个人数据采集）作为补充。
+
+**18 个子技能**: read-url-markdown / read-web-scraper / read-web-article-translator / read-x-markdown / read-x-blogger-analyzer / read-youtube-feed / read-youtube-transcript / read-podcast-workflow / read-podcast-script-generator / read-xiaoyuzhou-article / read-rss-aggregator / read-topic-collector / read-content-digest / read-feishu-doc / read-ocr / read-weread-export / read-weread-analyzer / read-weread-coach / read-personal-data-harvester。
+
+**Key features**:
+- 四层工作架构：来源接入 → 内容抽取 → 结构化整理 → 认知处理
+- 智能路由：Dog-Skills 已有优先，Read Buddy 独有能力补充
+- 只读优先 + 凭据不入库 + 个人数据本地化 + 低频采样
+- 补全 Dog-Skills 缺失的 RSS/OCR/飞书/小宇宙/X分析/播客/个人数据能力
+
+**Install**: `cp -r read-buddy/ ~/.claude/skills/read-buddy/`
+
+---
+
 #### `token-optimizer` — 上下文 Token 优化工具
 
 **Purpose**: 重新组织项目文档结构，只保留 4 个核心文件在启动时自动加载（约 800 token），其他内容按需加载。实测省 90% token（11000 → 1300），一条命令 30 秒搞定。
@@ -1873,6 +1987,21 @@ community    idea                                        customers
 **Install**: `npx claude-token-optimizer init`（npm 包，30 秒完成）
 
 **Usage**: 每周跑一次 `cto audit`，token 涨了就做一轮清理。
+
+---
+
+#### `topic-collector` — AI 热点自动采集
+
+**Purpose**: AI 热点自动采集器——多源并行搜索 AI 领域最新动态，生成结构化选题清单。覆盖 AI 博主/KOL·Product Hunt 新产品·Hacker News·学术论文·模型厂商官方·Reddit 社区热议 5 大数据源。聚焦 Vibe Coding·Claude 生态·AI Agent·AI 知识管理·模型更新·新产品·海外热点 7 大领域。
+
+**Key features**:
+- 五大数据源并行采集：AI 博主实践/创业公司新产品/AI 研究动态/模型厂商官方/技术社区讨论
+- 七大聚焦领域优先级排序，自动生成带原文链接的结构化热点清单
+- 输出含选题建议，直接指导下一篇内容方向
+- 与 last30days（海外实时信号）和 creator-buddy（中文平台运营）形成选题研究三角
+- 时效性优先：24 小时内内容，每条必须带可点击 URL
+
+**Install**: `cp -r topic-collector/ ~/.claude/skills/topic-collector/`
 
 ---
 
