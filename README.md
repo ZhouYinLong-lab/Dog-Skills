@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Skills](https://img.shields.io/badge/Skills-117-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![Skills](https://img.shields.io/badge/Skills-118-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
 [![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
@@ -46,6 +46,7 @@ cp -r storm-research ~/.claude/skills/storm-research
 cp -r thinking-toolkit ~/.claude/skills/thinking-toolkit
 
 # 💻 Development
+cp -r archify ~/.claude/skills/archify
 cp -r architecture-diagram ~/.claude/skills/architecture-diagram
 cp -r cc-dispatch ~/.claude/skills/cc-dispatch
 cp -r code-review ~/.claude/skills/code-review
@@ -132,7 +133,7 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 ls ~/.claude/skills/
 # 🧠: comprehensive-thinking/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/  teach/
-# 💻: architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
+# 💻: archify/  architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  dashi-ppt/  design-buddy/  dog-frontier/  dog-ppt/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  text-logic-diagram/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
 # 📝: baokuan-title-generator/  baoyu-skills/  ghostwriter/  huashu-proofreading/  huashu-skills/  humanize-ppt/  humanizer-zh/  khazix-writer/  ppt-master/  scientific-writing-editor/  writing-assistant/
 # 💼: creator-buddy/  dbskill/  huashu-data-pro/  ljg-invest/  minimalist-entrepreneur/
@@ -171,6 +172,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
+| [`archify`](archify/) | "画工作流/时序/数据流/生命周期图 / Mermaid转图 / JSON驱动架构图 / 双主题SVG" |
 | [`architecture-diagram`](architecture-diagram/) | "帮我画一个微服务架构图 / Generate an architecture diagram for my system / 画一个 AWS serverless 架构图" |
 | [`cc-dispatch`](cc-dispatch/) | "拆一个 Task Package 给 Claude Code" / "验收这份完成报告" |
 | [`codex-claude-pm`](codex-claude-pm/) | "Codex 作为 PM 帮我分配任务给 Claude Code" / "拆分 task package" / "Codex 审查实现结果" |
@@ -271,7 +273,7 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ## Skills
 
-| 🧠 Thinking `24` | 💻 Development `14` | 🎨 Design `31` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
+| 🧠 Thinking `24` | 💻 Development `15` | 🎨 Design `31` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
 |-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
 
 ---
@@ -662,6 +664,25 @@ Once installed, skills trigger automatically when Claude detects a matching task
 ---
 
 ### 💻 Development
+
+---
+
+#### `archify` — JSON 驱动架构图生成器
+
+**Purpose**: JSON Schema 驱动的技术图生成器，5 种图类型（架构图·工作流·时序图·数据流·生命周期图），深色/浅色主题切换，一键导出 PNG/JPEG/WebP/双主题 SVG。Schema 校验 + 布局自动检测（重叠/碰撞/越界）。支持自然语言或粘贴 Mermaid 代码自动转 archify 风格。基于 Cocoon-AI 演进版，工程化程度最高。
+
+**5 种图类型**: architecture（系统架构/云资源）· workflow（技术流程/CI-CD/审批流）· sequence（API调用链/请求生命周期）· dataflow（ETL/数据管道/PII隔离）· lifecycle（状态机/状态转换/重试）。
+
+**Key features**:
+- **JSON Schema 驱动**：5 套 Schema + 自动校验器，字段错误自动拦截
+- **Mermaid 输入**：粘贴 flowchart/sequenceDiagram/stateDiagram 代码→自动转 archify 风格重绘
+- **双主题 SVG**：一份 SVG 跟随宿主 prefers-color-scheme，明暗背景都正确
+- **布局自动检测**：组件重叠·标签碰撞·越界·对角线箭头·非有限坐标值
+- **网格+自由双布局**：architecture 支持 grid 模式和 free pos 模式
+- CSS 变量颜色系统，深色/浅色一键切换，localStorage 持久
+- 导出菜单：PNG（最高4×分辨率）/JPEG/WebP/双主题SVG
+
+**Install**: `cp -r archify/ ~/.claude/skills/archify/`
 
 ---
 
