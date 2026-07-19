@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Project Evaluator"
+  short_description: "Evidence-based course, paper, and OSS project evaluation"
+  default_prompt: "Use $evaluate-research-project to audit this repository as a course project, research paper, and open-source artifact."
