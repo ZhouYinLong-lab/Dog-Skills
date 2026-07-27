@@ -21,14 +21,14 @@ metadata:
   source: https://github.com/tt-a1i/archify (MIT)
   based_on: Cocoon-AI/architecture-diagram-generator (MIT v1.0)
   upstream-author: tt-a1i
-  version: "2.11"
+  version: "2.12"
   license: MIT
 ---
 
 # Archify — JSON 驱动架构图生成器
 
 > 5 种图类型 × Schema 校验 × 双主题切换 × Mermaid 兼容。工程化程度最高的图工具。
-> 上游来源: [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.11)，基于 Cocoon-AI 演进
+> 上游来源: [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.12)，基于 Cocoon-AI 演进
 
 ## 在 Dog-Skills 图技能矩阵中的位置
 
@@ -244,7 +244,7 @@ node bin/archify.mjs inspect architecture my.json
 ```
 architecture-diagram (Dog-Skills)     archify (Dog-Skills)
         │                                    │
-  基于 Cocoon-AI v1.1                  基于 Cocoon-AI v1.0 → v2.11
+  基于 Cocoon-AI v1.1                  基于 Cocoon-AI v1.0 → v2.12
   Quick/Deep 双模式                    JSON Schema 驱动
   多轮对话提取需求                      5 种图类型 × 5 套 Schema
   适合: 不写代码的用户                  适合: 愿写 JSON 的开发者
@@ -278,4 +278,4 @@ npx skills add tt-a1i/archify
 
 ## 上游致谢
 
-基于 [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.11)，作者 tt-a1i。继承自 [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) (MIT)。
+基于 [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.12)，作者 tt-a1i。继承自 [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) (MIT)。
