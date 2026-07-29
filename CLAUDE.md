@@ -113,6 +113,7 @@ Some skills in this repo are wrappers/guides for Claude Code plugins. These use 
 - `code-simplifier/` → `/plugin install code-simplifier@claude-plugin-directory`
 - `webapp-testing/` → `/plugin install webapp-testing@claude-plugin-directory`
 - `mcp-builder/` → `/plugin install mcp-builder@claude-plugin-directory`
+- `academic-research-skills/` → `/plugin install academic-research-skills@Imbad0202`
 
 These skill directories serve as documentation and trigger-awareness wrappers — when a user's request matches the trigger keywords, Claude Code will suggest the appropriate plugin.
 

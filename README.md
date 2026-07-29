@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Skills](https://img.shields.io/badge/Skills-118-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
+[![Skills](https://img.shields.io/badge/Skills-120-blue?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills/blob/main/LICENSE)
 [![CI](https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZhouYinLong-lab/Dog-Skills/actions)
 [![Category](https://img.shields.io/badge/Categories-7-orange?style=for-the-badge)](https://github.com/ZhouYinLong-lab/Dog-Skills#skills)
@@ -28,7 +28,9 @@ Download the `.skill` file from `dist/` and drag it into Claude Code's chat wind
 mkdir -p ~/.claude/skills
 
 # 🧠 Thinking & Research
+cp -r academic-research-skills ~/.claude/skills/academic-research-skills
 cp -r comprehensive-thinking ~/.claude/skills/comprehensive-thinking
+cp -r Dog-Project-Evaluate ~/.claude/skills/Dog-Project-Evaluate
 cp -r first-principles ~/.claude/skills/first-principles
 cp -r feynman-learning ~/.claude/skills/feynman-learning
 cp -r gpt-researcher ~/.claude/skills/gpt-researcher
@@ -131,7 +133,7 @@ cp -r family-doctor ~/.claude/skills/family-doctor
 
 ```bash
 ls ~/.claude/skills/
-# 🧠: comprehensive-thinking/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
+# 🧠: academic-research-skills/  comprehensive-thinking/  Dog-Project-Evaluate/  feynman-learning/  first-principles/  gpt-researcher/  hv-analysis/  last30days/  life-designer/  ljg-blind/  ljg-book/  ljg-constraint/  ljg-rank/  ljg-roundtable/  ljg-skills/  nuwa/  storm-research/  thinking-toolkit/
 # 📚: dog-tutor/  exam-tutor/  learning-studio/  teach/
 # 💻: archify/  architecture-diagram/  cc-dispatch/  claude-to-im/  code-review/  code-simplifier/  fireworks-tech-graph/  mcp-builder/  neat-freak/  planning-with-files/  ralph-loop/  repo-evaluator/  superpowers/  webapp-testing/  website-cloner/
 # 🎨: algorithmic-art/  animation-craft/  apple-design/  article-poster/  brand-workshop/  canvas-design/  dashi-ppt/  design-buddy/  dog-frontier/  dog-ppt/  excalidraw-diagram/  html-video/  huashu-design/  ljg-card/  lottie-animation/  pixel-art/  dog-poster/  presentation-design/  slack-gif-creator/  soviet-storybook-grotesque/  text-logic-diagram/  theme-factory/  torn-paper-collage-poster/  ui-ux-pro-max/
@@ -150,7 +152,9 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 | Skill | Try saying... |
 |-------|---------------|
+| [`academic-research-skills`](academic-research-skills/) | "用 ARS 写一篇论文" / "帮我做系统文献综述" / "审一下这篇论文" / "write a research paper with ARS" |
 | [`comprehensive-thinking`](comprehensive-thinking/) | "全面思考这个问题 / think comprehensively about this" |
+| [`Dog-Project-Evaluate`](Dog-Project-Evaluate/) | "评估项目什么水平 / evaluate this research project" |
 | [`first-principles`](first-principles/) | "从第一性原理出发" / "从本质出发重新思考" / "think from first principles" |
 | [`storm-research`](storm-research/) | "用 STORM 方法做技术调研" / "做一份深度研究简报" / "Stanford STORM research" |
 | [`feynman-learning`](feynman-learning/) | "用费曼学习法帮我理解" / "用费曼技巧深度学习" / "Feynman technique" |
@@ -273,12 +277,41 @@ Once installed, skills trigger automatically when Claude detects a matching task
 
 ## Skills
 
-| 🧠 Thinking `24` | 💻 Development `15` | 🎨 Design `31` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
+| 🧠 Thinking `26` | 💻 Development `15` | 🎨 Design `31` | 📝 Content `24` | 📚 Learning `6` | 💼 Business `4` | 🔍 Tools `12` |
 |-----------------|---------------------|----------------|----------------|-----------------|-----------------|---------------|
 
 ---
 
 ### 🧠 Thinking & Research
+
+---
+
+#### `academic-research-skills` — 学术研究全流程 AI 助手 · Academic Research Skills
+
+**Purpose**: 38.7k⭐ 开源学术研究全流程 AI 助手。4 个技能覆盖从文献调研到论文发表：Deep Research (13 agents 系统综述)、Academic Paper (12 agents 写作流水线 / LaTeX PDF)、Academic Paper Reviewer (7 agents 多视角审稿 / 反谄媚协议)、Academic Pipeline (10 阶段编排器 / 引文验证 / 完整性闸门)。核心理念：AI 是副驾驶，不是飞行员。
+
+**4 大技能**:
+
+```
+Deep Research (13 agents)     Academic Paper (12 agents)     Paper Reviewer (7 agents)
+文献调研·系统综述·Socratic引导   写作流水线·LaTeX·11种模式        EIC+3审稿人+Devil's Advocate
+        │                              │                              │
+        └──────────────────────────────┼──────────────────────────────┘
+                                       │
+                              Academic Pipeline
+                              10阶段编排器·完整性闸门·引文验证
+```
+
+**Key features**:
+- **Deep Research**: 13 agents，8 种模式（全调研/快速简报/文献综述/PRISMA 系统综述/事实核查/Socratic 引导），Semantic Scholar API 逐条引文验证
+- **Academic Paper**: 12 agents，11 种模式（全写/大纲/修改/摘要/引文检查/格式转换），LaTeX/PDF 输出（APA 7/IEEE/Chicago），Style Calibration 学习用户写作风格
+- **Academic Paper Reviewer**: 7 agents，EIC + 3 领域审稿人 + Devil's Advocate，0-100 分量表，反谄媚让步阈值协议
+- **Academic Pipeline**: 10 阶段编排器，Stage 2.5/4.5 强制完整性闸门（引文幻觉/数据虚构/方法论虚构等 7 种失败模式检测）
+- **三层数据隔离**：原始输入/验证内容/评分量表严格分离，防止评分标准泄露给写作 Agent
+- 完整 15,000 字论文约 $4-6 API 费用
+- 与 scientific-research（实验/数据分析）+ ljg-paper（论文阅读）+ Dog-Project-Evaluate（项目评估）形成完整学术流水线
+
+**Install**: `/plugin marketplace add Imbad0202/academic-research-skills` + `/plugin install academic-research-skills@Imbad0202`（Claude Code 插件）。或 `cp -r academic-research-skills/ ~/.claude/skills/academic-research-skills/`
 
 ---
 
@@ -305,6 +338,30 @@ Once installed, skills trigger automatically when Claude detects a matching task
 - Designed for scenarios where cost of being wrong is high: financial truth, live trading, multi-module systems
 
 **Install**: Download `dist/comprehensive-thinking.skill` and drag it into Claude Code.
+
+---
+
+#### `Dog-Project-Evaluate` — Evaluate Research Project
+
+**Purpose**: 三通道独立评估：课程作业完成度、论文投稿水平、开源项目成熟度
+
+**Workflow**:
+
+```
+1. 三通道并行评估 — 课程作业完成度、论文投稿水平、开源项目成熟度独立评审
+2. 分项评分 — 每个通道输出结构化评分与证据引用
+3. 决定性阻断项识别 — 检测每个通道中的关键阻断因素
+4. 结论总表与升级路线图 — 汇总评审结果，提供改进路径
+```
+
+**Key features**:
+- 三通道独立评估：课程作业、论文投稿、开源项目三个维度互不干扰
+- 结构化评分与证据引用链，每条判断都有据可查
+- 决定性阻断项检测，快速识别关键瓶颈
+- 升级路线图，从当前水平到目标状态的清晰路径
+- 中英双语触发，覆盖学术和工程评估场景
+
+**Install**: Download `dist/Dog-Project-Evaluate.skill` and drag it into Claude Code.
 
 ---
 
@@ -2103,7 +2160,7 @@ community    idea                                        customers
 
 | Category | Skills |
 |----------|--------|
-| 🧠 **Thinking & Research** | first-principles, storm-research, feynman-learning, gpt-researcher, nuwa, last30days, life-designer, scientific-research, thinking-toolkit |
+| 🧠 **Thinking & Research** | academic-research-skills, first-principles, storm-research, feynman-learning, gpt-researcher, nuwa, last30days, life-designer, scientific-research, thinking-toolkit |
 | 💻 **Development** | architecture-diagram, cc-dispatch, codex-claude-pm, code-review, website-cloner, claude-to-im, superpowers, planning-with-files, code-simplifier, webapp-testing, ralph-loop, mcp-builder, repo-evaluator |
 | 🎨 **Design & Frontend** | ui-ux-pro-max, dog-frontier, html-video, lottie-animation, brand-workshop, pixel-art, dog-poster, presentation-design, article-poster, canvas-design, algorithmic-art, slack-gif-creator, theme-factory, soviet-storybook-grotesque, torn-paper-collage-poster |
 | 📝 **Content & Writing** | humanizer-zh, baoyu-skills, humanize-ppt, ppt-master, writing-assistant, scientific-writing-editor, ghostwriter |
