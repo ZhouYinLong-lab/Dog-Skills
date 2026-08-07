@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rapid Domain Learning"
+  short_description: "用论文主线、核心直觉和知识结构快速进入陌生学习领域"
+  default_prompt: "帮我把一个陌生领域拆成可确认的学习目标，建立论文地图，提炼核心直觉，并安排从整体到细节的学习循环。"
