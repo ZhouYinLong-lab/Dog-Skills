@@ -85,6 +85,75 @@ for (const [mode, example] of Object.entries({
   routeOutputs[mode] = rendered;
 }
 
+function renderLegendFixture(mode, name, document) {
+  const inputPath = path.join(tmp, `${name}.${mode}.json`);
+  const outputPath = path.join(tmp, `${name}.${mode}.html`);
+  fs.writeFileSync(inputPath, JSON.stringify(document));
+  execFileSync(process.execPath, [
+    path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+    inputPath,
+    outputPath,
+  ], { stdio: ['ignore', 'ignore', 'pipe'] });
+  return outputPath;
+}
+
+const legendOutputs = {
+  dataflow: renderLegendFixture('dataflow', 'issue-52-default-flow', {
+    schema_version: 1,
+    diagram_type: 'dataflow',
+    meta: { title: 'Default Flow With Store' },
+    stages: [{ label: 'Input' }, { label: 'Output' }],
+    nodes: [
+      { id: 'input', type: 'backend', label: 'Input', stage: 0, row: 0 },
+      { id: 'output', type: 'database', label: 'Output Store', stage: 1, row: 0 },
+    ],
+    flows: [{ from: 'input', to: 'output', label: 'request', route: 'straight' }],
+  }),
+  lifecycle: renderLegendFixture('lifecycle', 'issue-52-no-waiting', {
+    schema_version: 1,
+    diagram_type: 'lifecycle',
+    meta: { title: 'No Waiting or Failure', viewBox: [720, 566] },
+    lanes: [{ id: 'main', label: 'Lifecycle' }],
+    states: [
+      { id: 'started', type: 'start', label: 'Started', lane: 'main', col: 0 },
+      { id: 'running', type: 'active', label: 'Running', lane: 'main', col: 1 },
+      { id: 'completed', type: 'success', label: 'Completed', lane: 'main', col: 2 },
+    ],
+    transitions: [{ from: 'started', to: 'running' }, { from: 'running', to: 'completed' }],
+  }),
+  custom: renderLegendFixture('architecture', 'issue-52-custom-label', {
+    schema_version: 1,
+    diagram_type: 'architecture',
+    meta: {
+      title: 'Custom Legend Label',
+      viewBox: [720, 420],
+      legend: {
+        entries: {
+          frontend: { label: 'Reader <UI> & ops' },
+          external: { label: 'Future integration', visible: true },
+        },
+      },
+      views: [{ id: 'main', label: 'Main', focus: ['ui', 'store'] }],
+    },
+    components: [
+      { id: 'ui', type: 'frontend', label: 'UI', pos: [60, 90] },
+      { id: 'store', type: 'database', label: 'Store', pos: [300, 90] },
+    ],
+    connections: [],
+  }),
+  hidden: renderLegendFixture('dataflow', 'issue-52-hidden', {
+    schema_version: 1,
+    diagram_type: 'dataflow',
+    meta: { title: 'Hidden Legend', legend: { mode: 'hidden', entries: { database: { visible: true } } } },
+    stages: [{ label: 'Input' }, { label: 'Output' }],
+    nodes: [
+      { id: 'input', type: 'backend', label: 'Input', stage: 0, row: 0 },
+      { id: 'output', type: 'backend', label: 'Output', stage: 1, row: 0 },
+    ],
+    flows: [{ from: 'input', to: 'output', label: 'request', route: 'straight' }],
+  }),
+};
+
 const parallelSource = JSON.parse(JSON.stringify(source));
 parallelSource.meta.title = 'Parallel Route Identity';
 parallelSource.connections[0].label = '';
@@ -281,18 +350,204 @@ let targetId;
 try {
   cdp = await connectCdp(await devtoolsEndpoint(port, chromeProcess, () => chromeStderr));
   ({ targetId } = await cdp.send('Target.createTarget', { url: 'about:blank' }));
+  await cdp.send('Target.activateTarget', { targetId });
   const { sessionId } = await cdp.send('Target.attachToTarget', { targetId, flatten: true });
   await cdp.send('Page.enable', {}, sessionId);
   await cdp.send('Runtime.enable', {}, sessionId);
 
   async function navigateReady(file, condition, label) {
-    await cdp.send('Page.navigate', { url: pathToFileURL(file).href }, sessionId);
+    const url = file instanceof URL ? file.href : pathToFileURL(file).href;
+    await cdp.send('Page.navigate', { url }, sessionId);
+    await cdp.send('Page.bringToFront', {}, sessionId);
+    await cdp.send('Emulation.setFocusEmulationEnabled', { enabled: true }, sessionId);
     let ready = false;
     for (let attempt = 0; attempt < 100 && !ready; attempt += 1) {
       ready = await evaluate(cdp, sessionId, `document.readyState === "complete" && (${condition})`);
       if (!ready) await delay(50);
     }
     assert.equal(ready, true, `${label} did not expose its browser export surface`);
+  }
+
+  async function verifyResolvedLegendContract(outputs) {
+    async function inspectKinds(file, expectedKinds, theme) {
+      const url = new URL(pathToFileURL(file).href);
+      url.searchParams.set('theme', theme);
+      await navigateReady(url, '!!(window.Archify && Archify.semanticLens)', `legend ${theme}`);
+      const result = await evaluate(cdp, sessionId, `(() => {
+        var svg = document.querySelector('.diagram-container > svg');
+        var entries = Array.from(svg.querySelectorAll('[data-legend-semantic-kind]'));
+        var vb = svg.viewBox.baseVal;
+        return {
+          theme: document.documentElement.getAttribute('data-theme'),
+          kinds: entries.map(function (entry) { return entry.getAttribute('data-legend-semantic-kind'); }),
+          bridge: !!svg.querySelector('[data-legend-bridge]'),
+          roles: entries.map(function (entry) { return entry.getAttribute('role'); }),
+          aria: entries.map(function (entry) { return entry.getAttribute('aria-label'); }),
+          counts: entries.map(function (entry) { return entry.getAttribute('data-legend-count'); }),
+          tabStops: entries.filter(function (entry) { return entry.getAttribute('tabindex') === '0'; }).length,
+          inside: entries.every(function (entry) {
+            var box = entry.getBBox();
+            return box.x >= vb.x && box.y >= vb.y && box.x + box.width <= vb.x + vb.width && box.y + box.height <= vb.y + vb.height;
+          })
+        };
+      })()`);
+      assert.equal(result.theme, theme);
+      assert.deepEqual(result.kinds, expectedKinds);
+      assert.equal(result.inside, true);
+      return result;
+    }
+
+    for (const theme of ['dark', 'light']) {
+      const dataflow = await inspectKinds(outputs.dataflow, ['database', 'default'], theme);
+      assert.equal(dataflow.bridge, true);
+      assert.deepEqual(dataflow.roles, ['button', null]);
+      assert.deepEqual(dataflow.aria, ['Inspect data store, 1 node', null]);
+      assert.deepEqual(dataflow.counts, ['1', null]);
+      assert.equal(dataflow.tabStops, 1);
+      const lifecycle = await inspectKinds(outputs.lifecycle, ['start', 'active', 'success'], theme);
+      assert.equal(lifecycle.bridge, true);
+    }
+
+    await navigateReady(outputs.dataflow, '!!(window.Archify && Archify.semanticLens && Archify.exportMenu)', 'Dataflow database legend runtime');
+    const databaseRuntime = await evaluate(cdp, sessionId, String.raw`(async function () {
+      var entry = document.querySelector('[data-legend-kind="database"]');
+      entry.focus();
+      entry.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      var originalCreateObjectURL = URL.createObjectURL;
+      var originalAnchorClick = HTMLAnchorElement.prototype.click;
+      var captured;
+      URL.createObjectURL = function (blob) {
+        captured = blob.text();
+        return 'blob:archify-dataflow-legend-smoke';
+      };
+      HTMLAnchorElement.prototype.click = function () {};
+      try {
+        await Archify.exportMenu.run('svg');
+        var exportedText = await captured;
+        var exported = new DOMParser().parseFromString(exportedText, 'image/svg+xml').documentElement;
+        return {
+          selected: Archify.semanticLens.active(),
+          lensOpen: Archify.semanticLens.isOpen(),
+          exportedKinds: Array.from(exported.querySelectorAll('[data-legend-semantic-kind]')).map(function (item) { return item.getAttribute('data-legend-semantic-kind'); }),
+          exportedBridgeResidue: exported.querySelectorAll('[data-legend-bridge], [data-legend-kind], [data-legend-label], [data-legend-count], [data-legend-bridge-runtime]').length
+        };
+      } finally {
+        URL.createObjectURL = originalCreateObjectURL;
+        HTMLAnchorElement.prototype.click = originalAnchorClick;
+      }
+    })()`, true);
+    assert.deepEqual(databaseRuntime.selected, ['database']);
+    assert.equal(databaseRuntime.lensOpen, true);
+    assert.deepEqual(databaseRuntime.exportedKinds, ['database', 'default']);
+    assert.equal(databaseRuntime.exportedBridgeResidue, 0);
+
+    await navigateReady(outputs.custom, '!!(window.Archify && Archify.semanticLens && Archify.exportMenu)', 'custom legend runtime');
+    const runtime = await evaluate(cdp, sessionId, String.raw`(async function () {
+      var svg = document.querySelector('.diagram-container > svg');
+      var entries = Array.from(svg.querySelectorAll('[data-legend-semantic-kind]'));
+      var interactive = entries.filter(function (entry) { return entry.hasAttribute('data-legend-kind'); });
+      var first = interactive[0];
+      var second = interactive[1];
+      first.focus();
+      first.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+      var arrowMoved = document.activeElement === second;
+      second.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      var selected = Archify.semanticLens.active();
+      var guidedActivated = Archify.guidedViews.activate('main', { updateUrl: false });
+      var guidedActive = Archify.guidedViews.active();
+      var visualMatrix = [];
+      for (var preset of ['classic', 'signal-flow', 'blueprint', 'editorial']) {
+        if (!Archify.preset.apply(preset)) throw new Error('could not apply preset ' + preset);
+        for (var theme of ['dark', 'light']) {
+          document.documentElement.setAttribute('data-theme', theme);
+          visualMatrix.push({
+            preset: preset,
+            theme: theme,
+            kinds: entries.map(function (entry) { return entry.getAttribute('data-legend-semantic-kind'); }),
+            labels: entries.map(function (entry) { return entry.querySelector('text').textContent; })
+          });
+        }
+      }
+
+      var originalCreateObjectURL = URL.createObjectURL;
+      var originalAnchorClick = HTMLAnchorElement.prototype.click;
+      var captured;
+      URL.createObjectURL = function (blob) {
+        captured = blob.text();
+        return 'blob:archify-legend-smoke';
+      };
+      HTMLAnchorElement.prototype.click = function () {};
+      try {
+        await Archify.exportMenu.run('svg');
+        var exportedText = await captured;
+        var exported = new DOMParser().parseFromString(exportedText, 'image/svg+xml').documentElement;
+        return {
+          labels: interactive.map(function (entry) { return entry.getAttribute('aria-label'); }),
+          roles: entries.map(function (entry) { return entry.getAttribute('role'); }),
+          counts: interactive.map(function (entry) { return entry.getAttribute('data-legend-count'); }),
+          tabStops: interactive.filter(function (entry) { return entry.getAttribute('tabindex') === '0'; }).length,
+          arrowMoved: arrowMoved,
+          selected: selected,
+          lensOpen: Archify.semanticLens.isOpen(),
+          guidedActivated: guidedActivated,
+          guidedActive: guidedActive,
+          visualMatrix: visualMatrix,
+          forcedUnusedInteractive: entries.at(-1).hasAttribute('data-legend-kind'),
+          exportedKinds: Array.from(exported.querySelectorAll('[data-legend-semantic-kind]')).map(function (entry) { return entry.getAttribute('data-legend-semantic-kind'); }),
+          exportedBridgeResidue: exported.querySelectorAll('[data-legend-bridge], [data-legend-kind], [data-legend-label], [data-legend-count], [data-legend-bridge-runtime]').length,
+          exportedLabels: Array.from(exported.querySelectorAll('[data-legend-semantic-kind] text')).map(function (text) { return text.textContent; })
+        };
+      } finally {
+        URL.createObjectURL = originalCreateObjectURL;
+        HTMLAnchorElement.prototype.click = originalAnchorClick;
+      }
+    })()`, true);
+    assert.deepEqual(runtime.labels, ['Inspect Reader <UI> & ops, 1 node', 'Inspect Database, 1 node']);
+    assert.deepEqual(runtime.roles, ['button', 'button', null]);
+    assert.deepEqual(runtime.counts, ['1', '1']);
+    assert.equal(runtime.tabStops, 1);
+    assert.equal(runtime.arrowMoved, true);
+    assert.deepEqual(runtime.selected, ['database']);
+    assert.equal(runtime.lensOpen, false);
+    assert.equal(runtime.guidedActivated, true);
+    assert.equal(runtime.guidedActive, 'main');
+    assert.equal(runtime.visualMatrix.length, 8);
+    for (const entry of runtime.visualMatrix) {
+      assert.deepEqual(entry.kinds, ['frontend', 'database', 'external']);
+      assert.deepEqual(entry.labels, ['Reader <UI> & ops', 'Database', 'Future integration']);
+    }
+    assert.equal(runtime.forcedUnusedInteractive, false);
+    assert.deepEqual(runtime.exportedKinds, ['frontend', 'database', 'external']);
+    assert.equal(runtime.exportedBridgeResidue, 0);
+    assert.deepEqual(runtime.exportedLabels, ['Reader <UI> & ops', 'Database', 'Future integration']);
+
+    await cdp.send('Emulation.setEmulatedMedia', { media: 'print' }, sessionId);
+    const printState = await evaluate(cdp, sessionId, `(() => ({
+      legendDisplay: getComputedStyle(document.querySelector('[data-legend]')).display,
+      runtimeBadgesHidden: Array.from(document.querySelectorAll('[data-legend-bridge-runtime]')).every(function (entry) { return getComputedStyle(entry).display === 'none'; })
+    }))()`);
+    assert.notEqual(printState.legendDisplay, 'none');
+    assert.equal(printState.runtimeBadgesHidden, true);
+    await cdp.send('Emulation.setEmulatedMedia', { media: '' }, sessionId);
+
+    const embedUrl = new URL(pathToFileURL(outputs.custom).href);
+    embedUrl.searchParams.set('embed', '1');
+    await navigateReady(embedUrl, '!!(window.Archify && Archify.semanticLens)', 'embedded legend');
+    const embed = await evaluate(cdp, sessionId, `(() => ({
+      roles: document.querySelectorAll('[data-legend-kind][role]').length,
+      runtime: document.querySelectorAll('[data-legend-bridge-runtime]').length,
+      kinds: Array.from(document.querySelectorAll('[data-legend-semantic-kind]')).map(function (entry) { return entry.getAttribute('data-legend-semantic-kind'); })
+    }))()`);
+    assert.deepEqual(embed, { roles: 0, runtime: 0, kinds: ['frontend', 'database', 'external'] });
+
+    await navigateReady(outputs.hidden, '!!(window.Archify && Archify.semanticLens)', 'hidden legend');
+    const hidden = await evaluate(cdp, sessionId, `(() => ({
+      root: !!document.querySelector('[data-legend]'),
+      bridge: !!document.querySelector('[data-legend-bridge]'),
+      title: Array.from(document.querySelectorAll('.diagram-container svg text')).some(function (text) { return text.textContent.trim() === 'Legend'; })
+    }))()`);
+    assert.deepEqual(hidden, { root: false, bridge: false, title: false });
+    console.log('ok legend runtime: labels, counts, keyboard, export, print, embed, hidden, and dual themes');
   }
 
   async function verifySemanticPassportDismissal(file) {
@@ -358,13 +613,25 @@ try {
   }
 
   async function verifyArchitectureDeltaNavigator(file) {
+    await cdp.send('Emulation.setEmulatedMedia', {
+      media: 'screen',
+      features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }],
+    }, sessionId);
     const readyCondition = '!!document.querySelector("#review-play") && !document.querySelector("#review-play").disabled';
     async function waitForSelected(changeKey, label) {
       for (let attempt = 0; attempt < 80; attempt += 1) {
         if (await evaluate(cdp, sessionId, `document.querySelector('.change-row[aria-current="step"]')?.dataset.changeKey === ${JSON.stringify(changeKey)}`)) return;
         await delay(50);
       }
-      assert.fail(`${label} did not select ${changeKey} within the bounded wait`);
+      const observed = await evaluate(cdp, sessionId, `({
+        selected: document.querySelector('.change-row[aria-current="step"]')?.dataset.changeKey || null,
+        pressed: document.querySelector('#review-play')?.getAttribute('aria-pressed'),
+        label: document.querySelector('#review-play')?.textContent,
+        status: document.querySelector('#review-status')?.textContent,
+        reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        hidden: document.hidden
+      })`);
+      assert.fail(`${label} did not select ${changeKey} within the bounded wait: ${JSON.stringify(observed)}`);
     }
     async function waitForReviewFinished(label) {
       for (let attempt = 0; attempt < 400; attempt += 1) {
@@ -519,7 +786,10 @@ try {
       same: getComputedStyle(document.querySelector('[data-view="delta"] [data-delta-state="same"]')).opacity
     })`);
     assert.deepEqual(printState, { strip: 'none', base: 'none', delta: 'block', head: 'none', current: '1', same: '1' });
-    await cdp.send('Emulation.setEmulatedMedia', { media: 'screen', features: [] }, sessionId);
+    await cdp.send('Emulation.setEmulatedMedia', {
+      media: 'screen',
+      features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }],
+    }, sessionId);
 
     await navigateReady(file, readyCondition, 'architecture-delta tamper navigator');
     const tampered = await evaluate(cdp, sessionId, `(() => {
@@ -759,6 +1029,7 @@ try {
         function stableLiveSnapshot() {
           var clone = svg.cloneNode(true);
           clone.style.removeProperty('transform');
+          clone.style.removeProperty('clip-path');
           clone.removeAttribute('data-view-scale');
           Array.from(clone.querySelectorAll('[data-legend-bridge-runtime]')).forEach(function (element) { element.remove(); });
           return clone.outerHTML;
@@ -1058,7 +1329,7 @@ try {
     assert.match(routePayload.duplicateExportError, /Trace a route before exporting a Route Share Card/);
     assert.equal(routePayload.emptyGeometryRejected, true);
     assert.match(routePayload.emptyGeometryExportError, /Trace a route before exporting a Route Share Card/);
-    assert.match(routePayload.toBlobError, /toBlob returned null for Share Card/);
+    assert.match(routePayload.toBlobError, /canvas\.toBlob returned no data for Share Card/);
     assert.match(routePayload.missingToBlobError, /canvas\.toBlob unavailable for Share Card/);
     assert.match(routePayload.missingContextError, /2D canvas context unavailable for Share Card/);
     assert.ok(routePayload.imageDecodeError);
@@ -1262,6 +1533,7 @@ try {
         function stableLiveSnapshot() {
           var clone = svg.cloneNode(true);
           clone.style.removeProperty('transform');
+          clone.style.removeProperty('clip-path');
           clone.removeAttribute('data-view-scale');
           Array.from(clone.querySelectorAll('[data-legend-bridge-runtime]')).forEach(function (element) { element.remove(); });
           return clone.outerHTML;
@@ -1483,6 +1755,7 @@ try {
     console.log(`ok ${label} Reach Card: ${reachPayload.size} bytes, ${reachPayload.snapshot.nodeIds.length} nodes, ${reachPayload.snapshot.edges.length} authored links`);
   }
 
+  await verifyResolvedLegendContract(legendOutputs);
   await verifySemanticPassportDismissal(path.resolve(skillRoot, '../docs/gallery/artifacts/production-deployment.architecture.html'));
   await verifyArchitectureDeltaNavigator(path.resolve(skillRoot, '../examples/checkout-platform-delta.html'));
   await captureShareCard(output, 'architecture-wide');

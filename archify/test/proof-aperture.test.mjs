@@ -24,22 +24,22 @@ test('landing declares a truthful first-fold proof aperture in document order', 
 });
 
 test('desktop hero budget exposes live diagram content without shrinking its canvas', () => {
-  assert.match(cssRule('.hero'), /padding-top:5\.5rem/);
-  assert.match(cssRule('.hero-badge'), /margin-bottom:1\.125rem/);
-  assert.match(cssRule('.hero h1'), /margin-bottom:\.875rem/);
-  assert.match(cssRule('.hero-sub'), /margin:0 auto 1\.375rem/);
-  assert.match(cssRule('.hero-actions'), /margin-bottom:1\.5rem/);
+  assert.match(cssRule('.hero'), /padding-top:9rem/);
+  assert.match(cssRule('.hero-bento'), /grid-template-columns:repeat\(12,1fr\)/);
+  assert.match(cssRule('.hero-intro'), /grid-column:1 \/ 8/);
+  assert.match(cssRule('.proof-main'), /grid-column:8 \/ 13/);
+  assert.match(cssRule('.proof-main'), /grid-row:1 \/ 3/);
   assert.match(cssRule('.hero-actions .btn'), /min-height:44px/);
-  assert.match(cssRule('.proof-viewport'), /height:clamp\(500px,52vw,610px\)/);
+  assert.match(cssRule('.proof-viewport'), /min-height:430px/);
 });
 
-test('narrow mobile gets an independently tuned proof aperture and full-size actions', () => {
+test('narrow viewport preserves a contained fallback without adding a mobile product surface', () => {
   const mobile = landing.match(/@media\(max-width:640px\)\s*\{([\s\S]+?)\n\s*\}\n\s*<\/style>/)?.[1];
   assert.ok(mobile, 'narrow mobile media query missing');
-  assert.match(mobile, /\.hero\s*\{\s*padding-top:4\.75rem;\s*\}/);
-  assert.match(mobile, /\.hero-actions\s*\{\s*flex-direction:column;\s*gap:\.625rem;\s*\}/);
-  assert.match(mobile, /\.hero-actions \.btn\s*\{\s*width:100%;\s*justify-content:center;\s*\}/);
-  assert.match(mobile, /\.proof-viewport\s*\{\s*height:400px;\s*\}/);
+  assert.match(mobile, /\.hero\s*\{\s*padding-top:6\.75rem;\s*\}/);
+  assert.match(mobile, /\.hero-actions \.btn\s*\{\s*flex:1;\s*justify-content:center;\s*\}/);
+  assert.match(mobile, /\.proof-viewport\s*\{\s*min-height:360px;\s*\}/);
+  assert.match(mobile, /\.proof-rail\s*\{\s*grid-template-columns:1fr;\s*\}/);
 });
 
 test('proof aperture remains one real eager sandboxed artifact with explicit user-selected identities', () => {
@@ -47,7 +47,7 @@ test('proof aperture remains one real eager sandboxed artifact with explicit use
   assert.match(landing, /loading="eager"/);
   assert.match(landing, /sandbox="allow-scripts"/);
   assert.doesNotMatch(landing, /sandbox="[^"]*allow-same-origin/);
-  assert.equal((landing.match(/class="proof-tab"/g) || []).length, 3);
+  assert.equal((landing.match(/class="spec-card"/g) || []).length, 3);
   assert.match(landing, /data-proof-playback="first-fold-once"/);
   assert.match(landing, /\?embed=1&amp;play=1&amp;theme=dark#view=happy-path/);
   assert.doesNotMatch(landing, /setInterval\(|scrollIntoView\(|scroll-triggered|proof-carousel/);
@@ -70,7 +70,7 @@ test('proof playback delegates reduced motion to the artifact and keeps delibera
 
 test('aperture uses normal flow and preserves reduced-motion boundaries', () => {
   const hero = cssRule('.hero');
-  const proof = cssRule('.hero-proof');
+  const proof = cssRule('.proof-main');
   assert.doesNotMatch(hero + proof, /position:absolute|transform:|top:-|margin-top:-|height:100vh/);
   assert.match(landing, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
   assert.match(landing, /\.fade-up\s*\{\s*opacity:1!important;\s*transform:none!important;/);

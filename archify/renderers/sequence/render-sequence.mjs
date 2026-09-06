@@ -1,12 +1,21 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { esc, renderDefinitions, renderSemanticSigil, textUnits } from '../shared/utils.mjs';
-import { animateAttr, focusEdgeAttrs, focusNodeAttrs, focusNodeTitle, loadDiagram, writeDiagram, svgAccessibleText, svgRootAttrs } from '../shared/cli.mjs';
+import { animateAttr, focusEdgeAttrs, focusNodeAttrs, focusNodeTitle, loadDiagramWithBrandMarks, writeDiagram, svgAccessibleText, svgRootAttrs } from '../shared/cli.mjs';
 import { throwDiagnosticProblems } from '../shared/diagnostics.mjs';
+import { resolveLegend, renderLegend as renderResolvedLegend } from '../shared/legend.mjs';
 import { componentFill, arrowClassMap, rectsOverlap, cleanFlowProblems, cleanCrossingProblems, cleanAmbiguousCorridorProblems, cleanBorderRunProblems, cleanRouteRhythmProblems, cleanLabelRouteClearanceProblems, routePointsValue, asArray, isFinitePoint } from '../shared/geometry.mjs';
+import { availableNodeTextWidth, fittedNodeFontSize, minimumNodeTextWidth } from '../shared/text-fit.mjs';
+import { brandLabelFitWidth, brandMetadataFor, brandTopRailProblem, renderBrandMark } from '../shared/brand-marks.mjs';
+import { translateMessage as i18nText } from '../shared/i18n.mjs';
+
+const participantTextFit = {
+  sublabelPreferred: 7,
+  sublabelMinimum: 6,
+};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const { diagram: sequence, template, outPath } = loadDiagram({
+const { diagram: sequence, template, outPath } = await loadDiagramWithBrandMarks({
   rendererDir: __dirname,
   diagramType: 'sequence',
   defaultExample: 'cache-miss-request.sequence.json'
@@ -15,17 +24,35 @@ const { diagram: sequence, template, outPath } = loadDiagram({
 const viewBox = sequence.meta?.viewBox || [920, 760];
 // The timeline scales with viewBox height: a taller viewBox gains message room,
 // a shorter one shrinks the readable band (validated below) instead of clipping.
+// `column_fit: "spread"` widens the lanes with the viewBox instead of keeping
+// the fixed 108px gap, so a wide canvas gains column distance and label room
+// rather than dead space on the right. The default stays "fixed" so existing
+// diagrams keep their coordinates.
+const columnFit = sequence.meta?.column_fit === 'spread' ? 'spread' : 'fixed';
+const participantCount = Math.max(1, asArray(sequence.participants).length);
+const sideMargin = 62;
+const participantW = columnFit === 'spread'
+  ? Math.max(86, Math.min(190, Math.round((viewBox[0] - sideMargin * 2) / participantCount) - 24))
+  : 86;
+const colGap = columnFit === 'spread' && participantCount > 1
+  ? Math.max(108, (viewBox[0] - 40 - sideMargin - participantW) / (participantCount - 1))
+  : 108;
+
 const layout = {
   topY: 72,
-  participantW: 86,
+  participantW,
   participantH: 54,
   lifelineTop: 142,
   lifelineBottom: viewBox[1] - 65,
   legendY: viewBox[1] - 54,
-  leftX: 62,
-  colGap: 108,
+  leftX: columnFit === 'spread' ? sideMargin + participantW / 2 : sideMargin,
+  colGap,
   labelH: 16
 };
+
+const participantBoxWidthNote = columnFit === 'spread'
+  ? `participant boxes are ${participantW}px for this viewBox width and ${participantCount} participants`
+  : `participant boxes are a fixed ${participantW}px unless meta.column_fit is "spread"`;
 
 const arrowClass = {
   ...arrowClassMap,
@@ -50,6 +77,55 @@ const participants = new Map(asArray(sequence.participants).map((participant, in
   }
 ]));
 
+function messageGeometry(message) {
+  const from = participants.get(message.from);
+  const to = participants.get(message.to);
+  if (!from || !to || typeof message.y !== 'number') return null;
+  const direction = to.cx > from.cx ? 1 : -1;
+  const start = from.cx + direction * 7;
+  const end = to.cx - direction * 7;
+  return { start, end, center: (start + end) / 2 };
+}
+
+function messageLabelBox(message, relationIndex = null) {
+  const geometry = messageGeometry(message);
+  if (!geometry) return null;
+  const width = Math.max(34, textUnits(message.label) * 5.2 + 12);
+  return {
+    relation: message,
+    relationIndex,
+    label: message.label,
+    x: geometry.center - width / 2,
+    y: message.y - 20,
+    width,
+    height: layout.labelH,
+  };
+}
+
+function messageRouteBox(message) {
+  const geometry = messageGeometry(message);
+  if (!geometry) return null;
+  return {
+    x: Math.min(geometry.start, geometry.end),
+    y: message.y - 2,
+    width: Math.abs(geometry.end - geometry.start),
+    height: 4,
+  };
+}
+
+function segmentLabelBox(segment) {
+  const labelW = Math.max(42, textUnits(segment.label) * 5.2 + 14);
+  const occupied = asArray(sequence.messages)
+    .flatMap((message) => [messageLabelBox(message), messageRouteBox(message)])
+    .filter(Boolean);
+  const label = { x: 56, y: segment.from - 22, width: labelW, height: 18 };
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    if (!occupied.some((rect) => rectsOverlap(label, rect, 2))) break;
+    label.y -= 22;
+  }
+  return label;
+}
+
 const compositionFrames = asArray(sequence.segments).map((segment, index) => ({
   id: index,
   label: segment.label,
@@ -71,20 +147,7 @@ function messagePath(message) {
 
 function validateSequence() {
   const problems = [];
-  if (sequence.schema_version !== 1) problems.push('Sequence files must set "schema_version": 1.');
-  if (sequence.diagram_type !== 'sequence') problems.push('Sequence files must set "diagram_type": "sequence".');
-  if (!sequence.meta?.title) problems.push('Sequence files must include meta.title.');
-  if (!Array.isArray(sequence.participants) || sequence.participants.length < 2) {
-    problems.push('Sequence diagrams need at least two participants.');
-  }
   if (participants.size !== asArray(sequence.participants).length) problems.push('Participant ids must be unique.');
-  if (!Array.isArray(sequence.messages) || sequence.messages.length < 1) {
-    problems.push('Sequence diagrams need at least one message.');
-  }
-  if (sequence.cards !== undefined && !Array.isArray(sequence.cards)) problems.push('Sequence "cards" must be an array.');
-  for (const arr of ['segments', 'activations']) {
-    if (sequence[arr] !== undefined && !Array.isArray(sequence[arr])) problems.push(`Sequence "${arr}" must be an array.`);
-  }
 
   if (layout.lifelineBottom - layout.lifelineTop < 120) {
     problems.push(`viewBox height ${viewBox[1]} leaves under 120px of timeline — set meta.viewBox[1] to at least ${layout.lifelineTop + 120 + 65}.`);
@@ -93,7 +156,18 @@ function validateSequence() {
   for (const participant of participants.values()) {
     const estLabelW = textUnits(participant.label) * 6.8;
     if (estLabelW > layout.participantW + 6) {
-      problems.push(`Label "${participant.label}" (~${Math.round(estLabelW)}px) is wider than the ${layout.participantW}px participant box — shorten it or move detail to sublabel.`);
+      problems.push(`Label "${participant.label}" (~${Math.round(estLabelW)}px) is wider than the ${layout.participantW}px participant box — shorten it.`);
+    }
+    const brandRailProblem = brandTopRailProblem(participant, layout.participantW, 8, 'Participant');
+    if (brandRailProblem) problems.push(brandRailProblem);
+    // sublabel renders as a single unwrapped <text>; shrink-to-fit handles the
+    // ordinary case, this rejects what it cannot rescue.
+    if (participant.sublabel) {
+      const availableTextW = availableNodeTextWidth(layout.participantW);
+      const minimumW = minimumNodeTextWidth(participant.sublabel, participantTextFit.sublabelMinimum);
+      if (minimumW > availableTextW) {
+        problems.push(`Sublabel "${participant.sublabel}" needs ~${Math.ceil(minimumW)}px at the ${participantTextFit.sublabelMinimum}px legible minimum, but participant "${participant.id}" provides ${availableTextW}px — shorten the sublabel (${participantBoxWidthNote}).`);
+      }
     }
   }
 
@@ -114,13 +188,11 @@ function validateSequence() {
   // segment bands remain intentional pass-through geometry and are excluded.
   problems.push(...cleanFlowProblems({
     relations: sequence.messages,
-    endpointIds: new Set(participants.keys()),
     obstacles: participants.values(),
     pathFor: messagePath,
     diagramType: 'sequence',
     relationCollection: 'messages',
     obstacleKind: 'participant header',
-    profile: sequence.meta?.quality_profile,
     clearance: 0,
     routeHint: 'move the message y below the participant headers or reorder participants'
   }));
@@ -184,13 +256,7 @@ function validateSequence() {
   // Label masks can extend well past the arrow span, so check the actual
   // label rectangles too — tangent arrows with long labels still collide.
   const labelRects = asArray(sequence.messages)
-    .map((m, messageIndex) => {
-      if (!participants.has(m.from) || !participants.has(m.to) || typeof m.y !== 'number') return null;
-      const x1 = participants.get(m.from).cx;
-      const x2 = participants.get(m.to).cx;
-      const width = Math.max(34, textUnits(m.label) * 5.2 + 12);
-      return { relation: m, relationIndex: messageIndex, label: m.label, x: (x1 + x2) / 2 - width / 2, y: m.y - 20, width, height: layout.labelH };
-    })
+    .map((m, messageIndex) => messageLabelBox(m, messageIndex))
     .filter(Boolean);
   for (let i = 0; i < labelRects.length; i += 1) {
     for (let j = i + 1; j < labelRects.length; j += 1) {
@@ -217,6 +283,12 @@ function validateSequence() {
     if (segment.from < layout.topY || segment.to > layout.lifelineBottom + 20) {
       problems.push(`Segment "${segment.label}" extends outside the canvas — keep its y range between ${layout.topY} and ${layout.lifelineBottom + 20}.`);
     }
+    const labelBox = segmentLabelBox(segment);
+    const availableWidth = Math.max(0, viewBox[0] - 48 - labelBox.x);
+    if (labelBox.x + labelBox.width > viewBox[0] - 48) {
+      const requiredWidth = Math.ceil(labelBox.x + labelBox.width + 48);
+      problems.push(`Segment "${segment.label}" label (~${Math.round(labelBox.width)}px) exceeds the segment frame's available width (${availableWidth}px) — shorten the label or increase meta.viewBox[0] to at least ${requiredWidth}.`);
+    }
   }
 
   for (const activation of asArray(sequence.activations)) {
@@ -241,15 +313,22 @@ function renderParticipant(participant) {
   const fill = componentFill[participant.type] || 'c-external';
   const hasSub = participant.sublabel != null && participant.sublabel !== '';
   const sub = hasSub
-    ? `\n          <text data-detail="context" x="${participant.cx}" y="${layout.topY + 39}" class="t-muted" font-size="7" text-anchor="middle">${esc(participant.sublabel)}</text>`
+    ? `\n          <text data-detail="context" x="${participant.cx}" y="${layout.topY + 39}" class="t-muted" font-size="${fittedNodeFontSize(participant.sublabel, layout.participantW, participantTextFit.sublabelPreferred, participantTextFit.sublabelMinimum)}" text-anchor="middle">${esc(participant.sublabel)}</text>`
     : '';
-  const passport = { kind: participant.type, sublabel: participant.sublabel, context: 'Sequence participant' };
-  return `        <g ${focusNodeAttrs(participant.id, participant.label, passport)}>
+  const brand = renderBrandMark(participant, { x: participant.x + layout.participantW - 22, y: layout.topY + 6 });
+  const labelFontSize = fittedNodeFontSize(participant.label, brandLabelFitWidth(participant, layout.participantW), 11, 8);
+  const passport = {
+    kind: participant.type,
+    sublabel: participant.sublabel,
+    context: i18nText(sequence.meta.locale, 'node.context.sequence'),
+    ...brandMetadataFor(participant),
+  };
+  return `        <g ${focusNodeAttrs(participant.id, participant.label, passport, sequence.meta.locale)}>
           ${focusNodeTitle(participant.label, passport)}
           <rect x="${participant.x}" y="${layout.topY}" width="${layout.participantW}" height="${layout.participantH}" rx="6" class="c-mask"/>
           <rect x="${participant.x}" y="${layout.topY}" width="${layout.participantW}" height="${layout.participantH}" rx="6" class="${fill}"${animateAttr(sequence.meta, 'node', participant.index)} stroke-width="1.5"/>
-          ${renderSemanticSigil(participant.type, { x: participant.x + 6, y: layout.topY + 6 })}
-          <text${hasSub ? ' data-detail-anchor' : ''} x="${participant.cx}" y="${layout.topY + 22}" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">${esc(participant.label)}</text>${sub}
+          ${renderSemanticSigil(participant.type, { x: participant.x + 6, y: layout.topY + 6 })}${brand ? `\n          ${brand}` : ''}
+          <text data-node-label=""${hasSub ? ' data-detail-anchor=""' : ''} x="${participant.cx}" y="${layout.topY + 22}" class="t-primary" font-size="${labelFontSize}" font-weight="600" text-anchor="middle">${esc(participant.label)}</text>${sub}
         </g>`;
 }
 
@@ -258,8 +337,15 @@ function renderLifeline(participant) {
 }
 
 function renderSegment(segment, index) {
-  return `        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="${index}" x="48" y="${segment.from}" width="${viewBox[0] - 96}" height="${segment.to - segment.from}" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="62" y="${segment.from + 18}" class="t-dim" font-size="9" font-weight="600">${esc(segment.label)}</text>`;
+  return `        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="${index}" x="48" y="${segment.from}" width="${viewBox[0] - 96}" height="${segment.to - segment.from}" rx="10" class="c-lane" stroke-width="1"/>`;
+}
+
+function renderSegmentLabel(segment, index) {
+  const label = segmentLabelBox(segment);
+  return `        <g data-graph-role="segment-label" data-segment-id="${index}">
+          <rect x="${label.x}" y="${label.y}" width="${label.width}" height="${label.height}" rx="3" class="c-mask"/>
+          <text x="${label.x + 6}" y="${label.y + 13}" class="t-dim" font-size="9" font-weight="600">${esc(segment.label)}</text>
+        </g>`;
 }
 
 function renderActivation(activation) {
@@ -272,9 +358,10 @@ function renderActivation(activation) {
 }
 
 function messageLabel(message, x1, x2) {
-  const center = (x1 + x2) / 2;
+  const box = messageLabelBox(message);
+  const center = box ? box.x + box.width / 2 : (x1 + x2) / 2;
   const y = message.y - 10;
-  const labelW = Math.max(34, textUnits(message.label) * 5.2 + 12);
+  const labelW = box?.width || Math.max(34, textUnits(message.label) * 5.2 + 12);
   const accent = message.variant === 'security'
     ? 't-security'
     : message.variant === 'dashed'
@@ -289,11 +376,7 @@ function messageLabel(message, x1, x2) {
 }
 
 function renderMessage(message, index) {
-  const from = participants.get(message.from);
-  const to = participants.get(message.to);
-  const direction = to.cx > from.cx ? 1 : -1;
-  const start = from.cx + direction * 7;
-  const end = to.cx - direction * 7;
+  const { start, end } = messageGeometry(message);
   const [cls, marker] = arrowClass[message.variant || 'default'] || arrowClass.default;
   const strokeWidth = message.variant === 'emphasis' ? 1.8 : 1.4;
   const dash = message.variant === 'return' ? ' stroke-dasharray="3,5"' : '';
@@ -306,23 +389,42 @@ ${messageLabel(message, start, end)}${note}
         </g>`;
 }
 
+const LEGEND_CATALOG = [
+  { kind: 'emphasis', className: 'a-emphasis', marker: 'arrowhead-emphasis', strokeWidth: 1.8 },
+  { kind: 'return', className: 'a-default', marker: 'arrowhead', dash: '3,5' },
+  { kind: 'security', className: 'a-security', marker: 'arrowhead-security' },
+  { kind: 'dashed', className: 'a-dashed', marker: 'arrowhead-dashed' },
+  { kind: 'default', className: 'a-default', marker: 'arrowhead' },
+].map((entry) => ({
+  ...entry,
+  interactive: false,
+  swatchWidth: 34,
+  swatchGap: 9,
+  label: i18nText(sequence.meta.locale, `legend.sequence.${entry.kind}`),
+}));
+
 function renderLegend() {
-  const y = layout.legendY;
-  return `        <text x="150" y="${y - 20}" class="t-primary" font-size="10" font-weight="600">Legend</text>
-        <path d="M 150 ${y} L 184 ${y}" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <text x="193" y="${y + 3}" class="t-muted" font-size="8">request</text>
-        <path d="M 270 ${y} L 304 ${y}" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
-        <text x="313" y="${y + 3}" class="t-muted" font-size="8">return</text>
-        <path d="M 385 ${y} L 419 ${y}" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <text x="428" y="${y + 3}" class="t-muted" font-size="8">security</text>
-        <path d="M 530 ${y} L 564 ${y}" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <text x="573" y="${y + 3}" class="t-muted" font-size="8">async trace</text>`;
+  const presentKinds = new Set(asArray(sequence.messages).map((message) => message.variant || 'default'));
+  const entries = resolveLegend(sequence.meta?.legend, LEGEND_CATALOG, presentKinds);
+  return renderResolvedLegend({
+    entries,
+    locale: sequence.meta.locale,
+    layout: {
+      x: 40,
+      baselineY: layout.legendY,
+      width: viewBox[0] - 80,
+      minTitleY: layout.legendY - 30,
+      unfit: sequence.meta?.legend === undefined ? 'hide' : 'error',
+      diagramType: 'sequence',
+    },
+    renderSwatch: (entry) => `<path d="M ${entry.x} ${entry.baseline - 3} L ${entry.x + 34} ${entry.baseline - 3}" class="${entry.className}" stroke-width="${entry.strokeWidth || 1.4}"${entry.dash ? ` stroke-dasharray="${entry.dash}"` : ''} marker-end="url(#${entry.marker})"/>`,
+  });
 }
 
 function renderSvg() {
   const participantList = [...participants.values()];
-  return `      <svg viewBox="0 0 ${viewBox[0]} ${viewBox[1]}" ${svgRootAttrs(sequence.meta, 'sequence diagram')}>
-${svgAccessibleText(sequence.meta, 'sequence diagram')}
+  return `      <svg viewBox="0 0 ${viewBox[0]} ${viewBox[1]}" ${svgRootAttrs(sequence.meta)}>
+${svgAccessibleText(sequence.meta, 'sequence')}
 ${renderDefinitions()}
 
         <!-- Background Grid -->
@@ -334,11 +436,14 @@ ${asArray(sequence.segments).map(renderSegment).join('\n\n')}
         <!-- Lifelines -->
 ${participantList.map(renderLifeline).join('\n')}
 
+        <!-- Activations -->
+${asArray(sequence.activations).map(renderActivation).join('\n')}
+
         <!-- Messages -->
 ${asArray(sequence.messages).map(renderMessage).join('\n\n')}
 
-        <!-- Activations -->
-${asArray(sequence.activations).map(renderActivation).join('\n')}
+        <!-- Segment Labels -->
+${asArray(sequence.segments).map(renderSegmentLabel).join('\n')}
 
         <!-- Participants -->
 ${participantList.map(renderParticipant).join('\n\n')}
@@ -354,7 +459,6 @@ writeDiagram({
   template,
   diagramType: 'sequence',
   meta: sequence.meta,
-  footerLabel: 'Sequence diagram',
   svg: renderSvg(),
   cards: sequence.cards,
 });

@@ -37,7 +37,7 @@ test('landing metadata describes the full technical-diagram product and trusted 
 test('landing hero leads with three real generated proof artifacts', () => {
   assert.match(landing, /id="hero-proof-stage"/);
   assert.match(landing, /id="hero-proof-panel" role="tabpanel"/);
-  assert.equal((landing.match(/class="proof-tab"/g) || []).length, 3);
+  assert.equal((landing.match(/class="spec-card"/g) || []).length, 3);
   assert.equal((landing.match(/role="tab"/g) || []).length, 3);
   assert.doesNotMatch(landing, /class="hero-screenshot/);
 

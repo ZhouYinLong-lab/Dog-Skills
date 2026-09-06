@@ -23,7 +23,6 @@ Lifecycle JSON files must set:
   "diagram_type": "lifecycle",
   "meta": {
     "title": "Agent Run Lifecycle",
-    "subtitle": "Lifecycle phases, interruptions, recovery, and terminal exits",
     "viewBox": [980, 660]
   },
   "lanes": [],
@@ -46,6 +45,14 @@ The schema lives at:
 archify/schemas/lifecycle.schema.json
 ```
 
+## Legend
+
+The default legend derives kinds from `states[].type`. Supported
+`meta.legend.entries` keys, in stable order, are `start`, `active`, `waiting`,
+`decision`, `success`, `failure`, `neutral`, and `external`. Labels and
+visibility may be overridden through the shared legend contract; only kinds
+backed by rendered states receive Semantic Legend controls.
+
 ## Layout budget
 
 | Band | Lane id | Top y | Column centers | Default state |
@@ -54,13 +61,18 @@ archify/schemas/lifecycle.schema.json
 | Event | any other id | 278 | `col` 0–2 → x = 402, 556, 710 | 126×58 |
 | Outcome | `terminal` | 450 | `col` 0–2 → x = 402, 556, 710 | 118×58 |
 
+Event and terminal columns are intentionally offset from the main rail:
+event/terminal `col: N` uses the same x coordinate as main `col: N + 2`.
+For example, lower-band columns 0, 1, and 2 align beneath main columns 2, 3,
+and 4 respectively.
+
 | Constant | Value |
 |----------|-------|
-| viewBox | default `[980, 660]`; schema minimum `[420, 360]` |
-| State area | x within `[32, width − 32]`; y within `[64, legend y − 24]` |
+| viewBox | default `[980, 660]`; schema minimum `[420, 566]` |
+| State area | x within `[32, width − 32]`; state bottom at or above `height − 122` |
 | State spacing | ≥10px between any two states — checked across lanes, because all event lanes share one band; separate same-band states with `col` or `yOffset` |
 | Transition length | ≥32px between endpoints |
-| Legend row | y = height − 98 |
+| Legend row | final baseline y = height − 36; extra measured rows wrap upward |
 
 The primary lifecycle rail runs along the phase band and extends to the
 furthest occupied phase column. Route presets for transitions: `straight`,

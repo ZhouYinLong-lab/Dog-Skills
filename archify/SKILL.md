@@ -1,281 +1,137 @@
 ---
 name: archify
-description: >
-  JSON 驱动架构图生成器——5 种图类型（架构图·工作流·时序图·数据流·生命周期），
-  深色/浅色主题切换，一键导出 PNG/JPEG/WebP/双主题 SVG。Schema 校验 +
-  布局自动检测（重叠/碰撞/越界）。支持自然语言描述或粘贴 Mermaid 代码
-  自动转为 archify 风格。基于 Cocoon-AI 演进版，工程化程度最高。
-  Trigger keywords: 架构图, 工作流图, 时序图, 数据流图, 生命周期图,
-  workflow diagram, sequence diagram, dataflow, lifecycle diagram,
-  architecture diagram, archify, 状态机图, 管道图, ETL图,
-  Mermaid转图, 双主题图, JSON驱动图, 自动布局图.
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - Glob
-  - Grep
+description: Create polished, validated architecture, workflow, sequence, data-flow, and lifecycle/state diagrams as explorable standalone HTML with inline SVG, dark/light themes, optional trace motion, and PNG/JPEG/WebP/SVG/WebM export. Accept plain-language requirements or pasted Mermaid flowchart, sequenceDiagram, and stateDiagram input; inspect repository evidence when the diagram must reflect real code. Use when the user asks to visualize system architecture, infrastructure, cloud/security/network topology, technical workflows, API call sequences, request lifecycles, data pipelines, ETL/ELT, data lineage, state machines, or to convert/beautify Mermaid.
+license: MIT
 metadata:
-  category: development
-  source: https://github.com/tt-a1i/archify (MIT)
-  based_on: Cocoon-AI/architecture-diagram-generator (MIT v1.0)
-  upstream-author: tt-a1i
-  version: "2.12"
-  license: MIT
+  version: "2.17"
+  author: tt-a1i
+  based_on: Cocoon-AI/architecture-diagram-generator (MIT, v1.0)
 ---
 
-# Archify — JSON 驱动架构图生成器
+# Archify
 
-> 5 种图类型 × Schema 校验 × 双主题切换 × Mermaid 兼容。工程化程度最高的图工具。
-> 上游来源: [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.12)，基于 Cocoon-AI 演进
+Create a self-contained, interactive HTML diagram from a small typed JSON specification. Static output is the default; enable motion only when the user asks for a demo or presentation.
 
-## 在 Dog-Skills 图技能矩阵中的位置
+## Fast authoring path
 
-```
-architecture-diagram     →  系统架构（Quick/Deep双模式，HTML+SVG，深色主题）
-fireworks-tech-graph     →  多风格技术图（8风格14类型，SVG+PNG）
-excalidraw-diagram       →  手绘协作图（.excalidraw可编辑）
-text-logic-diagram       →  论述逻辑图（递进/流程/循环/层次/对比/矩阵）
-archify ⭐               →  工程化架构图（5类型×JSON Schema×自动校验×Mermaid输入）
-                           ↑ 独有: workflow/sequence/dataflow/lifecycle 四种工程图类型
-```
+Use this bounded path for ordinary generation. Do not read the optional Viewer Runtime reference unless the user asks about those features.
 
-**什么时候用 archify 而不是其他图技能？**
-- 需要画**工作流/时序图/数据流/生命周期图** → archify 是唯一支持这些类型的
-- 需要 **Schema 保证不出错** → archify 的 JSON Schema + 自动布局校验
-- 有 Mermaid 代码想"美化" → archify 读 Mermaid 结构，按自己风格重绘
-- 需要导出一个在明暗背景下都好看的 SVG → archify 独有的双主题 SVG
+1. Choose `architecture`, `workflow`, `sequence`, `dataflow`, or `lifecycle` from the question.
+2. Read one matching schema in `schemas/`, `schemas/common.schema.json`, and one matching JSON example in `examples/`. Read only those files. Fresh authorship means new stable IDs, domain wording, and layout; use the example for field shape, not facts. New workflow sources use `schema_version: 2` and its readable layout contract; keep `schema_version: 1` only when preserving an existing workflow's fixed geometry. When real product identity matters, query `node bin/archify.mjs brands "<name>" --json`; read `references/brand-marks.md` only for an unknown brand with a user-provided URL.
+3. Artifact first: the next tool action must write the candidate. Write the candidate before inspecting renderer internals. Do not plan exact coordinates in prose. Start with one clear main path, short side branches, sparse labels, and at most 12 primary nodes. Set `meta.quality_profile` to `"showcase"` unless the user explicitly requests a dense `standard` map. Start with automatic routes and labels. Do not add `via`, `channelX`, `channelY`, or `labelAt` before a diagnostic calls for one; apply at most one diagnosed geometry control per repair.
+4. Validate after every candidate edit and immediately before handoff:
 
----
+   ```bash
+   node bin/archify.mjs validate <type> <candidate.json> --quality showcase --json
+   ```
 
-## 5 种图类型
+   A receipt with only 4 artifact checks is basic validation, never showcase acceptance. A showcase pass must report all 9 artifact checks with 0 composition errors and 0 warnings. If the candidate omits or misspells the exact `meta.quality_profile` field, fix it before geometry. For a workflow v2 geometry diagnosis, run `node bin/archify.mjs validate workflow <candidate.json> --layout-json` and use the stable compiler receipt; solver internals are not authoring controls. A passing final validation freezes the candidate: never edit it afterward.
+5. For a delivered HTML, `deliver` is the final acceptance command:
 
-| 类型 | 用途 | 触发关键词 |
-|------|------|-----------|
-| `architecture` | 系统组件、云资源、服务、安全边界、基础设施 | "架构图" / "系统图" / "云架构" |
-| `workflow` | 技术流程、审批流、CI/CD、Runbook、事件响应 | "工作流" / "流程图" / "审批流" / "CI/CD" |
-| `sequence` | API 调用链、请求生命周期、缓存回退、异步追踪 | "时序图" / "调用链" / "交互流程" |
-| `dataflow` | 数据管道、ETL/ELT、PII 隔离、数据血缘 | "数据流" / "ETL" / "数据管道" / "数据血缘" |
-| `lifecycle` | 状态机、状态转换、重试、终止状态 | "生命周期" / "状态机" / "状态转换" |
+   ```bash
+   node bin/archify.mjs deliver <type> <candidate.json> <output.html> --quality showcase --json
+   ```
 
----
+   A non-zero exit can never be described as success. A failed delivery preserves any previous output, so do not run `visual-check` on that path: it would inspect the stale last-good artifact, not the failed candidate. If validation fails, change only the diagnosed `subject`, verify `evidence`, choose from `supportedFixes`, and rerun. Continue focused correction while the objective error count reaches a new minimum. If two consecutive rounds do not improve that best count, stop and report the unresolved diagnostics truthfully.
 
-## 核心工作流
+## Update awareness
 
-```
-用户需求 →  ① 识别图类型
-          →  ② 读 Schema + 示例（schemas/<type>.schema.json + examples/*.json）
-          →  ③ 写 JSON（按 Schema 填组件/节点/连线）
-          →  ④ 渲染: node bin/archify.mjs render <type> <input>.json <output>.html
-          →  ⑤ 校验: node bin/archify.mjs validate <type> <input>.json
-          →  交付自包含 HTML（含主题切换 + 导出菜单）
-```
+After the first candidate exists, run the packaged checker `scripts/check-update.mjs` once with Node and continue the requested workflow. If the command cannot run, continue without mentioning the check.
 
----
+- For `silent`, continue without mentioning the update check.
+- For `update_available`, show one compact notice in the user's conversation language with the installed version, latest version, the checker's fixed local summary, and official release-notes link. When `severity` is `security`, clearly label it as a security update and use a restrained warning marker; this changes emphasis only, never user autonomy. Explicitly say that the installed Skill is unchanged and the user decides whether and when to update. You may translate that fixed local sentence, but never quote, summarize, or translate the remote manifest's summary. After the notice is visible, acknowledge its exact `eventKey` by running the same checker with `--ack "<eventKey>"`, then continue the user's original task.
 
-## 每种类型的 JSON 结构
+The notice is information, not permission. Keep the installed version unchanged; this v0.1 workflow never downloads, installs, or executes an update, and silence is never consent.
 
-### Architecture（架构图）
+Do not read `renderers/shared/geometry.mjs`, renderer source, validator source, tests, or benchmarks before the first candidate. Inspect implementation only for an unsupported internal diagnostic or after two focused repairs fail.
 
-```json
-{
-  "schema_version": 1, "diagram_type": "architecture",
-  "meta": { "title": "Web App", "subtitle": "3-tier SaaS", "output": "web-app.html" },
-  "components": [
-    { "id": "users", "type": "external", "label": "Users", "pos": [40, 300] },
-    { "id": "api", "type": "backend", "label": "API", "pos": [460, 300] },
-    { "id": "db", "type": "database", "label": "PostgreSQL", "pos": [680, 300] }
-  ],
-  "boundaries": [
-    { "kind": "region", "label": "AWS us-west-2", "wraps": ["api", "db"] }
-  ],
-  "connections": [
-    { "from": "users", "to": "api", "label": "HTTPS", "variant": "emphasis" },
-    { "from": "api", "to": "db", "label": "SQL" }
-  ]
-}
-```
+Workflow note: use schema v2 for new workflows; preserve schema v1 when an
+existing source needs fixed legacy geometry. Keep semantic edge labels and act
+on the compiler diagnostic. The canonical layout, pin, migration, and receipt
+contract is in [`renderers/workflow/README.md`](renderers/workflow/README.md#layout-contracts).
 
-支持自由坐标 (`pos`) 和网格布局 (`layout.mode: "grid"`) 两种模式。
+Lifecycle note: phase columns `0..4` occupy the main rail; event/terminal column `N` in `0..2` aligns exactly beneath main column `N + 2`. A recoverable state uses `type: "failure"` plus a real transition back to the active state.
 
-### Workflow（工作流）
+## Type router
 
-```json
-{
-  "schema_version": 1, "diagram_type": "workflow",
-  "meta": { "title": "Release Workflow" },
-  "lanes": [
-    { "id": "dev", "label": "Developer" },
-    { "id": "ci", "label": "CI" },
-    { "id": "exceptions", "label": "Exception", "variant": "exception" }
-  ],
-  "nodes": [
-    { "id": "pr", "lane": "dev", "col": 0, "type": "frontend", "label": "Open PR" },
-    { "id": "build", "lane": "ci", "col": 1, "type": "backend", "label": "Build", "tag": "blocking" }
-  ],
-  "edges": [
-    { "from": "pr", "to": "build", "label": "webhook", "variant": "emphasis" }
-  ]
-}
-```
+| Type | Use for |
+|---|---|
+| `architecture` | Components, services, cloud/security boundaries, infrastructure |
+| `workflow` | Processes, approval gates, tool calls, runbooks, CI/CD |
+| `sequence` | API call chains, request lifecycles, async traces, returns |
+| `dataflow` | Pipelines, ETL/ELT, lineage, governance, consumers |
+| `lifecycle` | State/status transitions, retries, waiting and terminal states |
 
-6 列固定网格 + lane/phases/groups 分组系统。
+When ambiguous, run `node bin/archify.mjs guide "<scenario>" --json`. Scenario proof examples are structural references, not facts to copy.
 
-### Sequence（时序图）
+## Mermaid input
 
-```json
-{
-  "schema_version": 1, "diagram_type": "sequence",
-  "meta": { "title": "Cache Miss Request" },
-  "participants": [
-    { "id": "web", "type": "frontend", "label": "Web App" },
-    { "id": "api", "type": "backend", "label": "API" }
-  ],
-  "messages": [
-    { "from": "web", "to": "api", "y": 200, "label": "GET /data", "variant": "emphasis" },
-    { "from": "api", "to": "web", "y": 290, "label": "200 JSON", "variant": "return" }
-  ]
-}
-```
+Read Mermaid for topology and meaning, then author fresh Archify JSON; do not mechanically render Mermaid styling.
 
-最多 8 个参与者，消息 y 坐标控制时序。
+- `flowchart` / `graph` → `workflow`, or `architecture` for a component map.
+- `sequenceDiagram` → `sequence`; participants become semantic participants and arrows become messages.
+- `stateDiagram` → `lifecycle`; states and transitions retain meaning, not Mermaid style.
 
-### Dataflow（数据流）
+## Authoring invariants
 
-```json
-{
-  "schema_version": 1, "diagram_type": "dataflow",
-  "meta": { "title": "Product Analytics" },
-  "stages": [ { "label": "Sources" }, { "label": "Ingest" }, { "label": "Store" } ],
-  "nodes": [
-    { "id": "web", "type": "frontend", "label": "Web App", "stage": 0, "row": 0 },
-    { "id": "kafka", "type": "messagebus", "label": "Kafka", "stage": 1, "row": 0 }
-  ],
-  "flows": [
-    { "from": "web", "to": "kafka", "label": "events", "classification": "PII touch" }
-  ]
-}
-```
+- One obvious main path; side branches leave the nearest main-path node. Remove low-value edges before adding routing controls.
+- Omit `meta.visual_preset` by default so every diagram opens in `classic`, regardless of whether its resolved color mode is light or dark. Color mode and visual preset are independent: switching Light / Dark must preserve the current preset. Set `signal-flow`, `blueprint`, or `editorial` only when the user explicitly requests that visual style.
+- Omit `meta.subtitle` by default. Never invent a subtitle that restates the title, nodes, or cards; include one short supporting line only when the user explicitly asks for it.
+- Treat the standalone desktop viewer as a first-screen artifact by default, not a shallow strip. Generate one responsive artifact for laptops and external displays—never device-specific HTML or alternate topology. The viewer may adapt only the outer reading width from the live viewport height; it must preserve the authored SVG/viewBox, proportions, semantic geometry, and normal document flow. On a wide or tall desktop, use enough authored vertical rhythm that the diagram panel and its necessary conclusion cards occupy the screen as a balanced whole; runtime scaling cannot repair an over-compressed Y layout or an undersized explicit `meta.viewBox`. Before handoff, open the real HTML at 1440×900, 1600×1000, and 1920×1080; additionally check 2048×1320 whenever the composition is intended for a large desktop display. Require `document.documentElement.scrollWidth <= window.innerWidth` and `scrollHeight <= window.innerHeight` at every checked size, while visually checking that the diagram remains comfortably readable and vertically balanced at the largest checked viewport. Repair overflow by removing only genuinely redundant content or compacting spacing before shrinking nodes, labels, or the main panel. If the largest viewport still has a conspicuous empty lower band at the viewer's width cap, redistribute authored Y positions and increase the viewBox height proportionally; do not add filler copy or decorative cards. Never counterfeit a pass with `overflow: hidden`, clipped content, an internal diagram scroller, stretched SVG height, or smaller typography. Narrow/mobile layouts may scroll vertically when containment requires it.
+- Omit `meta.legend` for the truthful `auto` default. When needed, use only `mode: auto|all|hidden` and renderer-supported `entries.<kind>.label|visible`; labels never change semantics.
+- Choose one primary authored language from an explicit user choice; otherwise follow the request or conversation's dominant language. `meta.locale` controls only renderer-owned Viewer UI: use `"en"` or `"zh-CN"` for the corresponding supported primary language. For every other language, omit `meta.locale` and explicitly disclose that the fixed Viewer UI and `<html lang>` fall back to English. The renderer never translates authored content. See `references/authoring-contract.md` for details.
+- Preserve exact product names, code identifiers, commands, protocols, API paths, and environment names. They may remain English inside localized copy, but never justify leaving the surrounding explanatory prose in another language.
+- Brand identity is optional and explicit. Put a canonical built-in ID in `brand` when the node names that real product. If no preset matches and the user supplied the official HTTP(S) URL, first run `node bin/archify.mjs brands capture "<url>" --json`, then author the returned digest-pinned `brand` object. Render and validate never perform an unpinned capture. Otherwise omit `brand`. Never infer a brand from a vague role such as "database", and never let a badge replace the semantic `type`, label, or relationship facts.
+- For sequence diagrams, omit `meta.column_fit` for the stable `fixed` layout. Set it to `"spread"` when a wide viewBox would otherwise leave unused horizontal space or when meaningful participant labels do not fit the fixed boxes; do not shorten semantic labels before trying `spread`.
+- Component types are `frontend`, `backend`, `database`, `cloud`, `security`, `messagebus`, and `external`; variants are `default`, `emphasis`, `security`, and `dashed`.
+- Relationship labels are semantic data. When one collides, move the label, adjust the route or spacing, then shorten the wording while preserving meaning. Omit only wording that is already fully implied by both endpoints and contains no protocol, action, direction, synchronous/asynchronous behavior, or cross-boundary mechanism. Preserve every meaningful label; deleting it is not a geometry repair. If a relationship starts unlabeled because its endpoints fully imply it, explain why the wording is redundant; this is a semantic authoring choice, not a geometry repair.
+- Omit `meta.engineering_profile` by default. Region, cluster, and security boundary wording do not by themselves enable it. Enable `deployment-ownership` only when the user explicitly asks for a production deployment topology, ownership handoff, or fail-closed deployment review and the source facts are known. Once enabled, must not remove the engineering profile merely to pass validation; repair the facts or report the diagnostics truthfully.
+- Spacing means clear gap, not center distance. For a relationship label, clear gap must exceed its measured mask width; follow the label-preserving repair order.
+- Automatic routes own their endpoint sides. A side is a direction contract: the first and final segment must leave/enter perpendicular to that side.
+- Automatic Port Spread is a default renderer behavior for architecture, workflow, data-flow, and lifecycle. It skips single relationships and explicit `via`, `channelX`, `channelY`, `labelAt`, or non-`auto` routes. Near parallel ports use an outside bridge so automatic routing cannot create a sub-8px segment or sub-16px interior turn. Architecture separately keeps unobstructed facing automatic ports (`left`/`right` or `top`/`bottom`) on one shared axis when their offset is under 16px and both ports retain corner clearance. If exactly one endpoint was spread, only the unshared endpoint may move onto that axis; if both endpoints were spread, keep the outside bridge so competing ports remain distinct.
+- Never accept an edge crossing an unrelated opaque node, an ambiguous shared corridor, or a relationship label masking another route.
 
-2-5 阶段 × 5 行网格，flow 标签必填，classification 标注数据敏感性。
+Read `references/authoring-contract.md` only when you need field enums, spacing math, geometry repair rules, repository evidence, or mode-specific placement.
 
-### Lifecycle（生命周期）
+## Delivery
 
-```json
-{
-  "schema_version": 1, "diagram_type": "lifecycle",
-  "meta": { "title": "Agent Run Lifecycle" },
-  "lanes": [
-    { "id": "main", "label": "Lifecycle" },
-    { "id": "waiting", "label": "Interruptions" },
-    { "id": "terminal", "label": "Terminal exits" }
-  ],
-  "states": [
-    { "id": "queued", "type": "start", "label": "Queued", "lane": "main", "col": 0 },
-    { "id": "running", "type": "active", "label": "Executing", "lane": "main", "col": 2 },
-    { "id": "done", "type": "success", "label": "Completed", "lane": "terminal", "col": 2 }
-  ],
-  "transitions": [
-    { "from": "queued", "to": "running", "variant": "emphasis" },
-    { "from": "running", "to": "done", "label": "success" }
-  ]
-}
-```
+Use `validate` during repair and `deliver` once for final acceptance. Delivery freezes the exact specification bytes into a private same-directory snapshot, renders and checks that snapshot, atomically commits the HTML, and reports SHA-256 plus byte counts for both specification and artifact. This is deterministic artifact evidence; it does not exercise the Viewer in a browser.
 
-main/terminal 为保留 lane id，其他 lane 共享中间事件带。
-
----
-
-## Mermaid 输入支持
-
-粘贴 Mermaid 代码，archify 读取结构后按自己的风格重绘：
-
-| Mermaid 类型 | Archify 模式 | 映射规则 |
-|-------------|-------------|---------|
-| `flowchart` / `graph` | `workflow` | subgraph→lane; `{}`菱形→决策节点; 标签→edge label |
-| `sequenceDiagram` | `sequence` | participant→participant; `->>`→消息; `Note`→message note |
-| `stateDiagram` | `lifecycle` | state→state (自动推断 type); `[*]`→start/terminal |
-
----
-
-## 独有特性
-
-### 1. 双主题 SVG 导出
-导出的 SVG 跟随宿主页面的 `prefers-color-scheme`，一份文件在明暗背景下都正确显示。适合 GitHub README。
-
-### 2. Schema 校验 + 布局自动检测
-```
-node bin/archify.mjs validate <type> <input>.json --json
-node bin/archify.mjs check <output>.html
-```
-自动检测：组件重叠、标签碰撞、越界、对角线箭头、箭头穿越图例、非有限坐标值。
-
-### 3. CSS 变量颜色系统
-```svg
-<!-- ✅ 正确：使用 CSS 类，主题切换生效 -->
-<rect class="c-backend" stroke-width="1.5"/>
-<text class="t-primary">API Server</text>
-
-<!-- ❌ 错误：硬编码颜色，深色模式下不可见 -->
-<rect fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
-```
-
-### 4. 布局检查器
-```bash
-node bin/archify.mjs inspect architecture my.json
-# 输出: 组件矩形、边界框、连接点路径、标签位置
-```
-
----
-
-## 布局原则（写 JSON 前必读）
-
-1. **一条主路径** — 左→右（架构）或 lane→列（工作流）。读者应能无交叉线追踪主路径
-2. **少标签** — 只标注跨边界或非显而易见的转换。相邻步骤不加标签
-3. **短分支** — 权限/存储/bot/CI 从主路径最近节点上下连接，不斜穿其他组件
-4. **卡片放细节** — 策略/技术栈说明/额外连接放 summary cards，不画箭头
-5. **模式匹配** — 流程/审批/工具调用→workflow/sequence。≤12 节点组件图→architecture。超过 20 条边→删减
-
----
-
-## 与 architecture-diagram 的关系
-
-```
-architecture-diagram (Dog-Skills)     archify (Dog-Skills)
-        │                                    │
-  基于 Cocoon-AI v1.1                  基于 Cocoon-AI v1.0 → v2.12
-  Quick/Deep 双模式                    JSON Schema 驱动
-  多轮对话提取需求                      5 种图类型 × 5 套 Schema
-  适合: 不写代码的用户                  适合: 愿写 JSON 的开发者
-  输出: 深色 HTML+SVG                  输出: 双主题 HTML+SVG+PNG/JPEG/WebP
-```
-
-两者**互补**而非替代：
-- 用户说"帮我画个架构图" → architecture-diagram（对话交互）
-- 用户说"给我一个精确的 CI/CD 工作流 JSON 模板" → archify
-- 需要 workflow/sequence/dataflow/lifecycle → 只有 archify 支持
-
----
-
-## 安装方式
-
-### Claude Code
+After delivery, collect bounded desktop evidence without modifying or rerendering the trusted HTML:
 
 ```bash
-cp -r archify/ ~/.claude/skills/archify/
+node bin/archify.mjs visual-check <output.html> --json
 ```
 
-### 上游完整安装（含渲染器和 Schema）
+`visual-check` collects automated browser evidence from the exact delivered HTML without modifying or rerendering it. Its machine-readable measurements and screenshots do not approve perceptual polish. Follow `references/delivery-contract.md` for the canonical receipt fields, coverage, sidecars, exit behavior, and supplementary manual-record requirements.
+
+Keep the three claims separate: `deliver` proves deterministic artifact checks, `visual-check` proves bounded behavior in a real browser, and perceptual visual review requires an actual human or image-capable reviewer. Report browser evidence and perceptual review independently. An unconstrained glance can support only perceptual review; use the canonical delivery contract when recording supplementary manual browser work or handling an environmental failure.
+
+Add `--open` only when the user wants an immediate local preview. For an active desktop authoring loop, the optional command is:
 
 ```bash
-npx skills add tt-a1i/archify
+node bin/archify.mjs preview <type> <input>.json <output>.html --quality showcase
 ```
 
-安装后运行 `node bin/archify.mjs doctor` 验证环境，`node bin/archify.mjs demo <dir>` 生成示例。
+Never start preview by default. Read `references/delivery-contract.md` when using preview, repository evidence, export receipts, visual review, or post-commit opening.
 
----
+## Optional viewer capabilities
 
-## 上游致谢
+Generated HTML already contains theme switching, pan/zoom, search, focus, relationship tracing, semantic views, presentation, and truthful exports. These are reader capabilities, not extra authoring work. `meta.animation: "trace"` is opt-in; `meta.views` is optional and should contain at most five curated chapters.
 
-基于 [tt-a1i/archify](https://github.com/tt-a1i/archify) (MIT v2.12)，作者 tt-a1i。继承自 [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) (MIT)。
+Read `references/viewer-runtime.md` only when the user explicitly asks for Share Cards, Route/Reach cards, motion, guided stories, deep links, presentation, search/focus, or another Viewer Runtime feature.
+
+## Setup and fallback
+
+No install is required inside the skill package. Verify with:
+
+```bash
+node bin/archify.mjs doctor
+node bin/archify.mjs demo <output-directory>
+```
+
+When shell access is unavailable, hand-place architecture SVG into `assets/template.html`, use CSS semantic classes rather than inline colors, and follow the visual review contract in `references/delivery-contract.md`.
+
+## Output
+
+Return the checked HTML path, diagram type, validation summary, specification/artifact receipt, browser-evidence status, and truthful visual-review status. Do not claim success for a non-zero command or claim visual inspection you did not perform.

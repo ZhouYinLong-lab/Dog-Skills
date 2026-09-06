@@ -39,7 +39,7 @@ test('all typed renderers emit explicit context and fine reading-depth semantics
     assert.match(html, /data-detail="fine"/, mode);
     assert.match(html, /data-detail-anchor/, mode);
     assert.doesNotMatch(html, /<text[^>]*data-detail="(?:context|fine)"[^>]*class="t-primary"/, mode);
-    assert.match(html, /class="diagram-container" data-detail-level="map"/, mode);
+    assert.match(html, /class="diagram-container" data-detail-level="read"/, mode);
   }
 });
 
@@ -48,10 +48,11 @@ test('semantic zoom exposes MAP, READ, and FULL at deterministic thresholds', ()
   assert.match(html, /function detailLevel\(\)/);
   assert.match(html, /if \(state\.mode === 'semantic'\) return 'full'/);
   assert.match(html, /if \(state\.scale >= 1\.75\) return 'full'/);
-  assert.match(html, /if \(state\.scale >= 1\.25\) return 'read'/);
+  assert.match(html, /if \(state\.scale >= 1\) return 'read'/);
   assert.match(html, /return 'map'/);
   assert.match(html, /container\.setAttribute\('data-detail-level', detail\)/);
-  assert.match(html, /detail === 'map' \? 'MAP ' : detail === 'read' \? 'READ ' : 'FULL '/);
+  assert.match(html, /var levelLabel = viewerText\('viewer\.nav\.level\.' \+ detail\)/);
+  assert.match(html, /var resolvedLevel = semantic \? viewerText\('viewer\.nav\.level\.auto'\) : levelLabel/);
   assert.match(html, /Zoom in to reveal relationship labels and node context/);
   assert.match(html, /Zoom in again to reveal tags and annotations/);
   assert.match(html, /Full diagram detail/);

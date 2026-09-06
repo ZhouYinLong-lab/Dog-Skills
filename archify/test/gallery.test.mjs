@@ -96,12 +96,26 @@ test('generated proof gallery matches its sources, receipts, and checked-in arti
   assert.match(html, /Composition<\/span><span class="receipt-value ok" title="0 crossings · 0 border runs · 0 micro segments · 0 cramped turns">SHOWCASE · PASS/);
   assert.match(html, /Engineering profile/);
   assert.match(html, /DEPLOYMENT OWNERSHIP · PASS/);
-  assert.match(html, /\.brand \{ min-height: 44px;/);
+  assert.match(html, /<link rel="stylesheet" href="assets\/site-navigation\.css">/);
+  assert.match(
+    fs.readFileSync(path.join(generatedRoot, 'assets/site-navigation.css'), 'utf8'),
+    /\.site-nav \.nav-logo \{[^}]*min-height: 44px;/,
+  );
   assert.match(html, /\.filter-button \{\s+min-height: 44px;/);
   assert.match(html, /\.card-link \{ min-height: 44px;/);
+  assert.equal((html.match(/class="card-link create-link"/g) || []).length, 11);
+  for (const type of ['architecture', 'workflow', 'sequence', 'dataflow', 'lifecycle']) {
+    assert.match(html, new RegExp(`start\\.html\\?type=${type}&amp;source=gallery`), `${type}: gallery-to-start link missing`);
+  }
+  assert.match(html, /class="community-callout"/);
+  assert.match(html, /href="https:\/\/github\.com\/tt-a1i\/archify\/issues\/new\?template=showcase\.yml"[^>]+rel="noopener noreferrer"/);
+  assert.match(html, /Share a verified diagram/);
+  assert.match(html, /提交已验证成品/);
 
   for (const relative of [
     'gallery.html',
+    'assets/site-language.js',
+    'assets/site-navigation.css',
     'gallery/manifest.json',
     ...manifest.entries.flatMap((entry) => [entry.artifact, entry.input]),
   ]) {
